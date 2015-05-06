@@ -1,0 +1,513 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9A2191931AEAAA4100D1FBF4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A2191921AEAAA4100D1FBF4 /* main.m */; };
+		9A2191961AEAAA4100D1FBF4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A2191951AEAAA4100D1FBF4 /* AppDelegate.m */; };
+		9A21919E1AEAAA4100D1FBF4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A21919D1AEAAA4100D1FBF4 /* Images.xcassets */; };
+		9A2191A11AEAAA4100D1FBF4 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A21919F1AEAAA4100D1FBF4 /* LaunchScreen.xib */; };
+		9A2191AD1AEAAA4100D1FBF4 /* OnePlusOneTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A2191AC1AEAAA4100D1FBF4 /* OnePlusOneTests.m */; };
+		9A2191C11AEAF30D00D1FBF4 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A2191C01AEAF30D00D1FBF4 /* GameViewController.m */; };
+		9A2191C41AEAF37F00D1FBF4 /* GridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A2191C31AEAF37F00D1FBF4 /* GridView.m */; };
+		9A2191C71AEB7CF400D1FBF4 /* GridCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A2191C61AEB7CF400D1FBF4 /* GridCellView.m */; };
+		9A34D1E51AF8BB68004C1833 /* OnePlusOne.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A34D1E41AF8BB68004C1833 /* OnePlusOne.storyboard */; };
+		9A3F7CEE1AF3ADAA00E03414 /* HighScoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A3F7CED1AF3ADAA00E03414 /* HighScoreView.m */; };
+		9A3F7CF11AF3B45E00E03414 /* HighScoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A3F7CF01AF3B45E00E03414 /* HighScoreCell.m */; };
+		9A3F7CF41AF3BAC600E03414 /* StorageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A3F7CF31AF3BAC600E03414 /* StorageManager.m */; };
+		9A4737CF1AFA1AB5000B1862 /* BorderButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4737CE1AFA1AB5000B1862 /* BorderButton.m */; };
+		9A4737D31AFA1AF7000B1862 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4737D21AFA1AF7000B1862 /* MenuViewController.m */; };
+		9A4737D61AFA1B15000B1862 /* MissionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4737D51AFA1B15000B1862 /* MissionView.m */; };
+		9A6E92B41AEEDBAA00C43C0A /* StatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6E92B31AEEDBAA00C43C0A /* StatusView.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9A2191A71AEAAA4100D1FBF4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A2191851AEAAA4100D1FBF4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A21918C1AEAAA4100D1FBF4;
+			remoteInfo = OnePlusOne;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		9A21918D1AEAAA4100D1FBF4 /* OnePlusOne.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnePlusOne.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A2191911AEAAA4100D1FBF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9A2191921AEAAA4100D1FBF4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		9A2191941AEAAA4100D1FBF4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		9A2191951AEAAA4100D1FBF4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		9A21919D1AEAAA4100D1FBF4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		9A2191A01AEAAA4100D1FBF4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		9A2191A61AEAAA4100D1FBF4 /* OnePlusOneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OnePlusOneTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A2191AB1AEAAA4100D1FBF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9A2191AC1AEAAA4100D1FBF4 /* OnePlusOneTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OnePlusOneTests.m; sourceTree = "<group>"; };
+		9A2191BF1AEAF30D00D1FBF4 /* GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameViewController.h; path = Game/GameViewController.h; sourceTree = "<group>"; };
+		9A2191C01AEAF30D00D1FBF4 /* GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameViewController.m; path = Game/GameViewController.m; sourceTree = "<group>"; };
+		9A2191C21AEAF37F00D1FBF4 /* GridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GridView.h; path = Game/GridView.h; sourceTree = "<group>"; };
+		9A2191C31AEAF37F00D1FBF4 /* GridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GridView.m; path = Game/GridView.m; sourceTree = "<group>"; };
+		9A2191C51AEB7CF400D1FBF4 /* GridCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GridCellView.h; path = Game/GridCellView.h; sourceTree = "<group>"; };
+		9A2191C61AEB7CF400D1FBF4 /* GridCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GridCellView.m; path = Game/GridCellView.m; sourceTree = "<group>"; };
+		9A34D1E41AF8BB68004C1833 /* OnePlusOne.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = OnePlusOne.storyboard; sourceTree = "<group>"; };
+		9A3F7CEC1AF3ADAA00E03414 /* HighScoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HighScoreView.h; path = Game/HighScoreView.h; sourceTree = "<group>"; };
+		9A3F7CED1AF3ADAA00E03414 /* HighScoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HighScoreView.m; path = Game/HighScoreView.m; sourceTree = "<group>"; };
+		9A3F7CEF1AF3B45E00E03414 /* HighScoreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HighScoreCell.h; path = Game/HighScoreCell.h; sourceTree = "<group>"; };
+		9A3F7CF01AF3B45E00E03414 /* HighScoreCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HighScoreCell.m; path = Game/HighScoreCell.m; sourceTree = "<group>"; };
+		9A3F7CF21AF3BAC600E03414 /* StorageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StorageManager.h; sourceTree = "<group>"; };
+		9A3F7CF31AF3BAC600E03414 /* StorageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StorageManager.m; sourceTree = "<group>"; };
+		9A4737CD1AFA1AB5000B1862 /* BorderButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BorderButton.h; path = Commons/Views/BorderButton.h; sourceTree = "<group>"; };
+		9A4737CE1AFA1AB5000B1862 /* BorderButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BorderButton.m; path = Commons/Views/BorderButton.m; sourceTree = "<group>"; };
+		9A4737D11AFA1AF7000B1862 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuViewController.h; path = Menu/MenuViewController.h; sourceTree = "<group>"; };
+		9A4737D21AFA1AF7000B1862 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuViewController.m; path = Menu/MenuViewController.m; sourceTree = "<group>"; };
+		9A4737D41AFA1B15000B1862 /* MissionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MissionView.h; path = Menu/MissionView.h; sourceTree = "<group>"; };
+		9A4737D51AFA1B15000B1862 /* MissionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MissionView.m; path = Menu/MissionView.m; sourceTree = "<group>"; };
+		9A6E92B21AEEDBAA00C43C0A /* StatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StatusView.h; path = Game/StatusView.h; sourceTree = "<group>"; };
+		9A6E92B31AEEDBAA00C43C0A /* StatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StatusView.m; path = Game/StatusView.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9A21918A1AEAAA4100D1FBF4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9A2191A31AEAAA4100D1FBF4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9A2191841AEAAA4100D1FBF4 = {
+			isa = PBXGroup;
+			children = (
+				9A21918F1AEAAA4100D1FBF4 /* OnePlusOne */,
+				9A2191A91AEAAA4100D1FBF4 /* OnePlusOneTests */,
+				9A21918E1AEAAA4100D1FBF4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9A21918E1AEAAA4100D1FBF4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A21918D1AEAAA4100D1FBF4 /* OnePlusOne.app */,
+				9A2191A61AEAAA4100D1FBF4 /* OnePlusOneTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9A21918F1AEAAA4100D1FBF4 /* OnePlusOne */ = {
+			isa = PBXGroup;
+			children = (
+				9A4737D01AFA1ACC000B1862 /* Menu */,
+				9A4737CC1AFA1A9E000B1862 /* Commons */,
+				9A2191BE1AEAF30500D1FBF4 /* Game */,
+				9A2191941AEAAA4100D1FBF4 /* AppDelegate.h */,
+				9A2191951AEAAA4100D1FBF4 /* AppDelegate.m */,
+				9A34D1E41AF8BB68004C1833 /* OnePlusOne.storyboard */,
+				9A21919D1AEAAA4100D1FBF4 /* Images.xcassets */,
+				9A21919F1AEAAA4100D1FBF4 /* LaunchScreen.xib */,
+				9A2191901AEAAA4100D1FBF4 /* Supporting Files */,
+				9A3F7CF21AF3BAC600E03414 /* StorageManager.h */,
+				9A3F7CF31AF3BAC600E03414 /* StorageManager.m */,
+			);
+			path = OnePlusOne;
+			sourceTree = "<group>";
+		};
+		9A2191901AEAAA4100D1FBF4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9A2191911AEAAA4100D1FBF4 /* Info.plist */,
+				9A2191921AEAAA4100D1FBF4 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9A2191A91AEAAA4100D1FBF4 /* OnePlusOneTests */ = {
+			isa = PBXGroup;
+			children = (
+				9A2191AC1AEAAA4100D1FBF4 /* OnePlusOneTests.m */,
+				9A2191AA1AEAAA4100D1FBF4 /* Supporting Files */,
+			);
+			path = OnePlusOneTests;
+			sourceTree = "<group>";
+		};
+		9A2191AA1AEAAA4100D1FBF4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9A2191AB1AEAAA4100D1FBF4 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9A2191BE1AEAF30500D1FBF4 /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				9A3F7CEC1AF3ADAA00E03414 /* HighScoreView.h */,
+				9A3F7CED1AF3ADAA00E03414 /* HighScoreView.m */,
+				9A3F7CEF1AF3B45E00E03414 /* HighScoreCell.h */,
+				9A3F7CF01AF3B45E00E03414 /* HighScoreCell.m */,
+				9A2191BF1AEAF30D00D1FBF4 /* GameViewController.h */,
+				9A2191C01AEAF30D00D1FBF4 /* GameViewController.m */,
+				9A2191C21AEAF37F00D1FBF4 /* GridView.h */,
+				9A2191C31AEAF37F00D1FBF4 /* GridView.m */,
+				9A2191C51AEB7CF400D1FBF4 /* GridCellView.h */,
+				9A2191C61AEB7CF400D1FBF4 /* GridCellView.m */,
+				9A6E92B21AEEDBAA00C43C0A /* StatusView.h */,
+				9A6E92B31AEEDBAA00C43C0A /* StatusView.m */,
+			);
+			name = Game;
+			sourceTree = "<group>";
+		};
+		9A4737C51AFA1A1C000B1862 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9A4737CD1AFA1AB5000B1862 /* BorderButton.h */,
+				9A4737CE1AFA1AB5000B1862 /* BorderButton.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		9A4737CC1AFA1A9E000B1862 /* Commons */ = {
+			isa = PBXGroup;
+			children = (
+				9A4737C51AFA1A1C000B1862 /* Views */,
+			);
+			name = Commons;
+			sourceTree = "<group>";
+		};
+		9A4737D01AFA1ACC000B1862 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				9A4737D41AFA1B15000B1862 /* MissionView.h */,
+				9A4737D51AFA1B15000B1862 /* MissionView.m */,
+				9A4737D11AFA1AF7000B1862 /* MenuViewController.h */,
+				9A4737D21AFA1AF7000B1862 /* MenuViewController.m */,
+			);
+			name = Menu;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9A21918C1AEAAA4100D1FBF4 /* OnePlusOne */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9A2191B01AEAAA4100D1FBF4 /* Build configuration list for PBXNativeTarget "OnePlusOne" */;
+			buildPhases = (
+				9A2191891AEAAA4100D1FBF4 /* Sources */,
+				9A21918A1AEAAA4100D1FBF4 /* Frameworks */,
+				9A21918B1AEAAA4100D1FBF4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OnePlusOne;
+			productName = OnePlusOne;
+			productReference = 9A21918D1AEAAA4100D1FBF4 /* OnePlusOne.app */;
+			productType = "com.apple.product-type.application";
+		};
+		9A2191A51AEAAA4100D1FBF4 /* OnePlusOneTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9A2191B31AEAAA4100D1FBF4 /* Build configuration list for PBXNativeTarget "OnePlusOneTests" */;
+			buildPhases = (
+				9A2191A21AEAAA4100D1FBF4 /* Sources */,
+				9A2191A31AEAAA4100D1FBF4 /* Frameworks */,
+				9A2191A41AEAAA4100D1FBF4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9A2191A81AEAAA4100D1FBF4 /* PBXTargetDependency */,
+			);
+			name = OnePlusOneTests;
+			productName = OnePlusOneTests;
+			productReference = 9A2191A61AEAAA4100D1FBF4 /* OnePlusOneTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9A2191851AEAAA4100D1FBF4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = "David Jangdal";
+				TargetAttributes = {
+					9A21918C1AEAAA4100D1FBF4 = {
+						CreatedOnToolsVersion = 6.3.1;
+					};
+					9A2191A51AEAAA4100D1FBF4 = {
+						CreatedOnToolsVersion = 6.3.1;
+						TestTargetID = 9A21918C1AEAAA4100D1FBF4;
+					};
+				};
+			};
+			buildConfigurationList = 9A2191881AEAAA4100D1FBF4 /* Build configuration list for PBXProject "OnePlusOne" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9A2191841AEAAA4100D1FBF4;
+			productRefGroup = 9A21918E1AEAAA4100D1FBF4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9A21918C1AEAAA4100D1FBF4 /* OnePlusOne */,
+				9A2191A51AEAAA4100D1FBF4 /* OnePlusOneTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9A21918B1AEAAA4100D1FBF4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A2191A11AEAAA4100D1FBF4 /* LaunchScreen.xib in Resources */,
+				9A34D1E51AF8BB68004C1833 /* OnePlusOne.storyboard in Resources */,
+				9A21919E1AEAAA4100D1FBF4 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9A2191A41AEAAA4100D1FBF4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9A2191891AEAAA4100D1FBF4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A2191C11AEAF30D00D1FBF4 /* GameViewController.m in Sources */,
+				9A2191961AEAAA4100D1FBF4 /* AppDelegate.m in Sources */,
+				9A4737D61AFA1B15000B1862 /* MissionView.m in Sources */,
+				9A4737D31AFA1AF7000B1862 /* MenuViewController.m in Sources */,
+				9A3F7CEE1AF3ADAA00E03414 /* HighScoreView.m in Sources */,
+				9A3F7CF11AF3B45E00E03414 /* HighScoreCell.m in Sources */,
+				9A4737CF1AFA1AB5000B1862 /* BorderButton.m in Sources */,
+				9A2191C41AEAF37F00D1FBF4 /* GridView.m in Sources */,
+				9A2191C71AEB7CF400D1FBF4 /* GridCellView.m in Sources */,
+				9A3F7CF41AF3BAC600E03414 /* StorageManager.m in Sources */,
+				9A2191931AEAAA4100D1FBF4 /* main.m in Sources */,
+				9A6E92B41AEEDBAA00C43C0A /* StatusView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9A2191A21AEAAA4100D1FBF4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A2191AD1AEAAA4100D1FBF4 /* OnePlusOneTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9A2191A81AEAAA4100D1FBF4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9A21918C1AEAAA4100D1FBF4 /* OnePlusOne */;
+			targetProxy = 9A2191A71AEAAA4100D1FBF4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		9A21919F1AEAAA4100D1FBF4 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9A2191A01AEAAA4100D1FBF4 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		9A2191AE1AEAAA4100D1FBF4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9A2191AF1AEAAA4100D1FBF4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9A2191B11AEAAA4100D1FBF4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = OnePlusOne/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		9A2191B21AEAAA4100D1FBF4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = OnePlusOne/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		9A2191B41AEAAA4100D1FBF4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = OnePlusOneTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OnePlusOne.app/OnePlusOne";
+			};
+			name = Debug;
+		};
+		9A2191B51AEAAA4100D1FBF4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = OnePlusOneTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OnePlusOne.app/OnePlusOne";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9A2191881AEAAA4100D1FBF4 /* Build configuration list for PBXProject "OnePlusOne" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9A2191AE1AEAAA4100D1FBF4 /* Debug */,
+				9A2191AF1AEAAA4100D1FBF4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9A2191B01AEAAA4100D1FBF4 /* Build configuration list for PBXNativeTarget "OnePlusOne" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9A2191B11AEAAA4100D1FBF4 /* Debug */,
+				9A2191B21AEAAA4100D1FBF4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9A2191B31AEAAA4100D1FBF4 /* Build configuration list for PBXNativeTarget "OnePlusOneTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9A2191B41AEAAA4100D1FBF4 /* Debug */,
+				9A2191B51AEAAA4100D1FBF4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9A2191851AEAAA4100D1FBF4 /* Project object */;
+}
