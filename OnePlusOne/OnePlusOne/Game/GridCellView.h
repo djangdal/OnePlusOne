@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @protocol GridCellViewDelegate <NSObject>
+
 - (void)finishedMergingCells;
 - (void)mergedCellsWithScore:(int)score;
+
 @end
 
 @interface GridCellView : UIView

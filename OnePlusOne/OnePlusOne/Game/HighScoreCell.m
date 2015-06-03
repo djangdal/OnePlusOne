@@ -17,8 +17,7 @@
 
 @implementation HighScoreCell
 
-- (instancetype)init
-{
+- (instancetype)init {
     self = [super init];
     if (self) {
         NSLog(@"init");
@@ -36,7 +35,5 @@
 
     // Configure the view for the selected state
 }
-
-//- (void)setScore
 
 @end

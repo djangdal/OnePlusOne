@@ -8,9 +8,12 @@
 
 #import "AppDelegate.h"
 #import "MenuViewController.h"
+#import "GameViewController.h"
 
 @interface AppDelegate ()
+
 @property (nonatomic) MenuViewController *menuViewController;
+
 @end
 
 @implementation AppDelegate
@@ -22,8 +25,10 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
     self.menuViewController = [[MenuViewController alloc] init];
     self.window.rootViewController = self.menuViewController;
+    
     return YES;
 }
 

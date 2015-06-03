@@ -8,13 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@class GridCellView;
+@class GridCellView, GameState;
 
 @interface GridView : UIView
 
-- (instancetype)initWithGrid:(NSArray *)grid;
+- (void)setUpForGameState:(GameState *)gameState;
 - (GridCellView *)gridCellViewForTouchPoint:(CGPoint)touchPoint;
-- (NSArray* )neighboursForCell:(GridCellView *)gridCellView;
-
+- (NSArray *)neighboursForCell:(GridCellView *)gridCellView;
 
 @end

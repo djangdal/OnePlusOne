@@ -35,7 +35,7 @@
     return [newHighScores writeToFile:self.highScorePath atomically:YES];
 }
 
-- (NSArray *)loadHighScores{
+- (NSArray *)loadHighScores {
     NSArray *highScores = [[NSArray alloc] initWithContentsOfFile:self.highScorePath];
     if (!highScores) {
         highScores = [NSArray new];

@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class Mission;
+
 @interface MissionView : UIView
+
+- (void)displayMission:(Mission *)mission;
 
 @end

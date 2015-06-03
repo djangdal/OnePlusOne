@@ -20,6 +20,7 @@
 @end
 
 CGFloat const kMergeDuration = 0.3f;
+CGFloat const kPreviewDuration = 0.5f;
 
 @implementation GridCellView
 
@@ -34,17 +35,18 @@ CGFloat const kMergeDuration = 0.3f;
         self.valueLabel = [UILabel new];
         self.valueLabel.font = [UIFont fontWithName:@"Helvetica" size:28];
         self.valueLabel.textAlignment = NSTextAlignmentCenter;
+        self.valueLabel.textColor = [UIColor blackColor];
         
         [self addSubview:self.valueLabel];
     }
     return self;
 }
 
-- (void)layoutSubviews{
+- (void)layoutSubviews {
     self.valueLabel.frame = self.bounds;
 }
 
-- (void)updateValueLabel{
+- (void)updateValueLabel {
     self.valueLabel.hidden = self.cellValue==0 ? YES : NO;
     self.valueLabel.text = [NSString stringWithFormat:@"%i", self.cellValue];
 }
@@ -54,12 +56,12 @@ CGFloat const kMergeDuration = 0.3f;
     [self updateValueLabel];
 }
 
-- (void)resetCell{
+- (void)resetCell {
     self.cellValue = 0;
     [self updateValueLabel];
 }
 
-- (void)mergeWithNeighbours:(NSArray *)neighbours{
+- (void)mergeWithNeighbours:(NSArray *)neighbours {
     int sum = 0;
     for (GridCellView *cell in neighbours) {
         if (cell.cellValue == self.cellValue) {
@@ -77,13 +79,12 @@ CGFloat const kMergeDuration = 0.3f;
             [self.delegate mergedCellsWithScore:sum];
             [self mergeWithNeighbours:neighbours];
         }];
-    }
-    else{
+    } else {
         [self.delegate finishedMergingCells];
     }
 }
 
-- (void)mergeToCell:(GridCellView *)gridCellView{
+- (void)mergeToCell:(GridCellView *)gridCellView {
     CGRect originalFrame = self.frame;
     self.cellValue = 0;
     [UIView animateWithDuration:kMergeDuration delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{

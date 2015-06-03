@@ -15,14 +15,26 @@
 		9A2191C11AEAF30D00D1FBF4 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A2191C01AEAF30D00D1FBF4 /* GameViewController.m */; };
 		9A2191C41AEAF37F00D1FBF4 /* GridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A2191C31AEAF37F00D1FBF4 /* GridView.m */; };
 		9A2191C71AEB7CF400D1FBF4 /* GridCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A2191C61AEB7CF400D1FBF4 /* GridCellView.m */; };
-		9A34D1E51AF8BB68004C1833 /* OnePlusOne.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A34D1E41AF8BB68004C1833 /* OnePlusOne.storyboard */; };
 		9A3F7CEE1AF3ADAA00E03414 /* HighScoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A3F7CED1AF3ADAA00E03414 /* HighScoreView.m */; };
 		9A3F7CF11AF3B45E00E03414 /* HighScoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A3F7CF01AF3B45E00E03414 /* HighScoreCell.m */; };
 		9A3F7CF41AF3BAC600E03414 /* StorageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A3F7CF31AF3BAC600E03414 /* StorageManager.m */; };
-		9A4737CF1AFA1AB5000B1862 /* BorderButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4737CE1AFA1AB5000B1862 /* BorderButton.m */; };
 		9A4737D31AFA1AF7000B1862 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4737D21AFA1AF7000B1862 /* MenuViewController.m */; };
 		9A4737D61AFA1B15000B1862 /* MissionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4737D51AFA1B15000B1862 /* MissionView.m */; };
+		9A4737D91AFA1D02000B1862 /* SKGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4737D81AFA1D02000B1862 /* SKGeometry.m */; };
+		9A4737DD1AFA47FA000B1862 /* UIColors+Application.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4737DC1AFA47FA000B1862 /* UIColors+Application.m */; };
 		9A6E92B41AEEDBAA00C43C0A /* StatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6E92B31AEEDBAA00C43C0A /* StatusView.m */; };
+		9A97B1E71B07536100807EEA /* NextNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A97B1E61B07536100807EEA /* NextNumberView.m */; };
+		9A97B1ED1B076A0800807EEA /* GameData.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A97B1EC1B076A0800807EEA /* GameData.m */; };
+		9AEFD3421AFB953200613FE7 /* MissionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEFD3411AFB953200613FE7 /* MissionsView.m */; };
+		9AEFD3461AFB965700613FE7 /* Mission.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEFD3451AFB965700613FE7 /* Mission.m */; };
+		9AEFD3491AFB967300613FE7 /* MissionsFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEFD3481AFB967300613FE7 /* MissionsFactory.m */; };
+		9AEFD34F1AFBC57200613FE7 /* UIBezierPath+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEFD34C1AFBC57200613FE7 /* UIBezierPath+Helpers.m */; };
+		9AEFD3501AFBC57200613FE7 /* UIBezierPath+Paths.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEFD34E1AFBC57200613FE7 /* UIBezierPath+Paths.m */; };
+		9AEFD3531AFBD51400613FE7 /* PathView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEFD3521AFBD51400613FE7 /* PathView.m */; };
+		9AEFD3561AFBEBBD00613FE7 /* PathButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEFD3551AFBEBBD00613FE7 /* PathButton.m */; };
+		9AEFD3591AFBF89400613FE7 /* NextLevelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEFD3581AFBF89400613FE7 /* NextLevelView.m */; };
+		9AF0BBA01B1DF36000E546C8 /* GameState.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF0BB9F1B1DF36000E546C8 /* GameState.m */; };
+		9AF0BBA31B1F490700E546C8 /* ControlsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF0BBA21B1F490700E546C8 /* ControlsView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,21 +64,47 @@
 		9A2191C31AEAF37F00D1FBF4 /* GridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GridView.m; path = Game/GridView.m; sourceTree = "<group>"; };
 		9A2191C51AEB7CF400D1FBF4 /* GridCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GridCellView.h; path = Game/GridCellView.h; sourceTree = "<group>"; };
 		9A2191C61AEB7CF400D1FBF4 /* GridCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GridCellView.m; path = Game/GridCellView.m; sourceTree = "<group>"; };
-		9A34D1E41AF8BB68004C1833 /* OnePlusOne.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = OnePlusOne.storyboard; sourceTree = "<group>"; };
 		9A3F7CEC1AF3ADAA00E03414 /* HighScoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HighScoreView.h; path = Game/HighScoreView.h; sourceTree = "<group>"; };
 		9A3F7CED1AF3ADAA00E03414 /* HighScoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HighScoreView.m; path = Game/HighScoreView.m; sourceTree = "<group>"; };
 		9A3F7CEF1AF3B45E00E03414 /* HighScoreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HighScoreCell.h; path = Game/HighScoreCell.h; sourceTree = "<group>"; };
 		9A3F7CF01AF3B45E00E03414 /* HighScoreCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HighScoreCell.m; path = Game/HighScoreCell.m; sourceTree = "<group>"; };
 		9A3F7CF21AF3BAC600E03414 /* StorageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StorageManager.h; sourceTree = "<group>"; };
 		9A3F7CF31AF3BAC600E03414 /* StorageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StorageManager.m; sourceTree = "<group>"; };
-		9A4737CD1AFA1AB5000B1862 /* BorderButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BorderButton.h; path = Commons/Views/BorderButton.h; sourceTree = "<group>"; };
-		9A4737CE1AFA1AB5000B1862 /* BorderButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BorderButton.m; path = Commons/Views/BorderButton.m; sourceTree = "<group>"; };
 		9A4737D11AFA1AF7000B1862 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuViewController.h; path = Menu/MenuViewController.h; sourceTree = "<group>"; };
 		9A4737D21AFA1AF7000B1862 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuViewController.m; path = Menu/MenuViewController.m; sourceTree = "<group>"; };
 		9A4737D41AFA1B15000B1862 /* MissionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MissionView.h; path = Menu/MissionView.h; sourceTree = "<group>"; };
 		9A4737D51AFA1B15000B1862 /* MissionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MissionView.m; path = Menu/MissionView.m; sourceTree = "<group>"; };
+		9A4737D71AFA1D02000B1862 /* SKGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKGeometry.h; path = Commons/SKGeometry.h; sourceTree = "<group>"; };
+		9A4737D81AFA1D02000B1862 /* SKGeometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKGeometry.m; path = Commons/SKGeometry.m; sourceTree = "<group>"; };
+		9A4737DA1AFA1F9E000B1862 /* prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = prefix.pch; sourceTree = "<group>"; };
+		9A4737DB1AFA47FA000B1862 /* UIColors+Application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColors+Application.h"; path = "Commons/UIColors+Application.h"; sourceTree = "<group>"; };
+		9A4737DC1AFA47FA000B1862 /* UIColors+Application.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColors+Application.m"; path = "Commons/UIColors+Application.m"; sourceTree = "<group>"; };
 		9A6E92B21AEEDBAA00C43C0A /* StatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StatusView.h; path = Game/StatusView.h; sourceTree = "<group>"; };
 		9A6E92B31AEEDBAA00C43C0A /* StatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StatusView.m; path = Game/StatusView.m; sourceTree = "<group>"; };
+		9A97B1E51B07536100807EEA /* NextNumberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NextNumberView.h; path = Game/NextNumberView.h; sourceTree = "<group>"; };
+		9A97B1E61B07536100807EEA /* NextNumberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NextNumberView.m; path = Game/NextNumberView.m; sourceTree = "<group>"; };
+		9A97B1EB1B076A0800807EEA /* GameData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameData.h; sourceTree = "<group>"; };
+		9A97B1EC1B076A0800807EEA /* GameData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameData.m; sourceTree = "<group>"; };
+		9AEFD3401AFB953200613FE7 /* MissionsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MissionsView.h; path = Menu/MissionsView.h; sourceTree = "<group>"; };
+		9AEFD3411AFB953200613FE7 /* MissionsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MissionsView.m; path = Menu/MissionsView.m; sourceTree = "<group>"; };
+		9AEFD3441AFB965700613FE7 /* Mission.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Mission.h; path = Commons/Missions/Mission.h; sourceTree = "<group>"; };
+		9AEFD3451AFB965700613FE7 /* Mission.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Mission.m; path = Commons/Missions/Mission.m; sourceTree = "<group>"; };
+		9AEFD3471AFB967300613FE7 /* MissionsFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MissionsFactory.h; path = Commons/Missions/MissionsFactory.h; sourceTree = "<group>"; };
+		9AEFD3481AFB967300613FE7 /* MissionsFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MissionsFactory.m; path = Commons/Missions/MissionsFactory.m; sourceTree = "<group>"; };
+		9AEFD34B1AFBC57200613FE7 /* UIBezierPath+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIBezierPath+Helpers.h"; path = "Commons/Paths/UIBezierPath+Helpers.h"; sourceTree = "<group>"; };
+		9AEFD34C1AFBC57200613FE7 /* UIBezierPath+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIBezierPath+Helpers.m"; path = "Commons/Paths/UIBezierPath+Helpers.m"; sourceTree = "<group>"; };
+		9AEFD34D1AFBC57200613FE7 /* UIBezierPath+Paths.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIBezierPath+Paths.h"; path = "Commons/Paths/UIBezierPath+Paths.h"; sourceTree = "<group>"; };
+		9AEFD34E1AFBC57200613FE7 /* UIBezierPath+Paths.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIBezierPath+Paths.m"; path = "Commons/Paths/UIBezierPath+Paths.m"; sourceTree = "<group>"; };
+		9AEFD3511AFBD51400613FE7 /* PathView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PathView.h; path = Commons/Paths/PathView.h; sourceTree = "<group>"; };
+		9AEFD3521AFBD51400613FE7 /* PathView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PathView.m; path = Commons/Paths/PathView.m; sourceTree = "<group>"; };
+		9AEFD3541AFBEBBD00613FE7 /* PathButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PathButton.h; path = Commons/Paths/PathButton.h; sourceTree = "<group>"; };
+		9AEFD3551AFBEBBD00613FE7 /* PathButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PathButton.m; path = Commons/Paths/PathButton.m; sourceTree = "<group>"; };
+		9AEFD3571AFBF89400613FE7 /* NextLevelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NextLevelView.h; path = Menu/NextLevelView.h; sourceTree = "<group>"; };
+		9AEFD3581AFBF89400613FE7 /* NextLevelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NextLevelView.m; path = Menu/NextLevelView.m; sourceTree = "<group>"; };
+		9AF0BB9E1B1DF36000E546C8 /* GameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameState.h; path = Game/GameState.h; sourceTree = "<group>"; };
+		9AF0BB9F1B1DF36000E546C8 /* GameState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameState.m; path = Game/GameState.m; sourceTree = "<group>"; };
+		9AF0BBA11B1F490700E546C8 /* ControlsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ControlsView.h; path = Game/ControlsView.h; sourceTree = "<group>"; };
+		9AF0BBA21B1F490700E546C8 /* ControlsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ControlsView.m; path = Game/ControlsView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,7 +151,7 @@
 				9A2191BE1AEAF30500D1FBF4 /* Game */,
 				9A2191941AEAAA4100D1FBF4 /* AppDelegate.h */,
 				9A2191951AEAAA4100D1FBF4 /* AppDelegate.m */,
-				9A34D1E41AF8BB68004C1833 /* OnePlusOne.storyboard */,
+				9A4737DA1AFA1F9E000B1862 /* prefix.pch */,
 				9A21919D1AEAAA4100D1FBF4 /* Images.xcassets */,
 				9A21919F1AEAAA4100D1FBF4 /* LaunchScreen.xib */,
 				9A2191901AEAAA4100D1FBF4 /* Supporting Files */,
@@ -158,12 +196,18 @@
 				9A3F7CF01AF3B45E00E03414 /* HighScoreCell.m */,
 				9A2191BF1AEAF30D00D1FBF4 /* GameViewController.h */,
 				9A2191C01AEAF30D00D1FBF4 /* GameViewController.m */,
+				9AF0BBA11B1F490700E546C8 /* ControlsView.h */,
+				9AF0BBA21B1F490700E546C8 /* ControlsView.m */,
+				9AF0BB9E1B1DF36000E546C8 /* GameState.h */,
+				9AF0BB9F1B1DF36000E546C8 /* GameState.m */,
 				9A2191C21AEAF37F00D1FBF4 /* GridView.h */,
 				9A2191C31AEAF37F00D1FBF4 /* GridView.m */,
 				9A2191C51AEB7CF400D1FBF4 /* GridCellView.h */,
 				9A2191C61AEB7CF400D1FBF4 /* GridCellView.m */,
 				9A6E92B21AEEDBAA00C43C0A /* StatusView.h */,
 				9A6E92B31AEEDBAA00C43C0A /* StatusView.m */,
+				9A97B1E51B07536100807EEA /* NextNumberView.h */,
+				9A97B1E61B07536100807EEA /* NextNumberView.m */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -171,8 +215,6 @@
 		9A4737C51AFA1A1C000B1862 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				9A4737CD1AFA1AB5000B1862 /* BorderButton.h */,
-				9A4737CE1AFA1AB5000B1862 /* BorderButton.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -180,7 +222,15 @@
 		9A4737CC1AFA1A9E000B1862 /* Commons */ = {
 			isa = PBXGroup;
 			children = (
+				9AEFD34A1AFBC56800613FE7 /* Paths */,
+				9AEFD3431AFB956300613FE7 /* Missions */,
+				9A4737D71AFA1D02000B1862 /* SKGeometry.h */,
+				9A4737D81AFA1D02000B1862 /* SKGeometry.m */,
 				9A4737C51AFA1A1C000B1862 /* Views */,
+				9A4737DB1AFA47FA000B1862 /* UIColors+Application.h */,
+				9A4737DC1AFA47FA000B1862 /* UIColors+Application.m */,
+				9A97B1EB1B076A0800807EEA /* GameData.h */,
+				9A97B1EC1B076A0800807EEA /* GameData.m */,
 			);
 			name = Commons;
 			sourceTree = "<group>";
@@ -188,12 +238,42 @@
 		9A4737D01AFA1ACC000B1862 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
-				9A4737D41AFA1B15000B1862 /* MissionView.h */,
-				9A4737D51AFA1B15000B1862 /* MissionView.m */,
 				9A4737D11AFA1AF7000B1862 /* MenuViewController.h */,
 				9A4737D21AFA1AF7000B1862 /* MenuViewController.m */,
+				9AEFD3571AFBF89400613FE7 /* NextLevelView.h */,
+				9AEFD3581AFBF89400613FE7 /* NextLevelView.m */,
+				9AEFD3401AFB953200613FE7 /* MissionsView.h */,
+				9AEFD3411AFB953200613FE7 /* MissionsView.m */,
+				9A4737D41AFA1B15000B1862 /* MissionView.h */,
+				9A4737D51AFA1B15000B1862 /* MissionView.m */,
 			);
 			name = Menu;
+			sourceTree = "<group>";
+		};
+		9AEFD3431AFB956300613FE7 /* Missions */ = {
+			isa = PBXGroup;
+			children = (
+				9AEFD3441AFB965700613FE7 /* Mission.h */,
+				9AEFD3451AFB965700613FE7 /* Mission.m */,
+				9AEFD3471AFB967300613FE7 /* MissionsFactory.h */,
+				9AEFD3481AFB967300613FE7 /* MissionsFactory.m */,
+			);
+			name = Missions;
+			sourceTree = "<group>";
+		};
+		9AEFD34A1AFBC56800613FE7 /* Paths */ = {
+			isa = PBXGroup;
+			children = (
+				9AEFD34B1AFBC57200613FE7 /* UIBezierPath+Helpers.h */,
+				9AEFD34C1AFBC57200613FE7 /* UIBezierPath+Helpers.m */,
+				9AEFD34D1AFBC57200613FE7 /* UIBezierPath+Paths.h */,
+				9AEFD34E1AFBC57200613FE7 /* UIBezierPath+Paths.m */,
+				9AEFD3511AFBD51400613FE7 /* PathView.h */,
+				9AEFD3521AFBD51400613FE7 /* PathView.m */,
+				9AEFD3541AFBEBBD00613FE7 /* PathButton.h */,
+				9AEFD3551AFBEBBD00613FE7 /* PathButton.m */,
+			);
+			name = Paths;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,7 +357,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A2191A11AEAAA4100D1FBF4 /* LaunchScreen.xib in Resources */,
-				9A34D1E51AF8BB68004C1833 /* OnePlusOne.storyboard in Resources */,
 				9A21919E1AEAAA4100D1FBF4 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -297,17 +376,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A2191C11AEAF30D00D1FBF4 /* GameViewController.m in Sources */,
+				9AF0BBA01B1DF36000E546C8 /* GameState.m in Sources */,
+				9A4737D91AFA1D02000B1862 /* SKGeometry.m in Sources */,
+				9AEFD3421AFB953200613FE7 /* MissionsView.m in Sources */,
 				9A2191961AEAAA4100D1FBF4 /* AppDelegate.m in Sources */,
 				9A4737D61AFA1B15000B1862 /* MissionView.m in Sources */,
+				9AEFD34F1AFBC57200613FE7 /* UIBezierPath+Helpers.m in Sources */,
+				9AF0BBA31B1F490700E546C8 /* ControlsView.m in Sources */,
 				9A4737D31AFA1AF7000B1862 /* MenuViewController.m in Sources */,
+				9AEFD3461AFB965700613FE7 /* Mission.m in Sources */,
 				9A3F7CEE1AF3ADAA00E03414 /* HighScoreView.m in Sources */,
 				9A3F7CF11AF3B45E00E03414 /* HighScoreCell.m in Sources */,
-				9A4737CF1AFA1AB5000B1862 /* BorderButton.m in Sources */,
+				9AEFD3591AFBF89400613FE7 /* NextLevelView.m in Sources */,
+				9AEFD3561AFBEBBD00613FE7 /* PathButton.m in Sources */,
 				9A2191C41AEAF37F00D1FBF4 /* GridView.m in Sources */,
 				9A2191C71AEB7CF400D1FBF4 /* GridCellView.m in Sources */,
+				9AEFD3531AFBD51400613FE7 /* PathView.m in Sources */,
+				9AEFD3491AFB967300613FE7 /* MissionsFactory.m in Sources */,
 				9A3F7CF41AF3BAC600E03414 /* StorageManager.m in Sources */,
 				9A2191931AEAAA4100D1FBF4 /* main.m in Sources */,
+				9A97B1E71B07536100807EEA /* NextNumberView.m in Sources */,
+				9A97B1ED1B076A0800807EEA /* GameData.m in Sources */,
+				9A4737DD1AFA47FA000B1862 /* UIColors+Application.m in Sources */,
 				9A6E92B41AEEDBAA00C43C0A /* StatusView.m in Sources */,
+				9AEFD3501AFBC57200613FE7 /* UIBezierPath+Paths.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,6 +519,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CODE_SIGN_IDENTITY = "iPhone Developer: David Jangdal (X937KZB3SA)";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = OnePlusOne/prefix.pch;
 				INFOPLIST_FILE = OnePlusOne/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -437,6 +533,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CODE_SIGN_IDENTITY = "iPhone Developer: David Jangdal (X937KZB3SA)";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = OnePlusOne/prefix.pch;
 				INFOPLIST_FILE = OnePlusOne/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";

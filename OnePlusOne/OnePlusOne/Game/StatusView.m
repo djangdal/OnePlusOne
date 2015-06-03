@@ -8,86 +8,85 @@
 
 #import "StatusView.h"
 #import "HighScoreView.h"
+#import "MissionsView.h"
+#import "GameData.h"
 
 @interface StatusView ()
 
+@property (nonatomic) NSArray *missions;
 @property (nonatomic) UILabel *scoreLabel;
-@property (nonatomic) UILabel *nextNumberLabel;
-@property (nonatomic) UIButton *restartButton;
-@property (nonatomic) UIButton *quitButton;
-
-@property (nonatomic) HighScoreView *highScoreView;
-
-@property (nonatomic, weak) id<StatusViewDelegate> delegate;
+@property (nonatomic) UILabel *levelLabel;
+@property (nonatomic) UILabel *scoreTitleLabel;
+@property (nonatomic) MissionsView *missionsView;
 
 @end
 
 @implementation StatusView
 
-CGFloat const kButtonWidth = 100;
-CGFloat const kButtonHeight = 30;
-CGFloat const kMargin = 30;
-
-- (instancetype)initWithDelegate:(id<StatusViewDelegate>)delegate {
+- (instancetype)init {
     self = [super init];
     if (self) {
-        self.delegate = delegate;
-        self.backgroundColor = [UIColor colorWithRed:1 green:0.68f blue:0 alpha:1];
+        self.backgroundColor = [UIColor defaultDarkColor];
         
         self.scoreLabel = [[UILabel alloc] init];
-        [self updateScoreTo:0];
+        self.scoreLabel.text = @"0";
+        self.scoreLabel.textColor = [UIColor defaultLightColor];
+        
+        self.scoreTitleLabel = [[UILabel alloc] init];
+        self.scoreTitleLabel.text = @"Score:";
+        self.scoreTitleLabel.textColor = [UIColor defaultLightColor];
+        
+        self.levelLabel = [[UILabel alloc] init];
+        self.levelLabel.textColor = [UIColor defaultLightColor];
+        
+        self.missionsView = [MissionsView new];
+        
+        [self addSubview:self.missionsView];
         [self addSubview:self.scoreLabel];
-        
-        self.nextNumberLabel = [[UILabel alloc] init];
-        [self addSubview:self.nextNumberLabel];
-        
-        self.quitButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.quitButton.backgroundColor = [UIColor purpleColor];
-        [self.quitButton setTitle:@"Quit" forState:UIControlStateNormal];
-        [self.quitButton addTarget:self action:@selector(quitButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:self.quitButton];
-        
-        self.restartButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.restartButton.backgroundColor = [UIColor purpleColor];
-        [self.restartButton setTitle:@"Restart" forState:UIControlStateNormal];
-        [self.restartButton addTarget:self action:@selector(restartButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:self.restartButton];
-        
-        self.highScoreView = [[HighScoreView alloc] init];
-        [self addSubview:self.highScoreView];
+        [self addSubview:self.scoreTitleLabel];
+        [self addSubview:self.levelLabel];
     }
     return self;
 }
 
-- (void)restartButtonPressed:(UIButton *)sender{
-    [self.delegate resetButtonPressed];
-}
-
-- (void)quitButtonPressed:(UIButton *)sender{
-    [self.delegate quitButtonPressed];
-}
-
-- (void)layoutSubviews{
-    self.restartButton.frame = CGRectMake(kMargin/2, kMargin, kButtonWidth, kButtonHeight);
+- (void)layoutSubviews {
+    self.levelLabel.text = [NSString stringWithFormat:@"Level %i", [GameData sharedGameData].level];
     
-    self.quitButton.frame = CGRectMake(kMargin/2, CGRectGetMaxY(self.restartButton.frame)+kMargin , kButtonWidth, kButtonHeight);
+    CGSize size = self.frame.size;
     
+    static CGFloat levelTop = 0.1;
+    static CGFloat levelLeft = 0.05;
+    [self.levelLabel sizeToFit];
+    self.levelLabel.frame = SKRectSetX(self.levelLabel.frame, size.width*levelLeft);
+    self.levelLabel.frame = SKRectSetY(self.levelLabel.frame, size.height*levelTop);
+    
+    static CGFloat scoreLeft = 0.05;
+    static CGFloat scoreBottom = 0.05;
+    static CGFloat scoreSpacing = 0.05;
     [self.scoreLabel sizeToFit];
-    self.scoreLabel.frame = CGRectMake(kMargin/2, CGRectGetMaxY(self.quitButton.frame)+kMargin, self.scoreLabel.frame.size.width, self.scoreLabel.frame.size.height);
+    [self.scoreTitleLabel sizeToFit];
+    self.scoreLabel.frame = SKRectSetX(self.scoreLabel.frame, size.width*scoreLeft);
+    self.scoreLabel.frame = SKRectSetBottom(self.scoreLabel.frame, size.height - size.height*scoreBottom, NO);
+    self.scoreTitleLabel.frame = SKRectSetX(self.scoreTitleLabel.frame, size.width*scoreLeft);
+    self.scoreTitleLabel.frame = SKRectSetBottom(self.scoreTitleLabel.frame, CGRectGetMinY(self.scoreLabel.frame) - size.height*scoreSpacing, NO);
     
-    [self.nextNumberLabel sizeToFit];
-    self.nextNumberLabel.frame = CGRectMake(kMargin/2,CGRectGetMaxY(self.scoreLabel.frame)+kMargin, self.nextNumberLabel.frame.size.width, self.nextNumberLabel.frame.size.height);
-    
-    self.highScoreView.frame = CGRectMake(self.bounds.size.width/2-kMargin, kMargin/2, self.bounds.size.width/2+kMargin/2, self.bounds.size.height-kMargin);
+    static CGFloat missionsTop = 0.05;
+    static CGFloat missionsLeft = 0.44;
+    static CGFloat missionsRight = 0.0;
+    static CGFloat missionsBottom = 0.06;
+    self.missionsView.frame = SKRectSetX(self.missionsView.frame, size.width*missionsLeft);
+    self.missionsView.frame = SKRectSetY(self.missionsView.frame, size.height*missionsTop);
+    self.missionsView.frame = SKRectSetRight(self.missionsView.frame, size.width - size.width*missionsRight, YES);
+    self.missionsView.frame = SKRectSetBottom(self.missionsView.frame, size.height - size.height*missionsBottom, YES);
 }
 
-- (void)updateScoreTo:(int)score{
-    self.scoreLabel.text = [NSString stringWithFormat:@"Score: %i", score];
-    [self setNeedsLayout];
+- (void)updateMissionsStatus:(NSArray *)missions {
+    self.missions = missions;
+    [self.missionsView displayMissions:self.missions];
 }
 
-- (void)showNextNumber:(int)number {
-    self.nextNumberLabel.text = [NSString stringWithFormat:@"Next number: %i", number];
+- (void)updateScoreTo:(int)score {
+    self.scoreLabel.text = [NSString stringWithFormat:@"%i", score];
     [self setNeedsLayout];
 }
 

@@ -10,10 +10,11 @@
 #import <UIKit/UIKit.h>
 #import "GridCellView.h"
 #import "StatusView.h"
+#import "ControlsView.h"
 
-@interface GameViewController : UIViewController <GridCellViewDelegate, StatusViewDelegate>
+@interface GameViewController : UIViewController <GridCellViewDelegate, ControlsViewDelegate>
 
-@property (nonatomic, readonly) BOOL gameOngoing;
+@property (nonatomic) NSArray *missions;
 
 - (void)startNewGame;
 

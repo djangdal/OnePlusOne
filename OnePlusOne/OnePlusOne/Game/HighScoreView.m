@@ -24,9 +24,6 @@
     if (self) {
         self.storageManager = [StorageManager new];
         
-        
-//        [self.storageManager saveNewHighScore:@13 name:@"david"];
-        
         self.highScores = [self.storageManager loadHighScores];
         
         self.backgroundColor = [UIColor whiteColor];
@@ -36,26 +33,24 @@
     return self;
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *MyIdentifier = @"StandardCell";
+    static NSString * MyIdentifier = @"StandardCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MyIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1  reuseIdentifier:MyIdentifier];
     }
     NSDictionary *dict = [self.highScores objectAtIndex:indexPath.row];
-    NSLog(@"dict %@",dict);
     
     cell.textLabel.text = [NSString stringWithFormat:@"%@", [dict objectForKey:@"name"]];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", [dict objectForKey:@"score"]];
     return cell;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 44;
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.highScores.count;
 }
 

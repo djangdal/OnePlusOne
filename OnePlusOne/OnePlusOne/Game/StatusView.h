@@ -8,15 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol StatusViewDelegate <NSObject>
-- (void)quitButtonPressed;
-- (void)resetButtonPressed;
-@end
-
 @interface StatusView : UIView
 
-- (instancetype)initWithDelegate:(id<StatusViewDelegate>)delegate;
+- (void)updateMissionsStatus:(NSArray *)missions;
 - (void)updateScoreTo:(int)score;
-- (void)showNextNumber:(int)number;
 
 @end
