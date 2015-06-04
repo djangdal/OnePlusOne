@@ -14,6 +14,7 @@
 @property (nonatomic) int y;
 @property (nonatomic) int cellValue;
 @property (nonatomic) UILabel *valueLabel;
+@property (nonatomic) UILabel *previewLabel;
 
 @property (nonatomic, weak) id<GridCellViewDelegate> delegate;
 
@@ -37,13 +38,20 @@ CGFloat const kPreviewDuration = 0.5f;
         self.valueLabel.textAlignment = NSTextAlignmentCenter;
         self.valueLabel.textColor = [UIColor blackColor];
         
+        self.previewLabel = [UILabel new];
+        self.previewLabel.font = [UIFont fontWithName:@"Helvetica" size:28];
+        self.previewLabel.textAlignment = NSTextAlignmentCenter;
+        self.previewLabel.textColor = [UIColor defaultDarkColor];
+        
         [self addSubview:self.valueLabel];
+        [self addSubview:self.previewLabel];
     }
     return self;
 }
 
 - (void)layoutSubviews {
     self.valueLabel.frame = self.bounds;
+    self.previewLabel.frame = self.bounds;
 }
 
 - (void)updateValueLabel {
@@ -92,6 +100,20 @@ CGFloat const kPreviewDuration = 0.5f;
     } completion:^(BOOL finished) {
         self.frame = originalFrame;
         [self updateValueLabel];
+    }];
+}
+
+- (void)previewNumber:(int)number {
+    self.previewLabel.alpha = 0;
+    self.previewLabel.text = [NSString stringWithFormat:@"%i", number];
+    [UIView animateWithDuration:kPreviewDuration delay:0 options:(UIViewAnimationOptionAutoreverse | UIViewAnimationOptionRepeat) animations:^{
+        self.previewLabel.alpha = 1.0f;
+    } completion:nil];
+}
+
+- (void)stopPreviewNumber {
+    [UIView animateWithDuration:0.1 animations:^{
+        self.previewLabel.alpha = 0.0f;
     }];
 }
 

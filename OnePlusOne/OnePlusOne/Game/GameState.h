@@ -22,4 +22,6 @@
 @property (nonatomic) GridCellView *lastPlacedTile;
 @property (nonatomic, readonly) NSArray *grid;
 
+- (GridCellView *)firstEmptyCell;
+
 @end

@@ -38,7 +38,7 @@
         Mission *mission1 = [[Mission alloc] initWithDescription:@"Get more then 40 points in one game" completionBlock:^void(GameState *gameState, Mission *mission){
             mission.missionState = gameState.totalScore > 40 ? MissionStateCompleted : MissionStateOngoing;
         }];
-        Mission *mission2 = [[Mission alloc] initWithDescription:@"Place nine 1 tiles before 12 points" completionBlock:^void(GameState *gameState, Mission *mission){
+        Mission *mission2 = [[Mission alloc] initWithDescription:@"Place seven 1 tiles before 8 points" completionBlock:^void(GameState *gameState, Mission *mission){
             static int count = 0;
             if (mission.resetMission) {
                 count = 0;
@@ -46,10 +46,10 @@
             }
             if (mission.missionState != MissionStateFailed) {
                 count = gameState.lastPlacedValue == 1 ? count+1 : count;
-                if (gameState.totalScore >= 12) {
+                if (gameState.totalScore >= 8) {
                     mission.missionState = MissionStateFailed;
                 } else {
-                    mission.missionState = count >= 9 ? MissionStateCompleted : MissionStateOngoing;
+                    mission.missionState = count >= 7 ? MissionStateCompleted : MissionStateOngoing;
                 }
             }
         }];
@@ -98,21 +98,18 @@
     
     
     { //Missions for level 4
-        Mission *mission1 = [[Mission alloc] initWithDescription:@"Get 200 points in one game" completionBlock:^void(GameState *gameState, Mission *mission){
-            mission.missionState = gameState.totalScore >= 200 ? MissionStateCompleted : MissionStateOngoing;
+        Mission *mission1 = [[Mission alloc] initWithDescription:@"Get 100 points in one game" completionBlock:^void(GameState *gameState, Mission *mission){
+            mission.missionState = gameState.totalScore >= 100 ? MissionStateCompleted : MissionStateOngoing;
         }];
-        Mission *mission2 = [[Mission alloc] initWithDescription:@"Always have atleast 8 tiles free, and get 100 points" completionBlock:^void(GameState *gameState, Mission *mission){
+        Mission *mission2 = [[Mission alloc] initWithDescription:@"Never have more then five 1 on the board" completionBlock:^void(GameState *gameState, Mission *mission){
             __block int count = 0;
-            if (mission.resetMission) {
-                mission.resetMission = NO;
-            }
             if (mission.missionState != MissionStateFailed) {
                 [gameState.grid enumerateObjectsUsingBlock:^(NSArray *row, NSUInteger idx, BOOL *stop) {
                     [row enumerateObjectsUsingBlock:^(GridCellView *cell, NSUInteger idx, BOOL *stop) {
-                        count = cell.cellValue == 0 ? count+1 : count;
+                        count = cell.cellValue == 1 ? count+1 : count;
                     }];
                 }];
-                if (count < 8) {
+                if (count > 8) {
                     mission.missionState = MissionStateFailed;
                     return;
                 }

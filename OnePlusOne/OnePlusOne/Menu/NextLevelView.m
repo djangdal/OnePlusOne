@@ -54,7 +54,7 @@
 }
 
 - (void)showNextLeveL:(int)nextLevel {
-    self.levelLabel.text = [NSString stringWithFormat:@"Level %i", nextLevel];
+    self.levelLabel.text = [NSString stringWithFormat:@"Level %i rewards", nextLevel];
     if (nextLevel == 2) {
         self.descriptionLabel.text = @"Unlock the 3x3 grid";
     }
@@ -64,7 +64,19 @@
     }
     
     if (nextLevel == 4) {
-        self.descriptionLabel.text = @"Preview of the next number";
+        self.descriptionLabel.text = @"Unlock preview of the next tile";
+    }
+    
+    if (nextLevel == 5) {
+        self.descriptionLabel.text = @"Unlock the number 3 tile";
+    }
+    
+    if (nextLevel == 6) {
+        self.descriptionLabel.text = @"Undo once per gmae";
+    }
+    
+    if (nextLevel == 7) {
+        self.descriptionLabel.text = @"Unlock 4x4 grid";
     }
 }
 

@@ -30,6 +30,8 @@
 @property (nonatomic) StatusView *statusView;
 @property (nonatomic) ControlsView *controlsView;
 
+@property (nonatomic) GridCellView *previewCell;
+
 @end
 
 //static CGFloat const kGridSize = 2;
@@ -58,7 +60,7 @@
         
         self.fadeView = [UIView new];
         self.fadeView.backgroundColor = [UIColor defaultLightColor];
-        self.fadeView.alpha = 0.5f;
+        self.fadeView.alpha = 0.85f;
         
         self.controlsView = [[ControlsView alloc] initWithDelegate:self];
     }
@@ -166,7 +168,7 @@
     if ([GameData sharedGameData].level >= 2) {
         size = 3;
     }
-    if ([GameData sharedGameData].level >= 4) {
+    if ([GameData sharedGameData].level >= 5) {
         size = 4;
     }
     return size;
@@ -179,10 +181,11 @@
     self.gameState.lastPlacedValue = 0;
     self.gameState.lastPlacedTile = nil;
     self.nextNumber = [GameData sharedGameData].level==3 ? 2 : 1;
+    [self previewNextNumber];
     self.allowTouch = YES;
     self.levelFailed = NO;
     self.levelCompleted = NO;
-    [self.controlsView previewNextNumber:self.nextNumber];
+//    [self.controlsView previewNextNumber:self.nextNumber];
     [self.statusView updateScoreTo:self.gameState.totalScore];
     [self.missions enumerateObjectsUsingBlock:^(Mission *mission, NSUInteger idx, BOOL *stop) {
         if (mission.missionState != MissionStateCompleted) {
@@ -198,6 +201,14 @@
     }
     [self layoutViews];
     [self.controlsView displayForLevel:[GameData sharedGameData].level];
+}
+
+- (void)previewNextNumber {
+    if (self.previewCell) {
+        [self.previewCell stopPreviewNumber];
+    }
+    self.previewCell = [self.gameState firstEmptyCell];
+    [self.previewCell previewNumber:self.nextNumber];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -219,7 +230,7 @@
         self.gameState.lastPlacedValue = self.nextNumber;
         self.gameState.tilesPlaced++;
         self.gameState.totalScore += self.nextNumber;
-        [self.controlsView stopPreviewing];
+        [self.previewCell stopPreviewNumber];
         [gridCellView startCellWithNumber:self.nextNumber];
         [self.statusView updateScoreTo:self.gameState.totalScore];
         NSArray *neighbours = [self.gridView neighboursForCell:gridCellView];
@@ -230,7 +241,8 @@
 - (void)generateNextNumber {
     int maxNumber = [GameData sharedGameData].level > 2 ? 2 : 1;
     self.nextNumber = arc4random_uniform(maxNumber)+1;
-    [self.controlsView previewNextNumber:self.nextNumber];
+    //    [self.controlsView previewNextNumber:self.nextNumber];
+    [self previewNextNumber];
 }
 
 #pragma GridCellViewProtocoll
@@ -240,33 +252,31 @@
 }
 
 - (void)finishedMergingCells {
-    if ([self.gameState isGameOver]) {
+    __block BOOL allCompleted = YES;
+    __block BOOL anyCompleted = YES;
+    [self.missions enumerateObjectsUsingBlock:^(Mission *mission, NSUInteger idx, BOOL *stop) {
+        if ([mission completedForGameState:self.gameState]) {
+            anyCompleted = YES;
+        } else {
+            allCompleted = NO;
+        }
+    }];
+    
+    if (anyCompleted) {
+        [self.statusView updateMissionsStatus:self.missions];
+    }
+    if (allCompleted && !self.levelCompleted) {
+        self.levelCompleted = YES;
+        [[GameData sharedGameData] levelUp];
+        [self.controlsView displayLevelCompleted];
+        [self layoutViews];
+    } else if ([self.gameState isGameOver]) {
         self.levelFailed = YES;
         [self.controlsView displayGameOver];
         [self layoutViews];
     } else {
-        __block BOOL allCompleted = YES;
-        __block BOOL anyCompleted = YES;
-        [self.missions enumerateObjectsUsingBlock:^(Mission *mission, NSUInteger idx, BOOL *stop) {
-            if ([mission completedForGameState:self.gameState]) {
-                anyCompleted = YES;
-            } else {
-                allCompleted = NO;
-            }
-        }];
-        
-        if (anyCompleted) {
-            [self.statusView updateMissionsStatus:self.missions];
-        }
-        if (allCompleted && !self.levelCompleted) {
-            self.levelCompleted = YES;
-            [[GameData sharedGameData] levelUp];
-            [self.controlsView displayLevelCompleted];
-            [self layoutViews];
-        } else {
-            [self generateNextNumber];
-            self.allowTouch = YES;
-        }
+        [self generateNextNumber];
+        self.allowTouch = YES;
     }
 }
 

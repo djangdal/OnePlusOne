@@ -28,4 +28,7 @@
 - (void)mergeToCell:(GridCellView *)gridCellView;
 - (void)mergeWithNeighbours:(NSArray *)neighbours;
 
+- (void)previewNumber:(int)number;
+- (void)stopPreviewNumber;
+
 @end

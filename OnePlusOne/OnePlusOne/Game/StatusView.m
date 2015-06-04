@@ -50,7 +50,7 @@
 }
 
 - (void)layoutSubviews {
-    self.levelLabel.text = [NSString stringWithFormat:@"Level %i", [GameData sharedGameData].level];
+    self.levelLabel.text = [NSString stringWithFormat:@"Level %i objectives:", [GameData sharedGameData].level];
     
     CGSize size = self.frame.size;
     

@@ -44,4 +44,60 @@
     return true;
 }
 
+- (GridCellView *)firstEmptyCell {
+    if (self.lastPlacedTile) {
+        int x = self.lastPlacedTile.x;
+        int y = self.lastPlacedTile.y;
+        long int max = self.grid.count;
+        
+        if (y+1 < max) {
+            GridCellView *cell = [[self.grid objectAtIndex:x] objectAtIndex:y+1];
+            if (cell.cellValue == 0) return cell;
+        }
+        
+        if (x+1 < max && y+1 < max) {
+            GridCellView *cell = [[self.grid objectAtIndex:x+1] objectAtIndex:y+1];
+            if (cell.cellValue == 0) return cell;
+        }
+        
+        if (x-1 >= 0 && y+1 < max) {
+            GridCellView *cell = [[self.grid objectAtIndex:x-1] objectAtIndex:y+1];
+            if (cell.cellValue == 0) return cell;
+        }
+        if (x-1 >= 0) {
+            GridCellView *cell = [[self.grid objectAtIndex:x-1] objectAtIndex:y];
+            if (cell.cellValue == 0) return cell;
+        }
+        
+        if (x+1 < max) {
+            GridCellView *cell = [[self.grid objectAtIndex:x+1] objectAtIndex:y];
+            if (cell.cellValue == 0) return cell;
+        }
+        
+        if (y-1 >= 0) {
+            GridCellView *cell = [[self.grid objectAtIndex:x] objectAtIndex:y-1];
+            if (cell.cellValue == 0) return cell;
+        }
+        
+        if (x-1 >= 0 && y-1 >= 0) {
+            GridCellView *cell = [[self.grid objectAtIndex:x-1] objectAtIndex:y-1];
+            if (cell.cellValue == 0) return cell;
+        }
+        
+        if (x+1 < max && y-1 >= 0) {
+            GridCellView *cell = [[self.grid objectAtIndex:x+1] objectAtIndex:y-1];
+            if (cell.cellValue == 0) return cell;
+        }
+    }
+    
+    for (NSArray *inner in self.grid) {
+        for (GridCellView *cell in inner) {
+            if (cell.cellValue == 0) {
+                return cell;
+            }
+        }
+    }
+    return nil;
+}
+
 @end

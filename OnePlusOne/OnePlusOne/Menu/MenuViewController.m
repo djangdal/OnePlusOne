@@ -84,6 +84,7 @@
         [self.achievementsButton addTarget:self action:@selector(achievementsButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         self.achievementsButton.scale = 0.6;
         
+        [[GameData sharedGameData] levelUp];
 //        [[GameData sharedGameData] levelUp];
 //        [[GameData sharedGameData] levelUp];
         self.level = [GameData sharedGameData].level;
@@ -136,15 +137,15 @@
 }
 
 - (void)highscoresButtonPressed:(UIButton *)button {
-    [self presentViewController:self.gameViewController animated:NO completion:nil];
+//    [self presentViewController:self.gameViewController animated:NO completion:nil];
 }
 
 - (void)achievementsButtonPressed:(UIButton *)button {
 }
 
 - (void)optionsButtonPressed:(UIButton *)button {
-    [[GameData sharedGameData] reset];
-    [[GameData sharedGameData] save];
+//    [[GameData sharedGameData] reset];
+//    [[GameData sharedGameData] save];
 }
 
 - (void)layoutViews {
