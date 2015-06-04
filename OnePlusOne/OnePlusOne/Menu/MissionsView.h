@@ -11,5 +11,6 @@
 @interface MissionsView : UIView
 
 - (void)displayMissions:(NSArray *)missions;
+- (void)displayNewMissions:(NSArray *)missions duration:(NSTimeInterval)duration;
 
 @end

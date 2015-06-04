@@ -46,7 +46,6 @@
         self.gameViewController = [[GameViewController alloc] init];
         
         self.titleLabel = [[UILabel alloc] init];
-        self.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:38];
         self.titleLabel.textColor = [UIColor defaultDarkColor];
         self.titleLabel.text = @"One Plus One";
         
@@ -55,6 +54,7 @@
         self.levelLabel.font = [UIFont fontWithName:@"helvetica" size:20];
         
         self.levelBackgroundView = [UIView new];
+//        self.levelBackgroundView.clipsToBounds = YES;
         self.levelBackgroundView.backgroundColor = [UIColor defaultDarkColor];
         
         self.missionsView = [MissionsView new];
@@ -84,9 +84,9 @@
         [self.achievementsButton addTarget:self action:@selector(achievementsButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         self.achievementsButton.scale = 0.6;
         
+//        [[GameData sharedGameData] levelUp];
         [[GameData sharedGameData] levelUp];
-//        [[GameData sharedGameData] levelUp];
-//        [[GameData sharedGameData] levelUp];
+        [[GameData sharedGameData] levelUp];
         self.level = [GameData sharedGameData].level;
         self.missions = [MissionsFactory missionsForLevel:self.level];
     }
@@ -97,17 +97,18 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor defaultLightColor];
     [self.view addSubview:self.titleLabel];
+    [self.view addSubview:self.missionsView];
     [self.view addSubview:self.levelBackgroundView];
     [self.levelBackgroundView addSubview:self.levelLabel];
-    [self.view addSubview:self.missionsView];
     [self.view addSubview:self.nextLevelView];
     [self.view addSubview:self.playButton];
     [self.view addSubview:self.optionsButton];
     [self.view addSubview:self.highscoresButton];
     [self.view addSubview:self.achievementsButton];
     
-    [self.missionsView displayMissions:self.missions];
+    self.titleLabel.font = [UIFont fontWithName:@"helvetica" size:self.view.frame.size.width*0.12f];
     self.levelLabel.text = [NSString stringWithFormat:@"Level %i", self.level];
+    [self.missionsView displayMissions:self.missions];
     [self.nextLevelView showNextLeveL:self.level+1];
 }
 
@@ -120,13 +121,19 @@
         self.level = [GameData sharedGameData].level;
         self.missions = [MissionsFactory missionsForLevel:self.level];
         [self.gameViewController startNewGame];
+        [self.missionsView displayNewMissions:self.missions duration:1];
+        CGRect origrect = self.levelLabel.frame;
         [UIView animateWithDuration:1 animations:^{
-            self.missionsView.alpha = 0;
+            self.levelLabel.alpha = 0;
         } completion:^(BOOL finished) {
-            self.missionsView.alpha = 1;
-            [self.missionsView displayMissions:self.missions];
+            self.levelLabel.alpha = 1;
+            self.levelLabel.frame = SKRectSetY(self.levelLabel.frame, +260);
             self.levelLabel.text = [NSString stringWithFormat:@"Level %i", self.level];
-            [self.nextLevelView showNextLeveL:self.level+1];
+            [self.nextLevelView animateNextLeveL:self.level+1 duration:1];
+            
+            [UIView animateWithDuration:1 animations:^{
+                self.levelLabel.frame = origrect;
+            }];
         }];
     }
 }

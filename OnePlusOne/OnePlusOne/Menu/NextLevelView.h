@@ -11,5 +11,6 @@
 @interface NextLevelView : UIView
 
 - (void)showNextLeveL:(int)nextLevel;
+- (void)animateNextLeveL:(int)nextLevel duration:(NSTimeInterval)duration;
 
 @end

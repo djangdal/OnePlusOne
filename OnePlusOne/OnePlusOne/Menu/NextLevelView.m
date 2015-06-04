@@ -21,6 +21,7 @@
     self = [super init];
     if (self) {
         self.backgroundColor = [UIColor defaultDarkColor];
+        self.clipsToBounds = YES;
         
         self.levelLabel = [UILabel new];
         self.levelLabel.textColor = [UIColor defaultLightColor];
@@ -35,8 +36,8 @@
 
 - (void)layoutSubviews {
     CGSize size = self.frame.size;
-    self.levelLabel.font = [UIFont fontWithName:@"helvetica" size:size.width*0.08f];
-    self.descriptionLabel.font = [UIFont fontWithName:@"helvetica" size:size.width*0.06f];
+    self.levelLabel.font = [UIFont fontWithName:@"helvetica" size:size.width*0.07f];
+    self.descriptionLabel.font = [UIFont fontWithName:@"helvetica" size:size.width*0.05f];
     
     static CGFloat levelTop = 0.06;
     static CGFloat levelLeft = 0.05;
@@ -51,6 +52,26 @@
     self.descriptionLabel.frame = SKRectSetBottom(self.descriptionLabel.frame, size.height - size.height*descriptionBottom, NO);
     self.descriptionLabel.frame = SKRectSetX(self.descriptionLabel.frame, self.frame.size.width * descriptionLeft);
     self.descriptionLabel.frame = SKRectSetRight(self.descriptionLabel.frame, self.frame.size.width - self.frame.size.width*descriptionRight, YES);
+}
+
+- (void)animateNextLeveL:(int)nextLevel duration:(NSTimeInterval)duration {
+    CGRect origLevelRect = self.levelLabel.frame;
+    CGRect origDescriptionRect = self.descriptionLabel.frame;
+    [UIView animateWithDuration:duration animations:^{
+        self.levelLabel.frame = SKRectSetY(self.levelLabel.frame, CGRectGetMinY(self.levelLabel.frame)-260);
+        self.descriptionLabel.frame = SKRectSetY(self.descriptionLabel.frame, CGRectGetMinY(self.descriptionLabel.frame)-260);
+    } completion:^(BOOL finished) {
+        self.levelLabel.alpha = 0;
+        self.descriptionLabel.alpha = 0;
+        [self showNextLeveL:nextLevel];
+        self.levelLabel.frame = origLevelRect;
+        self.descriptionLabel.frame = origDescriptionRect;
+        
+        [UIView animateWithDuration:1 animations:^{
+            self.levelLabel.alpha = duration;
+            self.descriptionLabel.alpha = 1;
+        }];
+    }];
 }
 
 - (void)showNextLeveL:(int)nextLevel {
@@ -68,11 +89,11 @@
     }
     
     if (nextLevel == 5) {
-        self.descriptionLabel.text = @"Unlock the number 3 tile";
+        self.descriptionLabel.text = @"Unlock the tile-storage";
     }
     
     if (nextLevel == 6) {
-        self.descriptionLabel.text = @"Undo once per gmae";
+        self.descriptionLabel.text = @"Able to undo once per gmae";
     }
     
     if (nextLevel == 7) {

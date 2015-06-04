@@ -35,6 +35,30 @@
     return self;
 }
 
+- (void)displayNewMissions:(NSArray *)missions duration:(NSTimeInterval)duration {
+    CGRect origRect1 = self.missionView1.frame;
+    CGRect origRect2 = self.missionView2.frame;
+    CGRect origRect3 = self.missionView3.frame;
+    [UIView animateWithDuration:duration animations:^{
+        self.missionView1.alpha = 0;
+        self.missionView2.alpha = 0;
+        self.missionView3.alpha = 0;
+    } completion:^(BOOL finished) {
+        [self displayMissions:missions];
+        self.missionView1.frame = SKRectSetY(self.missionView1.frame, CGRectGetMinY(self.missionView1.frame)+260);
+        self.missionView2.frame = SKRectSetY(self.missionView2.frame, CGRectGetMinY(self.missionView2.frame)+260);
+        self.missionView3.frame = SKRectSetY(self.missionView3.frame, CGRectGetMinY(self.missionView3.frame)+260);
+        self.missionView1.alpha = 1;
+        self.missionView2.alpha = 1;
+        self.missionView3.alpha = 1;
+        [UIView animateWithDuration:duration animations:^{
+            self.missionView1.frame = origRect1;
+            self.missionView2.frame = origRect2;
+            self.missionView3.frame = origRect3;
+        }];
+    }];
+}
+
 - (void)displayMissions:(NSArray *)missions {
     self.missionView1.hidden = YES;
     self.missionView2.hidden = YES;
