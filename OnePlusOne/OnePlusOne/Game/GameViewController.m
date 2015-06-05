@@ -103,6 +103,7 @@
         self.restartButton.frame = SKRectSetWidth(self.restartButton.frame, size.width*buttonsWidth);
         self.restartButton.frame = SKRectSetHeight(self.restartButton.frame, size.height*buttonsHeight);
         
+        [self.menuButton setTitle:@"Menu" forState:UIControlStateNormal];
         self.menuButton.frame = SKRectSetWidth(self.menuButton.frame, size.width*buttonsWidth);
         self.menuButton.frame = SKRectSetHeight(self.menuButton.frame, size.height*buttonsHeight);
         self.menuButton.frame = SKRectSetRight(self.menuButton.frame, size.width - size.width*buttonsRight, NO);
@@ -112,6 +113,7 @@
         static CGFloat buttonsLeft = 0.04;
         static CGFloat buttonsRight = 0.04;
         static CGFloat buttonsHeight = 0.05;
+        [self.menuButton setTitle:@"Next level" forState:UIControlStateNormal];
         self.menuButton.frame = SKRectSetX(self.menuButton.frame, size.width*buttonsLeft);
         self.menuButton.frame = SKRectSetHeight(self.menuButton.frame, size.height*buttonsHeight);
         self.menuButton.frame = SKRectSetRight(self.menuButton.frame, size.width - size.width*buttonsRight, YES);
