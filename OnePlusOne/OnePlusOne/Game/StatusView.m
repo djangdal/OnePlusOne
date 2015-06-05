@@ -55,12 +55,12 @@
     CGSize size = self.frame.size;
     
     static CGFloat levelTop = 0.1;
-    static CGFloat levelLeft = 0.05;
+    static CGFloat levelLeft = 0.04;
     [self.levelLabel sizeToFit];
     self.levelLabel.frame = SKRectSetX(self.levelLabel.frame, size.width*levelLeft);
     self.levelLabel.frame = SKRectSetY(self.levelLabel.frame, size.height*levelTop);
     
-    static CGFloat scoreLeft = 0.05;
+    static CGFloat scoreLeft = 0.04;
     static CGFloat scoreBottom = 0.05;
     static CGFloat scoreSpacing = 0.05;
     [self.scoreLabel sizeToFit];

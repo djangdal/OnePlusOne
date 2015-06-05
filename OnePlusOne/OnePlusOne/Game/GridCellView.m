@@ -7,6 +7,7 @@
 //
 
 #import "GridCellView.h"
+#import "GameData.h"
 
 @interface GridCellView ()
 
@@ -104,7 +105,10 @@ CGFloat const kPreviewDuration = 0.5f;
 }
 
 - (void)previewNumber:(int)number {
-    self.previewLabel.alpha = 0;
+    if ([GameData sharedGameData].level < 4) {
+        return;
+    }
+    self.previewLabel.alpha = 0.3;
     self.previewLabel.text = [NSString stringWithFormat:@"%i", number];
     [UIView animateWithDuration:kPreviewDuration delay:0 options:(UIViewAnimationOptionAutoreverse | UIViewAnimationOptionRepeat) animations:^{
         self.previewLabel.alpha = 1.0f;

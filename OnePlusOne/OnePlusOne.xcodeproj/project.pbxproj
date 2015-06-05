@@ -23,7 +23,6 @@
 		9A4737D91AFA1D02000B1862 /* SKGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4737D81AFA1D02000B1862 /* SKGeometry.m */; };
 		9A4737DD1AFA47FA000B1862 /* UIColors+Application.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4737DC1AFA47FA000B1862 /* UIColors+Application.m */; };
 		9A6E92B41AEEDBAA00C43C0A /* StatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6E92B31AEEDBAA00C43C0A /* StatusView.m */; };
-		9A97B1E71B07536100807EEA /* NextNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A97B1E61B07536100807EEA /* NextNumberView.m */; };
 		9A97B1ED1B076A0800807EEA /* GameData.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A97B1EC1B076A0800807EEA /* GameData.m */; };
 		9AEFD3421AFB953200613FE7 /* MissionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEFD3411AFB953200613FE7 /* MissionsView.m */; };
 		9AEFD3461AFB965700613FE7 /* Mission.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEFD3451AFB965700613FE7 /* Mission.m */; };
@@ -81,8 +80,6 @@
 		9A4737DC1AFA47FA000B1862 /* UIColors+Application.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColors+Application.m"; path = "Commons/UIColors+Application.m"; sourceTree = "<group>"; };
 		9A6E92B21AEEDBAA00C43C0A /* StatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StatusView.h; path = Game/StatusView.h; sourceTree = "<group>"; };
 		9A6E92B31AEEDBAA00C43C0A /* StatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StatusView.m; path = Game/StatusView.m; sourceTree = "<group>"; };
-		9A97B1E51B07536100807EEA /* NextNumberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NextNumberView.h; path = Game/NextNumberView.h; sourceTree = "<group>"; };
-		9A97B1E61B07536100807EEA /* NextNumberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NextNumberView.m; path = Game/NextNumberView.m; sourceTree = "<group>"; };
 		9A97B1EB1B076A0800807EEA /* GameData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameData.h; sourceTree = "<group>"; };
 		9A97B1EC1B076A0800807EEA /* GameData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameData.m; sourceTree = "<group>"; };
 		9AEFD3401AFB953200613FE7 /* MissionsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MissionsView.h; path = Menu/MissionsView.h; sourceTree = "<group>"; };
@@ -206,8 +203,6 @@
 				9A2191C61AEB7CF400D1FBF4 /* GridCellView.m */,
 				9A6E92B21AEEDBAA00C43C0A /* StatusView.h */,
 				9A6E92B31AEEDBAA00C43C0A /* StatusView.m */,
-				9A97B1E51B07536100807EEA /* NextNumberView.h */,
-				9A97B1E61B07536100807EEA /* NextNumberView.m */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -395,7 +390,6 @@
 				9AEFD3491AFB967300613FE7 /* MissionsFactory.m in Sources */,
 				9A3F7CF41AF3BAC600E03414 /* StorageManager.m in Sources */,
 				9A2191931AEAAA4100D1FBF4 /* main.m in Sources */,
-				9A97B1E71B07536100807EEA /* NextNumberView.m in Sources */,
 				9A97B1ED1B076A0800807EEA /* GameData.m in Sources */,
 				9A4737DD1AFA47FA000B1862 /* UIColors+Application.m in Sources */,
 				9A6E92B41AEEDBAA00C43C0A /* StatusView.m in Sources */,

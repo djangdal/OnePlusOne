@@ -9,7 +9,6 @@
 #import "ControlsView.h"
 #import "PathButton.h"
 #import "GameData.h"
-#import "NextNumberView.h"
 #import "UIBezierPath+Paths.h"
 
 @interface ControlsView ()
@@ -19,7 +18,6 @@
 @property (nonatomic) PathButton *addButton;
 @property (nonatomic) PathButton *undoButton;
 @property (nonatomic) PathButton *storageButton;
-@property (nonatomic) NextNumberView *nextNumberView;
 
 @property (nonatomic, weak) id<ControlsViewDelegate> delegate;
 
@@ -31,8 +29,6 @@
     self = [super init];
     if (self) {
         self.delegate = delegate;
-        
-        self.nextNumberView = [NextNumberView new];
         
         self.storageButton = [[PathButton alloc] initWithPath:[UIBezierPath storagePath]
                                               foregroundColor:[UIColor defaultDarkColor]
@@ -63,19 +59,10 @@
         [self addSubview:self.storageButton];
         [self addSubview:self.undoButton];
         [self addSubview:self.addButton];
-        [self addSubview:self.nextNumberView];
     }
     return self;
 }
 
-- (void)previewNextNumber:(int)number {
-    [self.nextNumberView previewNextNumber:number];
-    [self setNeedsLayout];
-}
-
-- (void)stopPreviewing {
-    [self.nextNumberView stopPreviewing];
-}
 
 - (void)layoutSubviews {
 //    CGSize size = self.frame.size;
@@ -86,11 +73,6 @@
 //    static CGFloat actionsRight = 0.00;
 //    static CGFloat actionsSize = 0.15;
 //    CGFloat actionsSpacing = (size.width - size.width*actionsSize*4 - actionsLeft - actionsRight)/5;
-//    
-//    self.nextNumberView.frame = SKRectSetX(self.nextNumberView.frame, size.width*actionsLeft+actionsSpacing);
-//    self.nextNumberView.frame = SKRectSetY(self.nextNumberView.frame, size.height*actionsTop);
-//    self.nextNumberView.frame = SKRectSetWidth(self.nextNumberView.frame, size.width*actionsSize);
-//    self.nextNumberView.frame = SKRectSetHeight(self.nextNumberView.frame, size.width*actionsSize);
 //    
 //    self.storageButton.frame = SKRectSetX(self.storageButton.frame, CGRectGetMaxX(self.nextNumberView.frame) + actionsSpacing);
 //    self.storageButton.frame = SKRectSetY(self.storageButton.frame, size.height*actionsTop);
@@ -113,7 +95,6 @@
     CGSize size = self.frame.size;
     static CGFloat actionsSize = 0.15;
     
-    self.nextNumberView.hidden = YES;
     self.storageButton.hidden = YES;
     self.undoButton.hidden = YES;
     self.addButton.hidden = YES;
@@ -131,25 +112,14 @@
         self.infoLabel.hidden = NO;
         self.infoLabel.text = @"It is now possible to place a 2 tile, it comes random though. But for the next level you can see the upcoming tile";
     } else if (level == 4) {
-        self.nextLabel.font = [UIFont fontWithName:@"Helvetica" size:size.width*0.08];
-        self.nextLabel.text = @"Next tile: ";
-        [self.nextLabel sizeToFit];
-        self.nextLabel.hidden = NO;
-        self.nextNumberView.hidden = NO;
-        self.nextLabel.frame = SKRectSetX(self.nextLabel.frame, size.width*0.2);
-        self.nextLabel.frame = SKRectSetY(self.nextLabel.frame, size.height*0.55);
-        
-        self.nextNumberView.frame = SKRectSetX(self.nextNumberView.frame, CGRectGetMaxX(self.nextLabel.frame)+size.width*0.01);
-        self.nextNumberView.frame = SKRectSetY(self.nextNumberView.frame, CGRectGetMinY(self.nextLabel.frame)-size.height*0.09);
-        self.nextNumberView.frame = SKRectSetWidth(self.nextNumberView.frame, size.width*actionsSize);
-        self.nextNumberView.frame = SKRectSetHeight(self.nextNumberView.frame, size.width*actionsSize);
+        self.infoLabel.hidden = NO;
+        self.infoLabel.text = @"You can now see what the next tile will be. But you can place it anywhere you want to, ofcourse :)";
     }
 }
 
 - (void)displayGameOver {
     self.infoLabel.text = @"Sorry, you did not finish all the missions. Restart and try again!";
     self.infoLabel.hidden = NO;
-    self.nextNumberView.hidden = YES;
     self.storageButton.hidden = YES;
     self.undoButton.hidden = YES;
     self.addButton.hidden = YES;
@@ -159,7 +129,6 @@
 - (void)displayLevelCompleted {
     self.infoLabel.hidden = NO;
     self.infoLabel.text = @"Congratulazions! \nYou finished all missions and can move on to the next level";
-    self.nextNumberView.hidden = YES;
     self.storageButton.hidden = YES;
     self.undoButton.hidden = YES;
     self.addButton.hidden = YES;
