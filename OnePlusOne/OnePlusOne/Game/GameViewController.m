@@ -269,7 +269,9 @@
     }
     if (allCompleted && !self.levelCompleted) {
         self.levelCompleted = YES;
-        [[GameData sharedGameData] levelUp];
+        if ([GameData sharedGameData].level < 12) {
+            [[GameData sharedGameData] levelUp];
+        }
         [self.controlsView displayLevelCompleted];
         [self layoutViews];
     } else if ([self.gameState isGameOver]) {

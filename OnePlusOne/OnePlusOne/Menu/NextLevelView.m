@@ -67,8 +67,8 @@
         self.levelLabel.frame = origLevelRect;
         self.descriptionLabel.frame = origDescriptionRect;
         
-        [UIView animateWithDuration:1 animations:^{
-            self.levelLabel.alpha = duration;
+        [UIView animateWithDuration:duration animations:^{
+            self.levelLabel.alpha = 1;
             self.descriptionLabel.alpha = 1;
         }];
     }];
@@ -97,6 +97,26 @@
     }
     
     if (nextLevel == 7) {
+        self.descriptionLabel.text = @"Unlock 4x4 grid";
+    }
+    
+    if (nextLevel == 8) {
+        self.descriptionLabel.text = @"Unlock 4x4 grid";
+    }
+    
+    if (nextLevel == 9) {
+        self.descriptionLabel.text = @"Unlock 4x4 grid";
+    }
+    
+    if (nextLevel == 10) {
+        self.descriptionLabel.text = @"Unlock 4x4 grid";
+    }
+    
+    if (nextLevel == 11) {
+        self.descriptionLabel.text = @"Unlock 4x4 grid";
+    }
+    
+    if (nextLevel == 12) {
         self.descriptionLabel.text = @"Unlock 4x4 grid";
     }
 }

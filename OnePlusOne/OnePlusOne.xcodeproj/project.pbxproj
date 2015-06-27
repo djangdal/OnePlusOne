@@ -34,6 +34,7 @@
 		9AEFD3591AFBF89400613FE7 /* NextLevelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEFD3581AFBF89400613FE7 /* NextLevelView.m */; };
 		9AF0BBA01B1DF36000E546C8 /* GameState.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF0BB9F1B1DF36000E546C8 /* GameState.m */; };
 		9AF0BBA31B1F490700E546C8 /* ControlsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF0BBA21B1F490700E546C8 /* ControlsView.m */; };
+		9AF0BBAA1B219B3300E546C8 /* OptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF0BBA91B219B3300E546C8 /* OptionsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,6 +103,8 @@
 		9AF0BB9F1B1DF36000E546C8 /* GameState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameState.m; path = Game/GameState.m; sourceTree = "<group>"; };
 		9AF0BBA11B1F490700E546C8 /* ControlsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ControlsView.h; path = Game/ControlsView.h; sourceTree = "<group>"; };
 		9AF0BBA21B1F490700E546C8 /* ControlsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ControlsView.m; path = Game/ControlsView.m; sourceTree = "<group>"; };
+		9AF0BBA81B219B3300E546C8 /* OptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OptionsViewController.h; path = OptionsMenu/OptionsViewController.h; sourceTree = "<group>"; };
+		9AF0BBA91B219B3300E546C8 /* OptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OptionsViewController.m; path = OptionsMenu/OptionsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +146,7 @@
 		9A21918F1AEAAA4100D1FBF4 /* OnePlusOne */ = {
 			isa = PBXGroup;
 			children = (
+				9AF0BBA71B219B0D00E546C8 /* OptionsMenu */,
 				9A4737D01AFA1ACC000B1862 /* Menu */,
 				9A4737CC1AFA1A9E000B1862 /* Commons */,
 				9A2191BE1AEAF30500D1FBF4 /* Game */,
@@ -271,6 +275,15 @@
 			name = Paths;
 			sourceTree = "<group>";
 		};
+		9AF0BBA71B219B0D00E546C8 /* OptionsMenu */ = {
+			isa = PBXGroup;
+			children = (
+				9AF0BBA81B219B3300E546C8 /* OptionsViewController.h */,
+				9AF0BBA91B219B3300E546C8 /* OptionsViewController.m */,
+			);
+			name = OptionsMenu;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -387,6 +400,7 @@
 				9A2191C41AEAF37F00D1FBF4 /* GridView.m in Sources */,
 				9A2191C71AEB7CF400D1FBF4 /* GridCellView.m in Sources */,
 				9AEFD3531AFBD51400613FE7 /* PathView.m in Sources */,
+				9AF0BBAA1B219B3300E546C8 /* OptionsViewController.m in Sources */,
 				9AEFD3491AFB967300613FE7 /* MissionsFactory.m in Sources */,
 				9A3F7CF41AF3BAC600E03414 /* StorageManager.m in Sources */,
 				9A2191931AEAAA4100D1FBF4 /* main.m in Sources */,

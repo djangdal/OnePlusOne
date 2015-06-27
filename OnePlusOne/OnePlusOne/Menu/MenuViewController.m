@@ -8,6 +8,7 @@
 
 #import "MenuViewController.h"
 #import "GameViewController.h"
+#import "OptionsViewController.h"
 #import "UIBezierPath+Paths.h"
 #import "PathButton.h"
 #import "MissionsView.h"
@@ -28,12 +29,11 @@
 
 @property (nonatomic) PathButton *playButton;
 @property (nonatomic) PathButton *optionsButton;
-@property (nonatomic) PathButton *highscoresButton;
-@property (nonatomic) PathButton *achievementsButton;
 
 @property (nonatomic) MissionsView *missionsView;
 @property (nonatomic) NextLevelView *nextLevelView;
 @property (nonatomic) GameViewController *gameViewController;
+@property (nonatomic) OptionsViewController *optionsViewController;
 
 @end
 
@@ -43,7 +43,10 @@
     self = [super init];
     if (self) {
         [[GameData sharedGameData] reset];
+        
         self.gameViewController = [[GameViewController alloc] init];
+        
+        self.optionsViewController = [OptionsViewController new];
         
         self.titleLabel = [[UILabel alloc] init];
         self.titleLabel.textColor = [UIColor defaultDarkColor];
@@ -51,10 +54,9 @@
         
         self.levelLabel = [UILabel new];
         self.levelLabel.textColor = [UIColor defaultLightColor];
-        self.levelLabel.font = [UIFont fontWithName:@"helvetica" size:20];
+        self.levelLabel.font = [UIFont fontWithName:@"Helvetica" size:24];
         
         self.levelBackgroundView = [UIView new];
-//        self.levelBackgroundView.clipsToBounds = YES;
         self.levelBackgroundView.backgroundColor = [UIColor defaultDarkColor];
         
         self.missionsView = [MissionsView new];
@@ -64,29 +66,16 @@
                                            foregroundColor:[UIColor whiteColor]
                                            backgroundColor:[UIColor defaultDarkColor]];
         [self.playButton addTarget:self action:@selector(playButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-        self.playButton.scale = 0.45;
+        self.playButton.scale = 0.75;
         
         self.optionsButton = [[PathButton alloc] initWithPath:[UIBezierPath optionsPath]
                                               foregroundColor:[UIColor whiteColor]
                                               backgroundColor:[UIColor defaultDarkColor]];
-        [self.optionsButton addTarget:self action:@selector(achievementsButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-        self.optionsButton.scale = 0.5;
-        
-        self.highscoresButton = [[PathButton alloc] initWithPath:[UIBezierPath highscoresPath]
-                                                 foregroundColor:[UIColor whiteColor]
-                                                 backgroundColor:[UIColor defaultDarkColor]];
-        [self.highscoresButton addTarget:self action:@selector(highscoresButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-        self.highscoresButton.scale = 0.6;
-        
-        self.achievementsButton = [[PathButton alloc] initWithPath:[UIBezierPath achievementsPath]
-                                                   foregroundColor:[UIColor whiteColor]
-                                                   backgroundColor:[UIColor defaultDarkColor]];
-        [self.achievementsButton addTarget:self action:@selector(achievementsButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-        self.achievementsButton.scale = 0.6;
-        
+        [self.optionsButton addTarget:self action:@selector(optionsButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        self.optionsButton.scale = 0.75;
 //        [[GameData sharedGameData] levelUp];
-        [[GameData sharedGameData] levelUp];
-        [[GameData sharedGameData] levelUp];
+//        [[GameData sharedGameData] levelUp];
+//        [[GameData sharedGameData] levelUp];
         self.level = [GameData sharedGameData].level;
         self.missions = [MissionsFactory missionsForLevel:self.level];
     }
@@ -103,8 +92,6 @@
     [self.view addSubview:self.nextLevelView];
     [self.view addSubview:self.playButton];
     [self.view addSubview:self.optionsButton];
-    [self.view addSubview:self.highscoresButton];
-    [self.view addSubview:self.achievementsButton];
     
     self.titleLabel.font = [UIFont fontWithName:@"helvetica" size:self.view.frame.size.width*0.12f];
     self.levelLabel.text = [NSString stringWithFormat:@"Level %i", self.level];
@@ -118,21 +105,22 @@
     [self.missionsView displayMissions:self.missions];
     
     if ([GameData sharedGameData].level != self.level) {
+        static float duration = 0.6;
         self.level = [GameData sharedGameData].level;
         self.missions = [MissionsFactory missionsForLevel:self.level];
         [self.gameViewController startNewGame];
-        [self.missionsView displayNewMissions:self.missions duration:1];
+        [self.missionsView displayNewMissions:self.missions duration:duration];
         CGRect origrect = self.levelLabel.frame;
-        [UIView animateWithDuration:1 animations:^{
+        [UIView animateWithDuration:duration animations:^{
             self.levelLabel.alpha = 0;
         } completion:^(BOOL finished) {
             self.levelLabel.alpha = 1;
             self.levelLabel.frame = SKRectSetY(self.levelLabel.frame, +260);
             self.levelLabel.text = [NSString stringWithFormat:@"Level %i", self.level];
-            [self.nextLevelView animateNextLeveL:self.level+1 duration:1];
-            
-            [UIView animateWithDuration:1 animations:^{
+            [self.nextLevelView animateNextLeveL:self.level+1 duration:duration*0.65];
+            [UIView animateWithDuration:duration animations:^{
                 self.levelLabel.frame = origrect;
+                [self layoutViews];
             }];
         }];
     }
@@ -143,16 +131,8 @@
     [self presentViewController:self.gameViewController animated:NO completion:nil];
 }
 
-- (void)highscoresButtonPressed:(UIButton *)button {
-//    [self presentViewController:self.gameViewController animated:NO completion:nil];
-}
-
-- (void)achievementsButtonPressed:(UIButton *)button {
-}
-
 - (void)optionsButtonPressed:(UIButton *)button {
-//    [[GameData sharedGameData] reset];
-//    [[GameData sharedGameData] save];
+    [self presentViewController:self.optionsViewController animated:NO completion:nil];
 }
 
 - (void)layoutViews {
@@ -187,36 +167,26 @@
     static CGFloat nextLevelTop = 0.03;
     static CGFloat nextLevelLeft = 0.13;
     static CGFloat nextLevelRight = 0.13;
-    static CGFloat nextLevelHeight = 0.09;
+    static CGFloat nextLevelHeight = 0.1;
     self.nextLevelView.frame = SKRectSetX(self.nextLevelView.frame, size.width*nextLevelLeft);
     self.nextLevelView.frame = SKRectSetY(self.nextLevelView.frame, CGRectGetMaxY(self.missionsView.frame) + size.height*nextLevelTop);
     self.nextLevelView.frame = SKRectSetRight(self.nextLevelView.frame, size.width - size.width*nextLevelRight, YES);
     self.nextLevelView.frame = SKRectSetHeight(self.nextLevelView.frame, size.height*nextLevelHeight);
     
-    static CGFloat buttonTop = 0.06;
+    static CGFloat buttonTop = 0.04;
     static CGFloat buttonLeft = 0.13;
     static CGFloat buttonRight = 0.13;
-    static CGFloat buttonMiddle = 0.04;
-    static CGFloat buttonSize = 0.26;
+    static CGFloat buttonSize = 0.23;
+    
     self.playButton.frame = SKRectSetX(self.playButton.frame, size.width*buttonLeft);
     self.playButton.frame = SKRectSetY(self.playButton.frame, CGRectGetMaxY(self.nextLevelView.frame) + size.height*buttonTop);
-    self.playButton.frame = SKRectSetWidth(self.playButton.frame, self.view.bounds.size.width*buttonSize);
-    self.playButton.frame = SKRectSetHeight(self.playButton.frame, self.view.bounds.size.width*buttonSize);
+    self.playButton.frame = SKRectSetHeight(self.playButton.frame, size.width*buttonSize);
+    self.playButton.frame = SKRectSetRight(self.playButton.frame, size.width - size.width*buttonRight, YES);
     
-    self.highscoresButton.frame = SKRectSetX(self.highscoresButton.frame, size.width*buttonLeft);
-    self.highscoresButton.frame = SKRectSetY(self.highscoresButton.frame, CGRectGetMaxY(self.playButton.frame) + size.height*buttonMiddle);
-    self.highscoresButton.frame = SKRectSetWidth(self.highscoresButton.frame, self.view.bounds.size.width*buttonSize);
-    self.highscoresButton.frame = SKRectSetHeight(self.highscoresButton.frame, self.view.bounds.size.width*buttonSize);
-    
-    self.achievementsButton.frame = SKRectSetWidth(self.achievementsButton.frame, self.view.bounds.size.width*buttonSize);
-    self.achievementsButton.frame = SKRectSetHeight(self.achievementsButton.frame, self.view.bounds.size.width*buttonSize);
-    self.achievementsButton.frame = SKRectSetRight(self.achievementsButton.frame, size.width - size.width*buttonRight, NO);
-    self.achievementsButton.frame = SKRectSetY(self.achievementsButton.frame, CGRectGetMaxY(self.nextLevelView.frame) + size.height*buttonTop);
-    
-    self.optionsButton.frame = SKRectSetWidth(self.optionsButton.frame, self.view.bounds.size.width*buttonSize);
-    self.optionsButton.frame = SKRectSetHeight(self.optionsButton.frame, self.view.bounds.size.width*buttonSize);
-    self.optionsButton.frame = SKRectSetRight(self.optionsButton.frame, size.width - size.width*buttonRight, NO);
-    self.optionsButton.frame = SKRectSetY(self.optionsButton.frame, CGRectGetMaxY(self.achievementsButton.frame) + size.height*buttonMiddle);
+    self.optionsButton.frame = SKRectSetX(self.optionsButton.frame, size.width*buttonLeft);
+    self.optionsButton.frame = SKRectSetY(self.optionsButton.frame, CGRectGetMaxY(self.playButton.frame) + size.height*buttonTop);
+    self.optionsButton.frame = SKRectSetHeight(self.optionsButton.frame, size.width*buttonSize);
+    self.optionsButton.frame = SKRectSetRight(self.optionsButton.frame, size.width - size.width*buttonRight, YES);
 }
 
 @end

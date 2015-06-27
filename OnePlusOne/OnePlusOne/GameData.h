@@ -11,10 +11,13 @@
 @interface GameData : NSObject <NSCoding>
 
 @property (nonatomic, readonly) int level;
+@property (nonatomic, readonly) int levelsUnlocked;
 
 + (instancetype)sharedGameData;
+- (void)goToLevel:(int)level;
 - (void)levelUp;
 - (void)reset;
 - (void)save;
+- (void)unlockAllLevels;
 
 @end
