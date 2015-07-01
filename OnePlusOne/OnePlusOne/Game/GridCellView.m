@@ -105,9 +105,9 @@ CGFloat const kPreviewDuration = 0.5f;
 }
 
 - (void)previewNumber:(int)number {
-    if ([GameData sharedGameData].level < 4) {
-        return;
-    }
+//    if ([GameData sharedGameData].level < 4) {
+//        return;
+//    }
     self.previewLabel.alpha = 0.3;
     self.previewLabel.text = [NSString stringWithFormat:@"%i", number];
     [UIView animateWithDuration:kPreviewDuration delay:0 options:(UIViewAnimationOptionAutoreverse | UIViewAnimationOptionRepeat) animations:^{

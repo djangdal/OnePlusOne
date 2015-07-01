@@ -7,7 +7,6 @@
 //
 
 #import "StatusView.h"
-#import "HighScoreView.h"
 #import "MissionsView.h"
 #import "GameData.h"
 
@@ -50,7 +49,7 @@
 }
 
 - (void)layoutSubviews {
-    self.levelLabel.text = [NSString stringWithFormat:@"Level %i objectives:", [GameData sharedGameData].level];
+//    self.levelLabel.text = [NSString stringWithFormat:@"Level %i objectives:", [GameData sharedGameData].level];
     
     CGSize size = self.frame.size;
     

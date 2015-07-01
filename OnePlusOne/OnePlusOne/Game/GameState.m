@@ -33,6 +33,19 @@
     return self;
 }
 
+- (void)resetGameState {
+    self.totalScore = 0;
+    self.tilesPlaced = 0;
+    self.gameOngoing = YES;
+    self.lastPlacedValue = 0;
+    self.lastPlacedTile = nil;
+    for (NSArray *inner in self.grid) {
+        for (GridCellView *cell in inner) {
+            [cell resetCell];
+        }
+    }
+}
+
 - (BOOL)isGameOver {
     for (NSArray *inner in self.grid) {
         for (GridCellView *cell in inner) {

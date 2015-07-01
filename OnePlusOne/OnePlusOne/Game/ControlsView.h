@@ -21,8 +21,8 @@
 - (instancetype)initWithDelegate:(id<ControlsViewDelegate>)delegate;
 //- (void)previewNextNumber:(int)number;
 //- (void)stopPreviewing;
-- (void)displayGameOver;
-- (void)displayLevelCompleted;
-- (void)displayForLevel:(int)level;
+//- (void)displayGameOver;
+//- (void)displayLevelCompleted;
+//- (void)displayForLevel:(int)level;
 
 @end

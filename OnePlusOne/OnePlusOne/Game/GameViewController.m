@@ -11,13 +11,15 @@
 #import "GameData.h"
 #import "GameState.h"
 #import "PathButton.h"
+#import "PreviewView.h"
+#import "StatusView.h"
 #import "UIBezierPath+Paths.h"
 #import "GameViewController.h"
 
 @interface GameViewController ()
 
-@property (nonatomic) int nextNumber;
-@property (nonatomic) BOOL levelCompleted;
+//@property (nonatomic) int nextNumber;
+//@property (nonatomic) BOOL levelCompleted;
 @property (nonatomic) BOOL levelFailed;
 @property (nonatomic) BOOL allowTouch;
 
@@ -28,20 +30,21 @@
 @property (nonatomic) GridView *gridView;
 @property (nonatomic) GameState *gameState;
 @property (nonatomic) StatusView *statusView;
-@property (nonatomic) ControlsView *controlsView;
+//@property (nonatomic) ControlsView *controlsView;
 
-@property (nonatomic) GridCellView *previewCell;
+@property (nonatomic) PathButton *undoButton;
+@property (nonatomic) PreviewView *previewView;
+@property (nonatomic) PathButton *storageButton;
+@property (nonatomic) UILabel *storageLabel;
 
 @end
-
-//static CGFloat const kGridSize = 2;
 
 @implementation GameViewController
 
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.gameState = [[GameState alloc] initWithGridSize:[self gridSizeForLevel:[GameData sharedGameData].level] delegate:self];
+        self.gameState = [[GameState alloc] initWithGridSize:3 delegate:self];
         self.gridView = [GridView new];
         [self.gridView setUpForGameState:self.gameState];
         self.statusView  = [StatusView new];
@@ -62,7 +65,20 @@
         self.fadeView.backgroundColor = [UIColor defaultLightColor];
         self.fadeView.alpha = 0.85f;
         
-        self.controlsView = [[ControlsView alloc] initWithDelegate:self];
+        self.storageButton = [[PathButton alloc] initWithPath:[UIBezierPath storagePath]
+                                              foregroundColor:[UIColor defaultDarkColor]
+                                              backgroundColor:[UIColor whiteColor]];
+        [self.storageButton addTarget:self action:@selector(storageButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        self.storageLabel = [UILabel new];
+        self.storageLabel.textAlignment = NSTextAlignmentCenter;
+        self.storageLabel.font = [UIFont fontWithName:@"Helvetica" size:20];
+        
+        self.undoButton = [[PathButton alloc] initWithPath:[UIBezierPath undoPath]
+                                           foregroundColor:[UIColor defaultDarkColor]
+                                           backgroundColor:[UIColor whiteColor]];
+        [self.undoButton addTarget:self action:@selector(undoButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        
+        self.previewView = [[PreviewView alloc] initWithNumbers:@[@1 ,@1 ,@2]];
     }
     return self;
 }
@@ -72,11 +88,14 @@
     self.view.backgroundColor = [UIColor defaultLightColor];
     [self.view addSubview:self.gridView];
     [self.view addSubview:self.statusView];
-    [self.view addSubview:self.controlsView];
     [self.view addSubview:self.fadeView];
-    [self.view addSubview:self.controlsView];
     [self.view addSubview:self.restartButton];
     [self.view addSubview:self.menuButton];
+    
+    [self.view addSubview:self.undoButton];
+    [self.view addSubview:self.previewView];
+    [self.view addSubview:self.storageButton];
+    [self.storageButton addSubview:self.storageLabel];
     
     [self layoutViews];
 }
@@ -92,7 +111,7 @@
     self.statusView.frame = SKRectSetRight(self.statusView.frame, size.width - size.width*statusRight, YES);
     self.statusView.frame = SKRectSetHeight(self.statusView.frame, size.height*statusHeight);
     
-    if (!self.levelCompleted) {
+//    if (!self.levelCompleted) {
         static CGFloat buttonsTop = 0.02;
         static CGFloat buttonsLeft = 0.04;
         static CGFloat buttonsRight = 0.04;
@@ -108,22 +127,22 @@
         self.menuButton.frame = SKRectSetHeight(self.menuButton.frame, size.height*buttonsHeight);
         self.menuButton.frame = SKRectSetRight(self.menuButton.frame, size.width - size.width*buttonsRight, NO);
         self.menuButton.frame = SKRectSetY(self.menuButton.frame, CGRectGetMaxY(self.statusView.frame) + size.height*buttonsTop);
-    } else {
-        static CGFloat buttonsTop = 0.02;
-        static CGFloat buttonsLeft = 0.04;
-        static CGFloat buttonsRight = 0.04;
-        static CGFloat buttonsHeight = 0.05;
-        [self.menuButton setTitle:@"Next level" forState:UIControlStateNormal];
-        self.menuButton.frame = SKRectSetX(self.menuButton.frame, size.width*buttonsLeft);
-        self.menuButton.frame = SKRectSetHeight(self.menuButton.frame, size.height*buttonsHeight);
-        self.menuButton.frame = SKRectSetRight(self.menuButton.frame, size.width - size.width*buttonsRight, YES);
-        self.menuButton.frame = SKRectSetY(self.menuButton.frame, CGRectGetMaxY(self.statusView.frame) + size.height*buttonsTop);
-    }
-    if (self.levelCompleted || self.levelFailed) {
-        self.fadeView.frame = self.view.bounds;
-    } else {
-        self.fadeView.frame = CGRectZero;
-    }
+//    } else {
+//        static CGFloat buttonsTop = 0.02;
+//        static CGFloat buttonsLeft = 0.04;
+//        static CGFloat buttonsRight = 0.04;
+//        static CGFloat buttonsHeight = 0.05;
+//        [self.menuButton setTitle:@"Next level" forState:UIControlStateNormal];
+//        self.menuButton.frame = SKRectSetX(self.menuButton.frame, size.width*buttonsLeft);
+//        self.menuButton.frame = SKRectSetHeight(self.menuButton.frame, size.height*buttonsHeight);
+//        self.menuButton.frame = SKRectSetRight(self.menuButton.frame, size.width - size.width*buttonsRight, YES);
+//        self.menuButton.frame = SKRectSetY(self.menuButton.frame, CGRectGetMaxY(self.statusView.frame) + size.height*buttonsTop);
+//    }
+//    if (self.levelCompleted || self.levelFailed) {
+//        self.fadeView.frame = self.view.bounds;
+//    } else {
+//        self.fadeView.frame = CGRectZero;
+//    }
     
     static CGFloat gridSize = 0.92;
     CGFloat gridMargin = (1-gridSize)/2;
@@ -132,24 +151,49 @@
     self.gridView.frame = SKRectSetX(self.gridView.frame, size.width*gridMargin);
     self.gridView.frame = SKRectSetBottom(self.gridView.frame, size.height - size.width*gridMargin, NO);
     
-    static CGFloat controlsTop = 0.01;
-    static CGFloat controlsLeft = 0.04;
-    static CGFloat controlsRight = 0.04;
-    static CGFloat controlsBottom = 0.01;
-    self.controlsView.frame = SKRectSetX(self.controlsView.frame, size.width*controlsLeft);
-    self.controlsView.frame = SKRectSetRight(self.controlsView.frame, size.width - size.width*controlsRight, YES);
-    self.controlsView.frame = SKRectSetY(self.controlsView.frame, CGRectGetMaxY(self.menuButton.frame) + size.height*controlsTop);
-    self.controlsView.frame = SKRectSetBottom(self.controlsView.frame, CGRectGetMinY(self.gridView.frame) - size.height*controlsBottom, YES);
+//    static CGFloat controlsTop = 0.01;
+//    static CGFloat controlsLeft = 0.04;
+//    static CGFloat controlsRight = 0.04;
+//    static CGFloat controlsBottom = 0.01;
+//    self.controlsView.frame = SKRectSetX(self.controlsView.frame, size.width*controlsLeft);
+//    self.controlsView.frame = SKRectSetRight(self.controlsView.frame, size.width - size.width*controlsRight, YES);
+//    self.controlsView.frame = SKRectSetY(self.controlsView.frame, CGRectGetMaxY(self.menuButton.frame) + size.height*controlsTop);
+//    self.controlsView.frame = SKRectSetBottom(self.controlsView.frame, CGRectGetMinY(self.gridView.frame) - size.height*controlsBottom, YES);
+//    CGSize size = self.frame.size;
+    //    self.infoLabel.frame = self.bounds;
+    
+    static CGFloat actionsBottom = 0.01;
+    static CGFloat actionsLeft = 0.07;
+    static CGFloat actionsRight = 0.07;
+    static CGFloat actionsSize = 0.13;
+    CGFloat actionsSpacing = (size.width - size.width*actionsSize*4 - actionsLeft - actionsRight)/5;
+    
+    self.previewView.frame = SKRectSetX(self.previewView.frame, size.width*actionsLeft);
+    self.previewView.frame = SKRectSetBottom(self.previewView.frame, CGRectGetMinY(self.gridView.frame) - size.height*actionsBottom, NO);
+    self.previewView.frame = SKRectSetWidth(self.previewView.frame, size.width*actionsSize*3);
+    self.previewView.frame = SKRectSetHeight(self.previewView.frame, size.width*actionsSize);
+    
+    self.storageButton.frame = SKRectSetX(self.storageButton.frame, CGRectGetMaxX(self.previewView.frame) + actionsSpacing);
+    self.storageButton.frame = SKRectSetBottom(self.storageButton.frame, CGRectGetMinY(self.gridView.frame) - size.height*actionsBottom, NO);
+    self.storageButton.frame = SKRectSetWidth(self.storageButton.frame, size.width*actionsSize);
+    self.storageButton.frame = SKRectSetHeight(self.storageButton.frame, size.width*actionsSize);
+    
+    self.undoButton.frame = SKRectSetBottom(self.undoButton.frame, CGRectGetMinY(self.gridView.frame) - size.height*actionsBottom, NO);
+    self.undoButton.frame = SKRectSetX(self.undoButton.frame, CGRectGetMaxX(self.storageButton.frame) + actionsSpacing);
+    self.undoButton.frame = SKRectSetWidth(self.undoButton.frame, size.width*actionsSize);
+    self.undoButton.frame = SKRectSetHeight(self.undoButton.frame, size.width*actionsSize);
+
+    self.storageLabel.frame = self.storageButton.bounds;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [self.statusView updateMissionsStatus:self.missions];
-    int gridSize = [self gridSizeForLevel:[GameData sharedGameData].level];
-    if (gridSize != self.gameState.grid.count) {
-        self.gameState = [[GameState alloc] initWithGridSize:gridSize delegate:self];
-        [self.gridView setUpForGameState:self.gameState];
-    }
-    
+//    [self.statusView updateMissionsStatus:self.missions];
+//    int gridSize = [self gridSizeForLevel:[GameData sharedGameData].level];
+//    if (gridSize != self.gameState.grid.count) {
+//        self.gameState = [[GameState alloc] initWithGridSize:gridSize delegate:self];
+//        [self.gridView setUpForGameState:self.gameState];
+//    }
+//    
     if (!self.gameState.gameOngoing) {
         [self startNewGame];
     }
@@ -161,57 +205,51 @@
 }
 
 - (void)restartButtonPressed:(id)sender {
-    NSLog(@"reset");
+    NSLog(@"restart");
     [self startNewGame];
 }
 
-- (int)gridSizeForLevel:(int)level {
-    int size = 2;
-    if ([GameData sharedGameData].level >= 2) {
-        size = 3;
-    }
-    if ([GameData sharedGameData].level >= 5) {
-        size = 4;
-    }
-    return size;
-}
+//- (int)gridSizeForLevel:(int)level {
+////    int size = 2;
+////    if ([GameData sharedGameData].level >= 2) {
+////        size = 3;
+////    }
+////    if ([GameData sharedGameData].level >= 5) {
+////        size = 4;
+////    }
+//    return 4;
+//}
 
 - (void)startNewGame {
-    self.gameState.totalScore = 0;
-    self.gameState.tilesPlaced = 0;
-    self.gameState.gameOngoing = YES;
-    self.gameState.lastPlacedValue = 0;
-    self.gameState.lastPlacedTile = nil;
-    self.nextNumber = [GameData sharedGameData].level==3 ? 2 : 1;
-    [self previewNextNumber];
+    [self.gameState resetGameState];
+//    self.nextNumber = 1;
+    self.storageLabel.text = @"";
+    [self.previewView newNumbers:@[@1,@1,@2]];
+    
+//    [self previewNextNumber];
     self.allowTouch = YES;
     self.levelFailed = NO;
-    self.levelCompleted = NO;
+//    self.levelCompleted = NO;
 //    [self.controlsView previewNextNumber:self.nextNumber];
     [self.statusView updateScoreTo:self.gameState.totalScore];
-    [self.missions enumerateObjectsUsingBlock:^(Mission *mission, NSUInteger idx, BOOL *stop) {
-        if (mission.missionState != MissionStateCompleted) {
-            mission.resetMission = YES;
-            mission.missionState = MissionStateOngoing;
-        }
-    }];
-    [self.statusView updateMissionsStatus:self.missions];
-    for (NSArray *inner in self.gameState.grid) {
-        for (GridCellView *cell in inner) {
-            [cell resetCell];
-        }
-    }
+//    [self.missions enumerateObjectsUsingBlock:^(Mission *mission, NSUInteger idx, BOOL *stop) {
+//        if (mission.missionState != MissionStateCompleted) {
+//            mission.resetMission = YES;
+//            mission.missionState = MissionStateOngoing;
+//        }
+//    }];
+//    [self.statusView updateMissionsStatus:self.missions];
     [self layoutViews];
-    [self.controlsView displayForLevel:[GameData sharedGameData].level];
+//    [self.controlsView displayForLevel:[GameData sharedGameData].level];
 }
 
-- (void)previewNextNumber {
-    if (self.previewCell) {
-        [self.previewCell stopPreviewNumber];
-    }
-    self.previewCell = [self.gameState firstEmptyCell];
-    [self.previewCell previewNumber:self.nextNumber];
-}
+//- (void)previewNextNumber {
+//    if (self.previewCell) {
+//        [self.previewCell stopPreviewNumber];
+//    }
+//    self.previewCell = [self.gameState firstEmptyCell];
+//    [self.previewCell previewNumber:self.nextNumber];
+//}
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     if (!self.allowTouch) {
@@ -229,11 +267,11 @@
     if (gridCellView.cellValue == 0) {
         self.allowTouch = NO;
         self.gameState.lastPlacedTile = gridCellView;
-        self.gameState.lastPlacedValue = self.nextNumber;
+        self.gameState.lastPlacedValue = self.previewView.nextNumber;
         self.gameState.tilesPlaced++;
-        self.gameState.totalScore += self.nextNumber;
-        [self.previewCell stopPreviewNumber];
-        [gridCellView startCellWithNumber:self.nextNumber];
+        self.gameState.totalScore += self.previewView.nextNumber;
+//        [self.previewCell stopPreviewNumber];
+        [gridCellView startCellWithNumber:self.previewView.nextNumber];
         [self.statusView updateScoreTo:self.gameState.totalScore];
         NSArray *neighbours = [self.gridView neighboursForCell:gridCellView];
         [gridCellView mergeWithNeighbours:neighbours];
@@ -241,10 +279,23 @@
 }
 
 - (void)generateNextNumber {
-    int maxNumber = [GameData sharedGameData].level > 2 ? 2 : 1;
-    self.nextNumber = arc4random_uniform(maxNumber)+1;
+    int generatedNumber = arc4random_uniform(100)+1;
+    int actualNumber;
+    if (generatedNumber < 50) {
+        actualNumber = 1;
+    } else if (generatedNumber < 80) {
+        actualNumber = 2;
+    } else if (generatedNumber < 92) {
+        actualNumber = 4;
+    } else {
+        actualNumber = 8;
+    }
+    
+    NSLog(@"generated %i actual %i", generatedNumber, actualNumber);
+//    int maxNumber = 5;
+    [self.previewView newNumber:actualNumber];
     //    [self.controlsView previewNextNumber:self.nextNumber];
-    [self previewNextNumber];
+//    [self previewNextNumber];
 }
 
 #pragma GridCellViewProtocoll
@@ -254,47 +305,49 @@
 }
 
 - (void)finishedMergingCells {
-    __block BOOL allCompleted = YES;
-    __block BOOL anyCompleted = YES;
-    [self.missions enumerateObjectsUsingBlock:^(Mission *mission, NSUInteger idx, BOOL *stop) {
-        if ([mission completedForGameState:self.gameState]) {
-            anyCompleted = YES;
-        } else {
-            allCompleted = NO;
-        }
-    }];
+//    __block BOOL allCompleted = YES;
+//    __block BOOL anyCompleted = YES;
+//    [self.missions enumerateObjectsUsingBlock:^(Mission *mission, NSUInteger idx, BOOL *stop) {
+//        if ([mission completedForGameState:self.gameState]) {
+//            anyCompleted = YES;
+//        } else {
+//            allCompleted = NO;
+//        }
+//    }];
     
-    if (anyCompleted) {
-        [self.statusView updateMissionsStatus:self.missions];
-    }
-    if (allCompleted && !self.levelCompleted) {
-        self.levelCompleted = YES;
-        if ([GameData sharedGameData].level < 12) {
-            [[GameData sharedGameData] levelUp];
-        }
-        [self.controlsView displayLevelCompleted];
-        [self layoutViews];
-    } else if ([self.gameState isGameOver]) {
-        self.levelFailed = YES;
-        [self.controlsView displayGameOver];
-        [self layoutViews];
-    } else {
+//    if (anyCompleted) {
+//        [self.statusView updateMissionsStatus:self.missions];
+//    }
+//    if (allCompleted && !self.levelCompleted) {
+//        self.levelCompleted = YES;
+//        if ([GameData sharedGameData].level < 12) {
+//            [[GameData sharedGameData] levelUp];
+//        }
+//        [self.controlsView displayLevelCompleted];
+//        [self layoutViews];
+//    } else if ([self.gameState isGameOver]) {
+//        self.levelFailed = YES;
+//        [self.controlsView displayGameOver];
+//        [self layoutViews];
+//    } else {
         [self generateNextNumber];
         self.allowTouch = YES;
+//    }
+}
+- (void)storageButtonPressed:(id)sender {
+    NSLog(@"storage");
+    if (self.storageLabel.text.length > 0) {
+        int storageNumber = [self.storageLabel.text intValue];
+        self.storageLabel.text = [NSString stringWithFormat:@"%i", self.previewView.nextNumber];
+        [self.previewView replaceNumber:storageNumber];
+    } else {
+        self.storageLabel.text = [NSString stringWithFormat:@"%i", self.previewView.nextNumber];
+        [self generateNextNumber];
     }
 }
 
-#pragma ControlsViewProtocoll
-- (void)storageButtonPressed {
-    NSLog(@"storage");
-}
-
-- (void)undoButtonPressed{
+- (void)undoButtonPressed:(id)sender {
     NSLog(@"undo");
-}
-
-- (void)addButtonPressed {
-    NSLog(@"add");
 }
 
 @end

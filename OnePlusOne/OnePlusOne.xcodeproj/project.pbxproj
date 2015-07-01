@@ -15,8 +15,6 @@
 		9A2191C11AEAF30D00D1FBF4 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A2191C01AEAF30D00D1FBF4 /* GameViewController.m */; };
 		9A2191C41AEAF37F00D1FBF4 /* GridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A2191C31AEAF37F00D1FBF4 /* GridView.m */; };
 		9A2191C71AEB7CF400D1FBF4 /* GridCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A2191C61AEB7CF400D1FBF4 /* GridCellView.m */; };
-		9A3F7CEE1AF3ADAA00E03414 /* HighScoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A3F7CED1AF3ADAA00E03414 /* HighScoreView.m */; };
-		9A3F7CF11AF3B45E00E03414 /* HighScoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A3F7CF01AF3B45E00E03414 /* HighScoreCell.m */; };
 		9A3F7CF41AF3BAC600E03414 /* StorageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A3F7CF31AF3BAC600E03414 /* StorageManager.m */; };
 		9A4737D31AFA1AF7000B1862 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4737D21AFA1AF7000B1862 /* MenuViewController.m */; };
 		9A4737D61AFA1B15000B1862 /* MissionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4737D51AFA1B15000B1862 /* MissionView.m */; };
@@ -35,6 +33,7 @@
 		9AF0BBA01B1DF36000E546C8 /* GameState.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF0BB9F1B1DF36000E546C8 /* GameState.m */; };
 		9AF0BBA31B1F490700E546C8 /* ControlsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF0BBA21B1F490700E546C8 /* ControlsView.m */; };
 		9AF0BBAA1B219B3300E546C8 /* OptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF0BBA91B219B3300E546C8 /* OptionsViewController.m */; };
+		9AF505EE1B3EDDC800BDA256 /* PreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF505ED1B3EDDC800BDA256 /* PreviewView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,10 +63,6 @@
 		9A2191C31AEAF37F00D1FBF4 /* GridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GridView.m; path = Game/GridView.m; sourceTree = "<group>"; };
 		9A2191C51AEB7CF400D1FBF4 /* GridCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GridCellView.h; path = Game/GridCellView.h; sourceTree = "<group>"; };
 		9A2191C61AEB7CF400D1FBF4 /* GridCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GridCellView.m; path = Game/GridCellView.m; sourceTree = "<group>"; };
-		9A3F7CEC1AF3ADAA00E03414 /* HighScoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HighScoreView.h; path = Game/HighScoreView.h; sourceTree = "<group>"; };
-		9A3F7CED1AF3ADAA00E03414 /* HighScoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HighScoreView.m; path = Game/HighScoreView.m; sourceTree = "<group>"; };
-		9A3F7CEF1AF3B45E00E03414 /* HighScoreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HighScoreCell.h; path = Game/HighScoreCell.h; sourceTree = "<group>"; };
-		9A3F7CF01AF3B45E00E03414 /* HighScoreCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HighScoreCell.m; path = Game/HighScoreCell.m; sourceTree = "<group>"; };
 		9A3F7CF21AF3BAC600E03414 /* StorageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StorageManager.h; sourceTree = "<group>"; };
 		9A3F7CF31AF3BAC600E03414 /* StorageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StorageManager.m; sourceTree = "<group>"; };
 		9A4737D11AFA1AF7000B1862 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuViewController.h; path = Menu/MenuViewController.h; sourceTree = "<group>"; };
@@ -105,6 +100,8 @@
 		9AF0BBA21B1F490700E546C8 /* ControlsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ControlsView.m; path = Game/ControlsView.m; sourceTree = "<group>"; };
 		9AF0BBA81B219B3300E546C8 /* OptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OptionsViewController.h; path = OptionsMenu/OptionsViewController.h; sourceTree = "<group>"; };
 		9AF0BBA91B219B3300E546C8 /* OptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OptionsViewController.m; path = OptionsMenu/OptionsViewController.m; sourceTree = "<group>"; };
+		9AF505EC1B3EDDC800BDA256 /* PreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreviewView.h; path = Game/PreviewView.h; sourceTree = "<group>"; };
+		9AF505ED1B3EDDC800BDA256 /* PreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreviewView.m; path = Game/PreviewView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,14 +188,12 @@
 		9A2191BE1AEAF30500D1FBF4 /* Game */ = {
 			isa = PBXGroup;
 			children = (
-				9A3F7CEC1AF3ADAA00E03414 /* HighScoreView.h */,
-				9A3F7CED1AF3ADAA00E03414 /* HighScoreView.m */,
-				9A3F7CEF1AF3B45E00E03414 /* HighScoreCell.h */,
-				9A3F7CF01AF3B45E00E03414 /* HighScoreCell.m */,
 				9A2191BF1AEAF30D00D1FBF4 /* GameViewController.h */,
 				9A2191C01AEAF30D00D1FBF4 /* GameViewController.m */,
 				9AF0BBA11B1F490700E546C8 /* ControlsView.h */,
 				9AF0BBA21B1F490700E546C8 /* ControlsView.m */,
+				9AF505EC1B3EDDC800BDA256 /* PreviewView.h */,
+				9AF505ED1B3EDDC800BDA256 /* PreviewView.m */,
 				9AF0BB9E1B1DF36000E546C8 /* GameState.h */,
 				9AF0BB9F1B1DF36000E546C8 /* GameState.m */,
 				9A2191C21AEAF37F00D1FBF4 /* GridView.h */,
@@ -393,11 +388,10 @@
 				9AF0BBA31B1F490700E546C8 /* ControlsView.m in Sources */,
 				9A4737D31AFA1AF7000B1862 /* MenuViewController.m in Sources */,
 				9AEFD3461AFB965700613FE7 /* Mission.m in Sources */,
-				9A3F7CEE1AF3ADAA00E03414 /* HighScoreView.m in Sources */,
-				9A3F7CF11AF3B45E00E03414 /* HighScoreCell.m in Sources */,
 				9AEFD3591AFBF89400613FE7 /* NextLevelView.m in Sources */,
 				9AEFD3561AFBEBBD00613FE7 /* PathButton.m in Sources */,
 				9A2191C41AEAF37F00D1FBF4 /* GridView.m in Sources */,
+				9AF505EE1B3EDDC800BDA256 /* PreviewView.m in Sources */,
 				9A2191C71AEB7CF400D1FBF4 /* GridCellView.m in Sources */,
 				9AEFD3531AFBD51400613FE7 /* PathView.m in Sources */,
 				9AF0BBAA1B219B3300E546C8 /* OptionsViewController.m in Sources */,

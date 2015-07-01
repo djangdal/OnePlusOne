@@ -104,18 +104,18 @@
     static CGFloat levelLeft = 0.08;
     CGFloat levelSize = size.width*0.13;
     CGFloat levelSpacing = (size.width - levelSize*4 - size.width*levelLeft*2)/3;
-    [self.levelButtons enumerateObjectsUsingBlock:^(UIButton *levelButton, NSUInteger idx, BOOL *stop) {
-        unsigned long row = idx/4;
-        unsigned long col = idx%4;
-        if ([GameData sharedGameData].levelsUnlocked >= idx+1) {
-            [levelButton setTitle:[NSString stringWithFormat:@"%lu",idx+1] forState:UIControlStateNormal];
-            levelButton.enabled = true;
-        } else {
-            [levelButton setTitle:@"" forState:UIControlStateNormal];
-            levelButton.enabled = false;
-        }
-        levelButton.frame = CGRectMake(size.width*levelLeft + col*(levelSpacing+levelSize), CGRectGetMaxY(self.selectLevelLabel.frame) + size.height*levelTop + row*(levelSpacing+levelSize), levelSize, levelSize);
-    }];
+//    [self.levelButtons enumerateObjectsUsingBlock:^(UIButton *levelButton, NSUInteger idx, BOOL *stop) {
+//        unsigned long row = idx/4;
+//        unsigned long col = idx%4;
+//        if ([GameData sharedGameData].levelsUnlocked >= idx+1) {
+//            [levelButton setTitle:[NSString stringWithFormat:@"%lu",idx+1] forState:UIControlStateNormal];
+//            levelButton.enabled = true;
+//        } else {
+//            [levelButton setTitle:@"" forState:UIControlStateNormal];
+//            levelButton.enabled = false;
+//        }
+//        levelButton.frame = CGRectMake(size.width*levelLeft + col*(levelSpacing+levelSize), CGRectGetMaxY(self.selectLevelLabel.frame) + size.height*levelTop + row*(levelSpacing+levelSize), levelSize, levelSize);
+//    }];
     
     
     static CGFloat buttonsTop = 0.1;
@@ -150,8 +150,8 @@
 }
 
 - (void)levelButtonPressed:(UIButton *)sender {
-    int level = [sender.titleLabel.text intValue];
-    [[GameData sharedGameData] goToLevel:level];
+//    int level = [sender.titleLabel.text intValue];
+//    [[GameData sharedGameData] goToLevel:level];
     [self dismissViewControllerAnimated:NO completion:nil];
 }
 
@@ -165,7 +165,7 @@
 }
 
 - (void)unlockAllLevels:(id)sender {
-    [[GameData sharedGameData] unlockAllLevels];
+//    [[GameData sharedGameData] unlockAllLevels];
     NSLog(@"unlock all");
 }
 

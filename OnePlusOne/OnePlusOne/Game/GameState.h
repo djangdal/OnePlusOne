@@ -23,5 +23,6 @@
 @property (nonatomic, readonly) NSArray *grid;
 
 - (GridCellView *)firstEmptyCell;
+- (void)resetGameState;
 
 @end

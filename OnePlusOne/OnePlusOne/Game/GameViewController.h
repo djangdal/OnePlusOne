@@ -9,12 +9,10 @@
 
 #import <UIKit/UIKit.h>
 #import "GridCellView.h"
-#import "StatusView.h"
-#import "ControlsView.h"
 
-@interface GameViewController : UIViewController <GridCellViewDelegate, ControlsViewDelegate>
+@interface GameViewController : UIViewController <GridCellViewDelegate>
 
-@property (nonatomic) NSArray *missions;
+//@property (nonatomic) NSArray *missions;
 
 - (void)startNewGame;
 
