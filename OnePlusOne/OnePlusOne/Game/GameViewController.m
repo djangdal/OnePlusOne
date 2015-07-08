@@ -44,7 +44,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.gameState = [[GameState alloc] initWithGridSize:3 delegate:self];
+        self.gameState = [[GameState alloc] initWithGridSize:4 delegate:self];
         self.gridView = [GridView new];
         [self.gridView setUpForGameState:self.gameState];
         self.statusView  = [StatusView new];
@@ -78,7 +78,7 @@
                                            backgroundColor:[UIColor whiteColor]];
         [self.undoButton addTarget:self action:@selector(undoButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         
-        self.previewView = [[PreviewView alloc] initWithNumbers:@[@1 ,@1 ,@2]];
+        self.previewView = [[PreviewView alloc] initWithNumbers:@[@1 ,@1 ,@1]];
     }
     return self;
 }
@@ -224,7 +224,7 @@
     [self.gameState resetGameState];
 //    self.nextNumber = 1;
     self.storageLabel.text = @"";
-    [self.previewView newNumbers:@[@1,@1,@2]];
+    [self.previewView newNumbers:@[@1,@1,@1]];
     
 //    [self previewNextNumber];
     self.allowTouch = YES;
@@ -279,23 +279,7 @@
 }
 
 - (void)generateNextNumber {
-    int generatedNumber = arc4random_uniform(100)+1;
-    int actualNumber;
-    if (generatedNumber < 50) {
-        actualNumber = 1;
-    } else if (generatedNumber < 80) {
-        actualNumber = 2;
-    } else if (generatedNumber < 92) {
-        actualNumber = 4;
-    } else {
-        actualNumber = 8;
-    }
-    
-    NSLog(@"generated %i actual %i", generatedNumber, actualNumber);
-//    int maxNumber = 5;
-    [self.previewView newNumber:actualNumber];
-    //    [self.controlsView previewNextNumber:self.nextNumber];
-//    [self previewNextNumber];
+    [self.previewView newNumber:[self.gameState generateNewNumber]];
 }
 
 #pragma GridCellViewProtocoll
@@ -348,6 +332,7 @@
 
 - (void)undoButtonPressed:(id)sender {
     NSLog(@"undo");
+    [self generateNextNumber];
 }
 
 @end

@@ -24,5 +24,7 @@
 
 - (GridCellView *)firstEmptyCell;
 - (void)resetGameState;
+- (int)highestCellValue;
+- (int)generateNewNumber;
 
 @end

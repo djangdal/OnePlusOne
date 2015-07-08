@@ -82,7 +82,7 @@ CGFloat const kPreviewDuration = 0.5f;
         [UIView animateWithDuration:kMergeDuration animations:^{
             self.valueLabel.alpha = 0.0f;
         }completion:^(BOOL finished){
-            self.cellValue += sum;
+            self.cellValue += 1;
             [self updateValueLabel];
             self.valueLabel.alpha = 1.0f;
             [self.delegate mergedCellsWithScore:sum];
