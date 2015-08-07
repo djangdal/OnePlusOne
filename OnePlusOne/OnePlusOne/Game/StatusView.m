@@ -8,14 +8,16 @@
 
 #import "StatusView.h"
 #import "MissionsView.h"
+#import "MissionsFactory.h"
 #import "GameData.h"
 
 @interface StatusView ()
 
-@property (nonatomic) NSArray *missions;
 @property (nonatomic) UILabel *scoreLabel;
-@property (nonatomic) UILabel *levelLabel;
 @property (nonatomic) UILabel *scoreTitleLabel;
+@property (nonatomic) UILabel *highScoreLabel;
+@property (nonatomic) UILabel *highScoreTitleLabel;
+@property (nonatomic) UILabel *completionsLevel;
 @property (nonatomic) MissionsView *missionsView;
 
 @end
@@ -27,47 +29,60 @@
     if (self) {
         self.backgroundColor = [UIColor defaultDarkColor];
         
-        self.scoreLabel = [[UILabel alloc] init];
-        self.scoreLabel.text = @"0";
-        self.scoreLabel.textColor = [UIColor defaultLightColor];
+        self.scoreLabel = [self addLabelWithText:@"0"];
+        self.scoreLabel.textAlignment = NSTextAlignmentCenter;
+        self.scoreTitleLabel = [self addLabelWithText:@"Score"];
         
-        self.scoreTitleLabel = [[UILabel alloc] init];
-        self.scoreTitleLabel.text = @"Score:";
-        self.scoreTitleLabel.textColor = [UIColor defaultLightColor];
+        self.highScoreLabel = [self addLabelWithText:[NSString stringWithFormat:@"%i", [GameData sharedGameData].highScore]];
+        self.highScoreLabel.textAlignment = NSTextAlignmentCenter;
+        self.highScoreTitleLabel = [self addLabelWithText:@"Best"];
         
-        self.levelLabel = [[UILabel alloc] init];
-        self.levelLabel.textColor = [UIColor defaultLightColor];
+        self.completionsLevel = [self addLabelWithText:[NSString stringWithFormat:@"%lu / %lu completed",
+                                                        (unsigned long)[[GameData sharedGameData].completedMissionsIndexes count],
+                                                        (unsigned long)[MissionsFactory allMissions].count]];
         
         self.missionsView = [MissionsView new];
-        
         [self addSubview:self.missionsView];
-        [self addSubview:self.scoreLabel];
-        [self addSubview:self.scoreTitleLabel];
-        [self addSubview:self.levelLabel];
     }
     return self;
 }
 
+- (UILabel *)addLabelWithText:(NSString *)text {
+    UILabel *label = [[UILabel alloc] init];
+    label.textColor = [UIColor defaultLightColor];
+    label.text = text;
+    [self addSubview:label];
+    return label;
+}
+
 - (void)layoutSubviews {
-//    self.levelLabel.text = [NSString stringWithFormat:@"Level %i objectives:", [GameData sharedGameData].level];
-    
     CGSize size = self.frame.size;
     
-    static CGFloat levelTop = 0.1;
-    static CGFloat levelLeft = 0.04;
-    [self.levelLabel sizeToFit];
-    self.levelLabel.frame = SKRectSetX(self.levelLabel.frame, size.width*levelLeft);
-    self.levelLabel.frame = SKRectSetY(self.levelLabel.frame, size.height*levelTop);
+    static CGFloat completionsTop = 0.1;
+    static CGFloat completionsLeft = 0.05;
+    [self.completionsLevel sizeToFit];
+    self.completionsLevel.frame = SKRectSetX(self.completionsLevel.frame, size.width*completionsLeft);
+    self.completionsLevel.frame = SKRectSetY(self.completionsLevel.frame, size.height*completionsTop);
     
-    static CGFloat scoreLeft = 0.04;
+    static CGFloat scoreLeft = 0.05;
     static CGFloat scoreBottom = 0.05;
     static CGFloat scoreSpacing = 0.05;
     [self.scoreLabel sizeToFit];
     [self.scoreTitleLabel sizeToFit];
     self.scoreLabel.frame = SKRectSetX(self.scoreLabel.frame, size.width*scoreLeft);
+    self.scoreLabel.frame = SKRectSetWidth(self.scoreLabel.frame, self.scoreTitleLabel.frame.size.width);
     self.scoreLabel.frame = SKRectSetBottom(self.scoreLabel.frame, size.height - size.height*scoreBottom, NO);
     self.scoreTitleLabel.frame = SKRectSetX(self.scoreTitleLabel.frame, size.width*scoreLeft);
     self.scoreTitleLabel.frame = SKRectSetBottom(self.scoreTitleLabel.frame, CGRectGetMinY(self.scoreLabel.frame) - size.height*scoreSpacing, NO);
+    
+    static CGFloat highScoreLeft = 0.13;
+    [self.highScoreLabel sizeToFit];
+    [self.highScoreTitleLabel sizeToFit];
+    self.highScoreLabel.frame = SKRectSetX(self.highScoreLabel.frame, CGRectGetMaxX(self.scoreTitleLabel.frame) + size.width*highScoreLeft);
+    self.highScoreLabel.frame = SKRectSetBottom(self.highScoreLabel.frame, size.height - size.height*scoreBottom, NO);
+    self.highScoreLabel.frame = SKRectSetWidth(self.highScoreLabel.frame, self.highScoreTitleLabel.frame.size.width);
+    self.highScoreTitleLabel.frame = SKRectSetX(self.highScoreTitleLabel.frame, CGRectGetMaxX(self.scoreTitleLabel.frame) + size.width*highScoreLeft);
+    self.highScoreTitleLabel.frame = SKRectSetBottom(self.highScoreTitleLabel.frame, CGRectGetMinY(self.highScoreLabel.frame) - size.height*scoreSpacing, NO);
     
     static CGFloat missionsTop = 0.05;
     static CGFloat missionsLeft = 0.44;
@@ -79,13 +94,16 @@
     self.missionsView.frame = SKRectSetBottom(self.missionsView.frame, size.height - size.height*missionsBottom, YES);
 }
 
-- (void)updateMissionsStatus:(NSArray *)missions {
-    self.missions = missions;
-    [self.missionsView displayMissions:self.missions];
+- (void)displayMissions:(NSArray *)missions {
+    [self.missionsView displayMissions:missions];
+    self.completionsLevel.text = [NSString stringWithFormat:@"%lu / %lu completed",
+                                  (unsigned long)[[GameData sharedGameData].completedMissionsIndexes count],
+                                  (unsigned long)[MissionsFactory allMissions].count];
 }
 
 - (void)updateScoreTo:(int)score {
     self.scoreLabel.text = [NSString stringWithFormat:@"%i", score];
+    self.highScoreLabel.text = [NSString stringWithFormat:@"%i", [GameData sharedGameData].highScore];
     [self setNeedsLayout];
 }
 

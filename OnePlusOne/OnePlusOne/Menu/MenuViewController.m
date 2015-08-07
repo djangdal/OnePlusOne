@@ -14,7 +14,6 @@
 #import "MissionsView.h"
 #import "NextLevelView.h"
 #import "GameData.h"
-#import "MissionsFactory.h"
 
 #import "Mission.h"
 
@@ -45,7 +44,6 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        [[GameData sharedGameData] reset];
         
         self.gameViewController = [[GameViewController alloc] init];
         
@@ -83,7 +81,7 @@
         self.resetProgressButton.backgroundColor = [UIColor defaultDarkColor];
         [self.resetProgressButton setTitleColor:[UIColor defaultWhiteColor] forState:UIControlStateNormal];
         [self.resetProgressButton setTitle:@"Reset progress" forState:UIControlStateNormal];
-        [self.resetProgressButton addTarget:self action:@selector(optionsButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        [self.resetProgressButton addTarget:self action:@selector(resetButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         
         self.removeAdsButton = [UIButton buttonWithType:UIButtonTypeCustom];
         self.removeAdsButton.backgroundColor = [UIColor defaultDarkColor];
@@ -116,7 +114,7 @@
     
     self.titleLabel.font = [UIFont fontWithName:@"helvetica" size:self.view.frame.size.width*0.12f];
 //    self.levelLabel.text = [NSString stringWithFormat:@"Level %i", self.level];
-//    [self.missionsView displayMissions:self.missions];
+//    [self.missionsView displayMissions:[MissionsFactory nextMissions:3]];
 //    [self.nextLevelView showNextLeveL:self.level+1];
 }
 
@@ -150,6 +148,10 @@
 - (void)playButtonPressed:(UIButton *)button {
 //    self.gameViewController.missions = self.missions;
     [self presentViewController:self.gameViewController animated:NO completion:nil];
+}
+
+- (void)resetButtonPressed:(UIButton *)button {
+    [[GameData sharedGameData] reset];
 }
 
 - (void)optionsButtonPressed:(UIButton *)button {

@@ -65,7 +65,7 @@
     self.statusView.frame = SKRectSetBottom(self.statusView.frame, size.height - size.height*statusBottom, YES);
     
     static CGFloat descriptionTop = 0.06;
-    static CGFloat descriptionLeft = 0.05;
+    static CGFloat descriptionLeft = 0.02;
     static CGFloat descriptionRight = 0.05;
     static CGFloat descriptionBottom = 0.05;
     self.descriptionLabel.frame = SKRectSetX(self.descriptionLabel.frame, CGRectGetMaxX(self.statusView.frame) + size.width*descriptionLeft);

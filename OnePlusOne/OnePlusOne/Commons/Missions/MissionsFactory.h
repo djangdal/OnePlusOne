@@ -8,8 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+//@class Mission;
+
 @interface MissionsFactory : NSObject
 
-+ (NSArray *)missionsForLevel:(int)level;
++ (NSArray *)allMissions;
+//+ (NSArray *)nextMissions:(int)count;
 
 @end

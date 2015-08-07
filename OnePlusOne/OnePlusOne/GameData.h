@@ -10,14 +10,13 @@
 
 @interface GameData : NSObject <NSCoding>
 
-//@property (nonatomic, readonly) int level;
-//@property (nonatomic, readonly) int levelsUnlocked;
+@property (nonatomic, readonly) NSMutableArray *completedMissionsIndexes;
+@property (nonatomic, readonly) int highScore;
 
 + (instancetype)sharedGameData;
-//- (void)goToLevel:(int)level;
-//- (void)levelUp;
+- (void)completedMissionAtIndex:(NSUInteger)index;
+- (void)newScore:(int)score;
 - (void)reset;
 - (void)save;
-//- (void)unlockAllLevels;
 
 @end

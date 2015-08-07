@@ -41,6 +41,7 @@
     self.gameOngoing = YES;
     self.lastPlacedValue = 0;
     self.lastPlacedTile = nil;
+    [self.numberProbabilities removeAllObjects];
     for (NSArray *inner in self.grid) {
         for (GridCellView *cell in inner) {
             [cell resetCell];
@@ -121,26 +122,28 @@
         [self.numberProbabilities addObject:@0];
     }
     
-    NSLog(@"---------- new round---------");
-    NSLog(@"array before %@", self.numberProbabilities);
+//    NSLog(@"---------- new round---------");
+//    NSLog(@"array before %@", self.numberProbabilities);
     
     __block int highestIdx;
     __block int highestProbability = INT32_MIN;
+    __block int sum = 0;
     [self.numberProbabilities enumerateObjectsUsingBlock:^(NSNumber *number, NSUInteger idx, BOOL *stop) {
         int addNumber = arc4random_uniform(highestNumber-(int)idx + 1)+1;
+        sum +=addNumber;
         int newNumber = number.intValue + addNumber;
         if (newNumber > highestProbability) {
             highestIdx = (int)idx;
             highestProbability = newNumber;
         }
         [self.numberProbabilities replaceObjectAtIndex:idx withObject:@(number.intValue + addNumber)];
-        NSLog(@"highest %i idx %lu generated %i",highestNumber,(unsigned long)idx,addNumber);
+//        NSLog(@"highest %i idx %lu generated %i",highestNumber,(unsigned long)idx,addNumber);
     }];
-    NSLog(@"array after %@", self.numberProbabilities);
+//    NSLog(@"array after %@", self.numberProbabilities);
     
     NSNumber *n = [self.numberProbabilities objectAtIndex:highestIdx];
-    int reducedNumber = n.intValue - highestNumber*1.5;
-    NSLog(@"higestidx %lu reducedNumber %i", (unsigned long)highestIdx, reducedNumber);
+    int reducedNumber = n.intValue - sum;
+//    NSLog(@"higestidx %lu reducedNumber %i", (unsigned long)highestIdx, reducedNumber);
     [self.numberProbabilities replaceObjectAtIndex:highestIdx withObject:[NSNumber numberWithInt:reducedNumber]];
     NSLog(@"array reduced %@", self.numberProbabilities);
     

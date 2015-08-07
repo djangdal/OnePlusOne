@@ -20,6 +20,7 @@
 		9A4737D61AFA1B15000B1862 /* MissionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4737D51AFA1B15000B1862 /* MissionView.m */; };
 		9A4737D91AFA1D02000B1862 /* SKGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4737D81AFA1D02000B1862 /* SKGeometry.m */; };
 		9A4737DD1AFA47FA000B1862 /* UIColors+Application.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4737DC1AFA47FA000B1862 /* UIColors+Application.m */; };
+		9A5426271B5920760093BBBD /* MissionsHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A5426261B5920760093BBBD /* MissionsHandler.m */; };
 		9A6E92B41AEEDBAA00C43C0A /* StatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6E92B31AEEDBAA00C43C0A /* StatusView.m */; };
 		9A97B1ED1B076A0800807EEA /* GameData.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A97B1EC1B076A0800807EEA /* GameData.m */; };
 		9AEFD3421AFB953200613FE7 /* MissionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEFD3411AFB953200613FE7 /* MissionsView.m */; };
@@ -74,6 +75,8 @@
 		9A4737DA1AFA1F9E000B1862 /* prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = prefix.pch; sourceTree = "<group>"; };
 		9A4737DB1AFA47FA000B1862 /* UIColors+Application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColors+Application.h"; path = "Commons/UIColors+Application.h"; sourceTree = "<group>"; };
 		9A4737DC1AFA47FA000B1862 /* UIColors+Application.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColors+Application.m"; path = "Commons/UIColors+Application.m"; sourceTree = "<group>"; };
+		9A5426251B5920760093BBBD /* MissionsHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MissionsHandler.h; path = Commons/Missions/MissionsHandler.h; sourceTree = "<group>"; };
+		9A5426261B5920760093BBBD /* MissionsHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MissionsHandler.m; path = Commons/Missions/MissionsHandler.m; sourceTree = "<group>"; };
 		9A6E92B21AEEDBAA00C43C0A /* StatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StatusView.h; path = Game/StatusView.h; sourceTree = "<group>"; };
 		9A6E92B31AEEDBAA00C43C0A /* StatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StatusView.m; path = Game/StatusView.m; sourceTree = "<group>"; };
 		9A97B1EB1B076A0800807EEA /* GameData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameData.h; sourceTree = "<group>"; };
@@ -216,11 +219,11 @@
 		9A4737CC1AFA1A9E000B1862 /* Commons */ = {
 			isa = PBXGroup;
 			children = (
+				9A4737C51AFA1A1C000B1862 /* Views */,
 				9AEFD34A1AFBC56800613FE7 /* Paths */,
 				9AEFD3431AFB956300613FE7 /* Missions */,
 				9A4737D71AFA1D02000B1862 /* SKGeometry.h */,
 				9A4737D81AFA1D02000B1862 /* SKGeometry.m */,
-				9A4737C51AFA1A1C000B1862 /* Views */,
 				9A4737DB1AFA47FA000B1862 /* UIColors+Application.h */,
 				9A4737DC1AFA47FA000B1862 /* UIColors+Application.m */,
 				9A97B1EB1B076A0800807EEA /* GameData.h */,
@@ -251,6 +254,8 @@
 				9AEFD3451AFB965700613FE7 /* Mission.m */,
 				9AEFD3471AFB967300613FE7 /* MissionsFactory.h */,
 				9AEFD3481AFB967300613FE7 /* MissionsFactory.m */,
+				9A5426251B5920760093BBBD /* MissionsHandler.h */,
+				9A5426261B5920760093BBBD /* MissionsHandler.m */,
 			);
 			name = Missions;
 			sourceTree = "<group>";
@@ -390,6 +395,7 @@
 				9AEFD3461AFB965700613FE7 /* Mission.m in Sources */,
 				9AEFD3591AFBF89400613FE7 /* NextLevelView.m in Sources */,
 				9AEFD3561AFBEBBD00613FE7 /* PathButton.m in Sources */,
+				9A5426271B5920760093BBBD /* MissionsHandler.m in Sources */,
 				9A2191C41AEAF37F00D1FBF4 /* GridView.m in Sources */,
 				9AF505EE1B3EDDC800BDA256 /* PreviewView.m in Sources */,
 				9A2191C71AEB7CF400D1FBF4 /* GridCellView.m in Sources */,

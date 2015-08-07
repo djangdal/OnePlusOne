@@ -31,6 +31,8 @@
         [self addSubview:self.missionView1];
         [self addSubview:self.missionView2];
         [self addSubview:self.missionView3];
+        
+//        [self displayMissions:[MissionsFactory nextMissions:3]];
     }
     return self;
 }

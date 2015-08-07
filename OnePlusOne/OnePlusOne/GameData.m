@@ -10,15 +10,15 @@
 
 @interface GameData ()
 
-//@property (nonatomic) int level;
-//@property (nonatomic) int levelsUnlocked;
+@property (nonatomic) int highScore;
+@property (nonatomic) NSMutableArray *completedMissionsIndexes;
 
 @end
 
 @implementation GameData
 
-//static NSString * const GameDataLevelKey = @"LevelKey";
-//static NSString * const GameDataLevelsUnlockedKey = @"LevelsUnlockedKey";
+static NSString * const GameDataCompletedMissionsKey = @"CompletedMissionsKey";
+static NSString * const GameDataHighScoreKey = @"HighScoreKey";
 
 + (instancetype)sharedGameData {
     static id sharedInstance = nil;
@@ -49,38 +49,35 @@
     return [[GameData alloc] init];
 }
 
-//- (void)levelUp {
-//    self.level++;
-//    if (self.level > self.levelsUnlocked) {
-//        self.levelsUnlocked = self.level;
-//    }
-//    [self save];
-//}
-
-//- (void)goToLevel:(int)level {
-//    if (level <= self.levelsUnlocked) {
-//        self.level = level;
-//        [self save];
-//    }
-//}
-
 - (void)encodeWithCoder:(NSCoder *)encoder {
-//    [encoder encodeInt:self.level forKey:GameDataLevelKey];
-//    [encoder encodeInt:self.levelsUnlocked forKey:GameDataLevelsUnlockedKey];
+    [encoder encodeObject:self.completedMissionsIndexes forKey:GameDataCompletedMissionsKey];
+    [encoder encodeInt:self.highScore forKey:GameDataHighScoreKey];
 }
 
 - (instancetype)initWithCoder:(NSCoder *)decoder {
     self = [self init];
     if (self) {
-//        self.level = [decoder decodeIntForKey:GameDataLevelKey];
-//        self.levelsUnlocked = [decoder decodeIntForKey:GameDataLevelsUnlockedKey];
+        self.completedMissionsIndexes = [decoder decodeObjectForKey:GameDataCompletedMissionsKey] ? : [NSMutableArray new];
+        self.highScore = [decoder decodeIntForKey:GameDataHighScoreKey];
     }
     return self;
 }
 
+- (void)completedMissionAtIndex:(NSUInteger)index {
+    [self.completedMissionsIndexes addObject:[NSNumber numberWithInteger:index]];
+    [self save];
+}
+
+- (void)newScore:(int)score {
+    if (score > self.highScore) {
+        self.highScore = score;
+        [self save];
+    }
+}
+
 - (void)reset {
-//    self.level = 1;
-//    self.levelsUnlocked = 1;
+    self.highScore = 0;
+    self.completedMissionsIndexes = [NSMutableArray new];
     [self save];
 }
 
@@ -88,10 +85,5 @@
     NSData *encodedData = [NSKeyedArchiver archivedDataWithRootObject:self];
     [encodedData writeToFile:[GameData filePath] atomically:YES];
 }
-
-//- (void)unlockAllLevels {
-//    self.levelsUnlocked = 12;
-//    [self save];
-//}
 
 @end
