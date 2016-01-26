@@ -10,7 +10,7 @@
 
 @interface StatusView : UIView
 
-- (void)displayMissions:(NSArray *)missions;
+//- (void)displayMissions:(NSArray *)missions;
 - (void)updateScoreTo:(int)score;
 
 @end

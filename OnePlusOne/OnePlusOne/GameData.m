@@ -11,6 +11,7 @@
 @interface GameData ()
 
 @property (nonatomic) int highScore;
+@property (nonatomic) int highestNumber;
 @property (nonatomic) NSMutableArray *completedMissionsIndexes;
 
 @end
@@ -19,6 +20,7 @@
 
 static NSString * const GameDataCompletedMissionsKey = @"CompletedMissionsKey";
 static NSString * const GameDataHighScoreKey = @"HighScoreKey";
+static NSString * const GameDataHighestNumbereKey = @"HighestNumberKey";
 
 + (instancetype)sharedGameData {
     static id sharedInstance = nil;
@@ -52,6 +54,7 @@ static NSString * const GameDataHighScoreKey = @"HighScoreKey";
 - (void)encodeWithCoder:(NSCoder *)encoder {
     [encoder encodeObject:self.completedMissionsIndexes forKey:GameDataCompletedMissionsKey];
     [encoder encodeInt:self.highScore forKey:GameDataHighScoreKey];
+    [encoder encodeInt:self.highestNumber forKey:GameDataHighestNumbereKey];
 }
 
 - (instancetype)initWithCoder:(NSCoder *)decoder {
@@ -59,6 +62,7 @@ static NSString * const GameDataHighScoreKey = @"HighScoreKey";
     if (self) {
         self.completedMissionsIndexes = [decoder decodeObjectForKey:GameDataCompletedMissionsKey] ? : [NSMutableArray new];
         self.highScore = [decoder decodeIntForKey:GameDataHighScoreKey];
+        self.highestNumber = [decoder decodeIntForKey:GameDataHighestNumbereKey];
     }
     return self;
 }
@@ -75,8 +79,16 @@ static NSString * const GameDataHighScoreKey = @"HighScoreKey";
     }
 }
 
+- (void)newNumber:(int)number {
+    if (number > self.highestNumber) {
+        self.highestNumber = number;
+        [self save];
+    }
+}
+
 - (void)reset {
     self.highScore = 0;
+    self.highestNumber = 0;
     self.completedMissionsIndexes = [NSMutableArray new];
     [self save];
 }

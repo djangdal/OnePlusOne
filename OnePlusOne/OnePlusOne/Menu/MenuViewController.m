@@ -32,7 +32,7 @@
 @property (nonatomic) UIButton *resetProgressButton;
 @property (nonatomic) UIButton *removeAdsButton;
 
-@property (nonatomic) MissionsView *missionsView;
+//@property (nonatomic) MissionsView *missionsView;
 //@property (nonatomic) NextLevelView *nextLevelView;
 @property (nonatomic) GameViewController *gameViewController;
 //@property (nonatomic) OptionsViewController *optionsViewController;
@@ -60,7 +60,7 @@
 //        self.levelBackgroundView = [UIView new];
 //        self.levelBackgroundView.backgroundColor = [UIColor defaultDarkColor];
         
-        self.missionsView = [MissionsView new];
+//        self.missionsView = [MissionsView new];
 //        self.nextLevelView = [NextLevelView new];
 
 //        self.playButton = [[PathButton alloc] initWithPath:[UIBezierPath playPath]
@@ -103,7 +103,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor defaultLightColor];
     [self.view addSubview:self.titleLabel];
-    [self.view addSubview:self.missionsView];
+//    [self.view addSubview:self.missionsView];
 //    [self.view addSubview:self.levelBackgroundView];
 //    [self.levelBackgroundView addSubview:self.levelLabel];
     //    [self.view addSubview:self.nextLevelView];
@@ -163,7 +163,7 @@
     
     [self.titleLabel sizeToFit];
     self.titleLabel.frame = SKRectCenterHorizontallyInRect(self.titleLabel.frame, self.view.bounds);
-    self.titleLabel.frame = SKRectSetY(self.titleLabel.frame, 30);
+    self.titleLabel.frame = SKRectSetY(self.titleLabel.frame, 60);
     
 //    static CGFloat levelTop = 0.03;
 //    static CGFloat levelLeft = 0.13;
@@ -178,14 +178,14 @@
 //    self.levelLabel.frame = SKRectCenterVerticallyInRect(self.levelLabel.frame, self.levelBackgroundView.frame);
 //    self.levelLabel.frame = SKRectSetX(self.levelLabel.frame, size.width*0.03);
     
-    static CGFloat missionsTop = 0.1;
-    static CGFloat missionsLeft = 0.13;
-    static CGFloat missionsRight = 0.13;
-    static CGFloat missionsHeight = 0.28;
-    self.missionsView.frame = SKRectSetX(self.missionsView.frame, size.width * missionsLeft);
-    self.missionsView.frame = SKRectSetY(self.missionsView.frame, CGRectGetMaxY(self.titleLabel.frame) + size.height*missionsTop);
-    self.missionsView.frame = SKRectSetRight(self.missionsView.frame, size.width - size.width*missionsRight, YES);
-    self.missionsView.frame = SKRectSetHeight(self.missionsView.frame, size.height*missionsHeight);
+//    static CGFloat missionsTop = 0.1;
+//    static CGFloat missionsLeft = 0.13;
+//    static CGFloat missionsRight = 0.13;
+//    static CGFloat missionsHeight = 0.28;
+//    self.missionsView.frame = SKRectSetX(self.missionsView.frame, size.width * missionsLeft);
+//    self.missionsView.frame = SKRectSetY(self.missionsView.frame, CGRectGetMaxY(self.titleLabel.frame) + size.height*missionsTop);
+//    self.missionsView.frame = SKRectSetRight(self.missionsView.frame, size.width - size.width*missionsRight, YES);
+//    self.missionsView.frame = SKRectSetHeight(self.missionsView.frame, size.height*missionsHeight);
     
 //    static CGFloat nextLevelTop = 0.03;
 //    static CGFloat nextLevelLeft = 0.13;
@@ -197,13 +197,13 @@
 //    self.nextLevelView.frame = SKRectSetHeight(self.nextLevelView.frame, size.height*nextLevelHeight);
     
     static CGFloat buttonTop = 0.1;
-    static CGFloat buttonSpacing = 0.04;
+    static CGFloat buttonSpacing = 0.1;
     static CGFloat buttonLeft = 0.13;
     static CGFloat buttonRight = 0.13;
     static CGFloat buttonSize = 0.15;
     
     self.playButton.frame = SKRectSetX(self.playButton.frame, size.width*buttonLeft);
-    self.playButton.frame = SKRectSetY(self.playButton.frame, CGRectGetMaxY(self.missionsView.frame) + size.height*buttonTop);
+    self.playButton.frame = SKRectSetY(self.playButton.frame, CGRectGetMaxY(self.titleLabel.frame) + size.height*buttonTop);
     self.playButton.frame = SKRectSetHeight(self.playButton.frame, size.width*buttonSize);
     self.playButton.frame = SKRectSetRight(self.playButton.frame, size.width - size.width*buttonRight, YES);
     

@@ -12,6 +12,7 @@
 
 @property (nonatomic, readonly) NSMutableArray *completedMissionsIndexes;
 @property (nonatomic, readonly) int highScore;
+@property (nonatomic, readonly) int highestNumber;
 
 + (instancetype)sharedGameData;
 - (void)completedMissionAtIndex:(NSUInteger)index;

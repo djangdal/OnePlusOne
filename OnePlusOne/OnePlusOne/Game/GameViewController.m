@@ -16,6 +16,7 @@
 #import "MissionsHandler.h"
 #import "UIBezierPath+Paths.h"
 #import "GameViewController.h"
+#import <iAd/iAd.h>
 
 @interface GameViewController ()
 
@@ -37,6 +38,7 @@
 @property (nonatomic) PathButton *storageButton;
 @property (nonatomic) UILabel *storageLabel;
 
+@property (nonatomic) ADBannerView *adView;
 @end
 
 @implementation GameViewController
@@ -79,6 +81,11 @@
         [self.undoButton addTarget:self action:@selector(undoButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         
         self.previewView = [[PreviewView alloc] initWithNumbers:@[@1 ,@1 ,@1]];
+        
+        self.adView = [[ADBannerView alloc] initWithFrame:CGRectZero];
+        [self.adView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+//        adView.c.currentContentSizeIdentifier = ADBannerContentSizeIdentifierPortrait;
+
     }
     return self;
 }
@@ -96,18 +103,23 @@
     [self.view addSubview:self.previewView];
     [self.view addSubview:self.storageButton];
     [self.storageButton addSubview:self.storageLabel];
+
+    [self.view addSubview:self.adView];
     
     [self layoutViews];
 }
 
 - (void)layoutViews {
     CGSize size = self.view.frame.size;
+    self.adView.frame = SKRectSetX(self.adView.frame, 0);
+    self.adView.frame = SKRectSetY(self.adView.frame, 20);
+    
     static CGFloat statusTop = 0.05;
     static CGFloat statusLeft = 0.04;
     static CGFloat statusRight = 0.04;
-    static CGFloat statusHeight = 0.17;
+    static CGFloat statusHeight = 0.07;
     self.statusView.frame = SKRectSetX(self.statusView.frame, size.width*statusLeft);
-    self.statusView.frame = SKRectSetY(self.statusView.frame, size.height*statusTop);
+    self.statusView.frame = SKRectSetY(self.statusView.frame, CGRectGetMaxY(self.adView.frame) + size.height*statusTop);
     self.statusView.frame = SKRectSetRight(self.statusView.frame, size.width - size.width*statusRight, YES);
     self.statusView.frame = SKRectSetHeight(self.statusView.frame, size.height*statusHeight);
     
@@ -134,7 +146,7 @@
     self.gridView.frame = SKRectSetX(self.gridView.frame, size.width*gridMargin);
     self.gridView.frame = SKRectSetBottom(self.gridView.frame, size.height - size.width*gridMargin, NO);
     
-    static CGFloat actionsBottom = 0.01;
+    static CGFloat actionsBottom = 0.05;
     static CGFloat actionsLeft = 0.07;
     static CGFloat actionsRight = 0.07;
     static CGFloat actionsSize = 0.13;
@@ -246,17 +258,17 @@
 
 - (void)finishedMergingCells {
 //    __block BOOL allCompleted = YES;
-    __block BOOL anyCompleted = YES;
-    [[[MissionsHandler sharedHandler] currentMissions] enumerateObjectsUsingBlock:^(Mission *mission, NSUInteger idx, BOOL *stop) {
-        if ([mission completedForGameState:self.gameState]) {
-            [[MissionsHandler sharedHandler] completedMission:mission];
-            anyCompleted = YES;
-        }
-    }];
+//    __block BOOL anyCompleted = YES;
+//    [[[MissionsHandler sharedHandler] currentMissions] enumerateObjectsUsingBlock:^(Mission *mission, NSUInteger idx, BOOL *stop) {
+//        if ([mission completedForGameState:self.gameState]) {
+//            [[MissionsHandler sharedHandler] completedMission:mission];
+//            anyCompleted = YES;
+//        }
+//    }];
     
-    if (anyCompleted) {
-        [self.statusView displayMissions:[[MissionsHandler sharedHandler] currentMissions]];
-    }
+//    if (anyCompleted) {
+//        [self.statusView displayMissions:[[MissionsHandler sharedHandler] currentMissions]];
+//    }
 //    if (allCompleted && !self.levelCompleted) {
 //        self.levelCompleted = YES;
 //        if ([GameData sharedGameData].level < 12) {
