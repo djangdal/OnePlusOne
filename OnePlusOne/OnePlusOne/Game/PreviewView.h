@@ -15,5 +15,12 @@
 - (void)newNumber:(int)number;
 - (void)replaceNumber:(int)number;
 - (int)nextNumber;
+- (void)storeCurrentValues;
+- (void)resetValues;
+- (void)undo;
+- (void)lastStorageUndo:(NSString *)number;
+- (void)playFadeAnimation;
+
+@property (nonatomic, readwrite) BOOL finishedAnimating;
 
 @end

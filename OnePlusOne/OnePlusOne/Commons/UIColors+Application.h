@@ -26,5 +26,6 @@
 + (UIColor *)defaultDarkColor;
 + (UIColor *)defaultLightColor;
 + (UIColor *)defaultWhiteColor;
++ (UIColor *)defaultDisabledColor;
 
 @end

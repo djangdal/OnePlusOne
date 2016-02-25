@@ -16,7 +16,7 @@
 @property (nonatomic) int cellValue;
 @property (nonatomic) UILabel *valueLabel;
 @property (nonatomic) UILabel *previewLabel;
-
+@property (nonatomic) NSMutableArray *previousNumbers;
 @property (nonatomic, weak) id<GridCellViewDelegate> delegate;
 
 @end
@@ -33,6 +33,7 @@ CGFloat const kPreviewDuration = 0.5f;
         self.y = y;
         self.delegate = delegate;
         self.backgroundColor = [UIColor clearColor];
+        self.previousNumbers = [NSMutableArray new];
         
         self.valueLabel = [UILabel new];
         self.valueLabel.font = [UIFont fontWithName:@"Helvetica" size:28];
@@ -67,6 +68,7 @@ CGFloat const kPreviewDuration = 0.5f;
 
 - (void)resetCell {
     self.cellValue = 0;
+    [self.previousNumbers removeAllObjects];
     [self updateValueLabel];
 }
 
@@ -104,21 +106,28 @@ CGFloat const kPreviewDuration = 0.5f;
     }];
 }
 
-- (void)previewNumber:(int)number {
-//    if ([GameData sharedGameData].level < 4) {
-//        return;
-//    }
-    self.previewLabel.alpha = 0.3;
-    self.previewLabel.text = [NSString stringWithFormat:@"%i", number];
-    [UIView animateWithDuration:kPreviewDuration delay:0 options:(UIViewAnimationOptionAutoreverse | UIViewAnimationOptionRepeat) animations:^{
-        self.previewLabel.alpha = 1.0f;
-    } completion:nil];
+//- (void)previewNumber:(int)number {
+//    self.previewLabel.alpha = 0.3;
+//    self.previewLabel.text = [NSString stringWithFormat:@"%i", number];
+//    [UIView animateWithDuration:kPreviewDuration delay:0 options:(UIViewAnimationOptionAutoreverse | UIViewAnimationOptionRepeat) animations:^{
+//        self.previewLabel.alpha = 1.0f;
+//    } completion:nil];
+//}
+//
+//- (void)stopPreviewNumber {
+//    [UIView animateWithDuration:0.1 animations:^{
+//        self.previewLabel.alpha = 0.0f;
+//    }];
+//}
+
+- (void)storeCurrentValue {
+    [self.previousNumbers addObject:@(self.cellValue)];
 }
 
-- (void)stopPreviewNumber {
-    [UIView animateWithDuration:0.1 animations:^{
-        self.previewLabel.alpha = 0.0f;
-    }];
+- (void)undo {
+    self.cellValue = [[self.previousNumbers lastObject] intValue];
+    [self.previousNumbers removeLastObject];
+    [self updateValueLabel];
 }
 
 @end

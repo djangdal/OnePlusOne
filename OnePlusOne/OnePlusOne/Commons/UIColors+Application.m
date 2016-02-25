@@ -23,7 +23,8 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 + (UIColor *)defaultDarkColor           {return UIColorFromRGB(0x656565);}
 + (UIColor *)defaultLightColor          {return UIColorFromRGB(0xDCDCDC);}
-+ (UIColor *)defaultWhiteColor          {return UIColorFromRGB(0xECECEC);}
++ (UIColor *)defaultWhiteColor          {return UIColorFromRGB(0xFCFCFC);}
++ (UIColor *)defaultDisabledColor       {return UIColorFromRGB(0x808080);}
 
 //+ (UIColor *)defaultBackgroundColor     {return UIColorFromRGB(0xF4F3EE);}
 //+ (UIColor *)defaultBorderColor         {return UIColorFromRGB(0xA2ADBC);}

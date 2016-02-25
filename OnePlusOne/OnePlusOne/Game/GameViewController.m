@@ -14,18 +14,18 @@
 #import "StatusView.h"
 #import "PreviewView.h"
 #import "MissionsHandler.h"
+#import "ConfirmationView.h"
 #import "UIBezierPath+Paths.h"
 #import "GameViewController.h"
+#import "StoreViewController.h"
 #import <iAd/iAd.h>
 
 @interface GameViewController ()
 
-//@property (nonatomic) int nextNumber;
-//@property (nonatomic) BOOL levelCompleted;
+@property (nonatomic) int currentLevel;
 @property (nonatomic) BOOL levelFailed;
 @property (nonatomic) BOOL allowTouch;
 
-@property (nonatomic) UIView *fadeView;
 @property (nonatomic) UIButton *restartButton;
 @property (nonatomic) UIButton *menuButton;
 
@@ -39,6 +39,10 @@
 @property (nonatomic) UILabel *storageLabel;
 
 @property (nonatomic) ADBannerView *adView;
+
+@property (nonatomic) NSMutableArray *previousStorages;
+@property (nonatomic) NSMutableArray *previousScores;
+
 @end
 
 @implementation GameViewController
@@ -46,7 +50,9 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.gameState = [[GameState alloc] initWithGridSize:3 delegate:self];
+        self.currentLevel = 1;
+        
+        self.gameState = [[GameState alloc] initWithGridSize:2 delegate:self];
         self.gridView = [GridView new];
         [self.gridView setUpForGameState:self.gameState];
         self.statusView  = [StatusView new];
@@ -63,10 +69,6 @@
         [self.menuButton setTitle:@"Menu" forState:UIControlStateNormal];
         [self.menuButton addTarget:self action:@selector(menuButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         
-        self.fadeView = [UIView new];
-        self.fadeView.backgroundColor = [UIColor defaultLightColor];
-        self.fadeView.alpha = 0.85f;
-        
         self.storageButton = [[PathButton alloc] initWithPath:[UIBezierPath storagePath]
                                               foregroundColor:[UIColor defaultDarkColor]
                                               backgroundColor:[UIColor whiteColor]];
@@ -82,9 +84,8 @@
         
         self.previewView = [[PreviewView alloc] initWithNumbers:@[@1 ,@1 ,@1]];
         
-        self.adView = [[ADBannerView alloc] initWithFrame:CGRectZero];
-        [self.adView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
-//        adView.c.currentContentSizeIdentifier = ADBannerContentSizeIdentifierPortrait;
+        self.previousStorages = [NSMutableArray new];
+        self.previousScores = [NSMutableArray new];
 
     }
     return self;
@@ -95,7 +96,6 @@
     self.view.backgroundColor = [UIColor defaultLightColor];
     [self.view addSubview:self.gridView];
     [self.view addSubview:self.statusView];
-    [self.view addSubview:self.fadeView];
     [self.view addSubview:self.restartButton];
     [self.view addSubview:self.menuButton];
     
@@ -103,18 +103,57 @@
     [self.view addSubview:self.previewView];
     [self.view addSubview:self.storageButton];
     [self.storageButton addSubview:self.storageLabel];
-
-    [self.view addSubview:self.adView];
     
     [self layoutViews];
 }
 
+- (void)playLevel:(int)level {
+    if (level != self.currentLevel) {
+        self.currentLevel = level;
+        
+        self.gameState = [[GameState alloc] initWithGridSize:level+1 delegate:self];
+        [self.gridView setUpForGameState:self.gameState];
+        [self startNewGame];
+    }
+    [self.statusView updateTargetScoreForLevel:level];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if (!IsIphone4) {
+        if (![GameData sharedGameData].fullGameUnlocked && self.adView == NULL) {
+            self.adView = [[ADBannerView alloc] initWithFrame:CGRectZero];
+            [self.adView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+            [self.view addSubview:self.adView];
+        } else if([GameData sharedGameData].fullGameUnlocked && self.adView != NULL) {
+            [self.adView removeFromSuperview];
+            self.adView = NULL;
+        }
+    }
+
+    if (!self.gameState.gameOngoing) {
+        [self startNewGame];
+    }
+    [self layoutViews];
+    [self.statusView updateScoreTo:self.gameState.totalScore];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self.previewView playFadeAnimation];
+}
+
 - (void)layoutViews {
     CGSize size = self.view.frame.size;
-    self.adView.frame = SKRectSetX(self.adView.frame, 0);
-    self.adView.frame = SKRectSetY(self.adView.frame, 20);
     
-    static CGFloat statusTop = 0.05;
+    BOOL isAd = !IsIphone4 && ![GameData sharedGameData].fullGameUnlocked;
+    
+    if (isAd) {
+        self.adView.frame = SKRectSetX(self.adView.frame, 0);
+        self.adView.frame = SKRectSetY(self.adView.frame, 20);
+    }
+    
+    CGFloat statusTop = IsIphone4 ? 0.045 : (isAd ? 0.04 : 0.08);
     static CGFloat statusLeft = 0.04;
     static CGFloat statusRight = 0.04;
     static CGFloat statusHeight = 0.07;
@@ -123,10 +162,10 @@
     self.statusView.frame = SKRectSetRight(self.statusView.frame, size.width - size.width*statusRight, YES);
     self.statusView.frame = SKRectSetHeight(self.statusView.frame, size.height*statusHeight);
     
-    static CGFloat buttonsTop = 0.02;
+    CGFloat buttonsTop = IsIphone4 ? 0.03 : (isAd ? 0.02 : 0.05);
     static CGFloat buttonsLeft = 0.04;
     static CGFloat buttonsRight = 0.04;
-    static CGFloat buttonsHeight = 0.05;
+    CGFloat buttonsHeight = isAd ? 0.05 : 0.06;
     static CGFloat buttonsWidth = 0.4;
     self.restartButton.frame = SKRectSetX(self.restartButton.frame, size.width*buttonsLeft);
     self.restartButton.frame = SKRectSetY(self.restartButton.frame, CGRectGetMaxY(self.statusView.frame) + size.height*buttonsTop);
@@ -146,7 +185,7 @@
     self.gridView.frame = SKRectSetX(self.gridView.frame, size.width*gridMargin);
     self.gridView.frame = SKRectSetBottom(self.gridView.frame, size.height - size.width*gridMargin, NO);
     
-    static CGFloat actionsBottom = 0.05;
+    CGFloat actionsBottom = IsIphone4 ? 0.04 : 0.05;
     static CGFloat actionsLeft = 0.07;
     static CGFloat actionsRight = 0.07;
     static CGFloat actionsSize = 0.13;
@@ -170,56 +209,21 @@
     self.storageLabel.frame = self.storageButton.bounds;
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-//    [self.statusView updateMissionsStatus:self.missions];
-//    int gridSize = [self gridSizeForLevel:[GameData sharedGameData].level];
-//    if (gridSize != self.gameState.grid.count) {
-//        self.gameState = [[GameState alloc] initWithGridSize:gridSize delegate:self];
-//        [self.gridView setUpForGameState:self.gameState];
-//    }
-//    
-    if (!self.gameState.gameOngoing) {
-        [self startNewGame];
-    }
-    [self layoutViews];
-    [self.statusView updateScoreTo:self.gameState.totalScore];
-}
-
-- (void)menuButtonPressed:(id)sender {
-    [self dismissViewControllerAnimated:NO completion:nil];
-}
-
-- (void)restartButtonPressed:(id)sender {
-    NSLog(@"restart");
-    [self startNewGame];
-}
-
-
 - (void)startNewGame {
+    [self.previousScores removeAllObjects];
+    [self.previousStorages removeAllObjects];
     [self.gameState resetGameState];
-//    self.nextNumber = 1;
+    [self.previewView resetValues];
     self.storageLabel.text = @"";
     [self.previewView newNumbers:@[@1,@1,@1]];
-    
-//    [self previewNextNumber];
     self.allowTouch = YES;
     self.levelFailed = NO;
-//    self.levelCompleted = NO;
-//    [self.controlsView previewNextNumber:self.nextNumber];
     [self.statusView updateScoreTo:self.gameState.totalScore];
-//    [self.missions enumerateObjectsUsingBlock:^(Mission *mission, NSUInteger idx, BOOL *stop) {
-//        if (mission.missionState != MissionStateCompleted) {
-//            mission.resetMission = YES;
-//            mission.missionState = MissionStateOngoing;
-//        }
-//    }];
-//    [self.statusView updateMissionsStatus:self.missions];
     [self layoutViews];
-//    [self.controlsView displayForLevel:[GameData sharedGameData].level];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    if (!self.allowTouch) {
+    if (!self.allowTouch || !self.previewView.finishedAnimating) {
         return;
     }
     
@@ -231,7 +235,10 @@
 }
 
 - (void)userSelectedCell:(GridCellView *)gridCellView {
-    if (gridCellView.cellValue == 0) {
+    if (gridCellView.cellValue == 0 && self.previewView.finishedAnimating) {
+        [self.previousStorages addObject:@(NO)];
+        [self.gameState storeCurrentCellValues];
+        [self.previewView storeCurrentValues];
         self.allowTouch = NO;
         self.gameState.lastPlacedTile = gridCellView;
         self.gameState.lastPlacedValue = self.previewView.nextNumber;
@@ -257,49 +264,101 @@
 }
 
 - (void)finishedMergingCells {
-//    __block BOOL allCompleted = YES;
-//    __block BOOL anyCompleted = YES;
-//    [[[MissionsHandler sharedHandler] currentMissions] enumerateObjectsUsingBlock:^(Mission *mission, NSUInteger idx, BOOL *stop) {
-//        if ([mission completedForGameState:self.gameState]) {
-//            [[MissionsHandler sharedHandler] completedMission:mission];
-//            anyCompleted = YES;
-//        }
-//    }];
-    
-//    if (anyCompleted) {
-//        [self.statusView displayMissions:[[MissionsHandler sharedHandler] currentMissions]];
-//    }
-//    if (allCompleted && !self.levelCompleted) {
-//        self.levelCompleted = YES;
-//        if ([GameData sharedGameData].level < 12) {
-//            [[GameData sharedGameData] levelUp];
-//        }
-//        [self.controlsView displayLevelCompleted];
-//        [self layoutViews];
     if ([self.gameState isGameOver]) {
         self.levelFailed = YES;
-//        [self.controlsView displayGameOver];
+        [ConfirmationView DisplayConfirmationView:@"Game Over"
+                                          message:@"No more moves to make"
+                                     confirmTitle:@"Restart"
+                                    confirmAction:^void(){[self startNewGame];}];
+        
         [self layoutViews];
     } else {
+        if (self.currentLevel == 1 && ![GameData sharedGameData].level2Unlocked && self.gameState.totalScore >= [GameData sharedGameData].level2ScoreRequired) {
+            [[GameData sharedGameData] unlockedLevel2];
+            [ConfirmationView DisplayConfirmationView:@"Level completed!"
+                                              message:@"Woho! You have finished level 1, you can now play level 2"
+                                         confirmTitle:@"Play level 2"
+                                        confirmAction:^void(){
+                                            [self playLevel:2];
+                                            [self layoutViews];
+                                        }];
+        
+        } else if (self.currentLevel == 2 && ![GameData sharedGameData].level3Unlocked && self.gameState.totalScore >= [GameData sharedGameData].level3ScoreRequired) {
+            [[GameData sharedGameData] unlockedLevel3];
+            NSString *m = [GameData sharedGameData].fullGameUnlocked ? @"Woho! You have finished level 2, you can now play level 3" :
+                                                                       @"You unlocked level 3, but you need the full game to play it :(";
+            NSString *t = [GameData sharedGameData].fullGameUnlocked ? @"Play level 3" : @"Full Game info";
+            [ConfirmationView DisplayConfirmationView:@"Level completed!"
+                                              message:m
+                                         confirmTitle:t
+                                        confirmAction:^void(){
+                                            if ([GameData sharedGameData].fullGameUnlocked) {
+                                                [self playLevel:3];
+                                                [self layoutViews];
+                                            } else {
+                                                [self presentViewController:[StoreViewController new] animated:YES completion:nil];
+                                            }
+                                        }];
+        }
         [self generateNextNumber];
         self.allowTouch = YES;
+        [self.previousScores addObject:[NSNumber numberWithInt:self.gameState.totalScore]];
+        
     }
 }
 - (void)storageButtonPressed:(id)sender {
-    NSLog(@"storage");
+    if (!self.allowTouch || !self.previewView.finishedAnimating)
+        return;
+        
     if (self.storageLabel.text.length > 0) {
         int storageNumber = [self.storageLabel.text intValue];
         self.storageLabel.text = [NSString stringWithFormat:@"%i", self.previewView.nextNumber];
         [self.previewView replaceNumber:storageNumber];
+        [self.previousStorages addObject:@(YES)];
     } else {
         self.storageLabel.text = [NSString stringWithFormat:@"%i", self.previewView.nextNumber];
         [self generateNextNumber];
+        [self.previousStorages addObject:@(YES)];
     }
 }
 
 - (void)undoButtonPressed:(id)sender {
-    NSLog(@"undo");
-    [self generateNextNumber];
+    if (![GameData sharedGameData].fullGameUnlocked) {
+        [ConfirmationView DisplayConfirmationView:@"Unlock Full Game"
+                                          message:@"You need to unlock the full game for this feature"
+                                     confirmTitle:@"Full Game info"
+                                    confirmAction:^void(){[self presentViewController:[StoreViewController new] animated:YES completion:nil];}];
+    } else if (!self.levelFailed && self.previewView.finishedAnimating && self.allowTouch) {
+        if ([[self.previousStorages lastObject] boolValue]) {
+            int sum = 0;
+            for (NSNumber *n in self.previousStorages) {
+                sum += n.intValue;
+            }
+            if (sum == 1) {
+                [self.previewView lastStorageUndo:self.storageLabel.text];
+                self.storageLabel.text = @"";
+            } else {
+                int storageNumber = [self.storageLabel.text intValue];
+                self.storageLabel.text = [NSString stringWithFormat:@"%i", self.previewView.nextNumber];
+                [self.previewView replaceNumber:storageNumber];
+            }
+        } else {
+            [self.gameState undo];
+            [self.previewView undo];
+            [self.previousScores removeLastObject];
+            self.gameState.totalScore = [[self.previousScores lastObject] intValue];
+        }
+        [self.previousStorages removeLastObject];
+        [self.statusView updateScoreTo:self.gameState.totalScore];
+    }
+}
+
+- (void)menuButtonPressed:(id)sender {
+    [self dismissViewControllerAnimated:NO completion:nil];
+}
+
+- (void)restartButtonPressed:(id)sender {
+    [self startNewGame];
 }
 
 @end

@@ -12,6 +12,8 @@
 
 @property (nonatomic) NSArray *grid;
 @property (nonatomic) NSMutableArray *numberProbabilities;
+@property (nonatomic) NSMutableArray *previousProbabilities;
+@property (nonatomic) NSMutableArray *previousScores;
 
 @end
 
@@ -31,6 +33,8 @@
             [outer addObject:inner];
         }
         self.grid = [[NSArray alloc] initWithArray:outer];
+        self.previousProbabilities = [NSMutableArray new];
+        self.previousScores = [NSMutableArray new];
     }
     return self;
 }
@@ -42,6 +46,9 @@
     self.lastPlacedValue = 0;
     self.lastPlacedTile = nil;
     [self.numberProbabilities removeAllObjects];
+    [self.numberProbabilities addObject:@0];
+    [self.previousProbabilities removeAllObjects];
+    [self.previousScores removeAllObjects];
     for (NSArray *inner in self.grid) {
         for (GridCellView *cell in inner) {
             [cell resetCell];
@@ -58,6 +65,12 @@
         }
     }
     return true;
+}
+
+int _totalScore = 0;
+- (void)setTotalScore:(int)totalScore {
+    _totalScore = totalScore;
+    [self.previousScores addObject:@(totalScore)];
 }
 
 - (GridCellView *)firstEmptyCell {
@@ -122,10 +135,7 @@
         [self.numberProbabilities addObject:@0];
     }
     
-//    NSLog(@"---------- new round---------");
-//    NSLog(@"array before %@", self.numberProbabilities);
-    
-    __block int highestIdx;
+    __block int highestIdx = 0;
     __block int highestProbability = INT32_MIN;
     __block int sum = 0;
     [self.numberProbabilities enumerateObjectsUsingBlock:^(NSNumber *number, NSUInteger idx, BOOL *stop) {
@@ -137,15 +147,11 @@
             highestProbability = newNumber;
         }
         [self.numberProbabilities replaceObjectAtIndex:idx withObject:@(number.intValue + addNumber)];
-//        NSLog(@"highest %i idx %lu generated %i",highestNumber,(unsigned long)idx,addNumber);
     }];
-//    NSLog(@"array after %@", self.numberProbabilities);
     
     NSNumber *n = [self.numberProbabilities objectAtIndex:highestIdx];
     int reducedNumber = n.intValue - sum;
-//    NSLog(@"higestidx %lu reducedNumber %i", (unsigned long)highestIdx, reducedNumber);
     [self.numberProbabilities replaceObjectAtIndex:highestIdx withObject:[NSNumber numberWithInt:reducedNumber]];
-    NSLog(@"array reduced %@", self.numberProbabilities);
     
     return highestIdx+1;
 }
@@ -162,6 +168,31 @@
         }
     }
     return highest;
+}
+
+- (void)storeCurrentCellValues {
+    for (NSArray *inner in self.grid) {
+        for (GridCellView *cell in inner) {
+            [cell storeCurrentValue];
+        }
+    }
+    NSMutableArray *tmp = [[NSMutableArray alloc] initWithArray:self.numberProbabilities];
+    [self.previousProbabilities addObject:tmp];
+}
+
+- (void)undo {
+    if(self.previousProbabilities.count > 0) {
+        for (NSArray *inner in self.grid) {
+            for (GridCellView *cell in inner) {
+                [cell undo];
+            }
+        }
+        self.numberProbabilities = [self.previousProbabilities lastObject];
+        [self.previousProbabilities removeLastObject];
+        int n = [[self.previousScores lastObject] intValue];
+        self.totalScore = n;
+        [self.previousScores removeLastObject];
+    }
 }
 
 @end

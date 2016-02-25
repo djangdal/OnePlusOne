@@ -13,7 +13,7 @@
 @interface GameViewController : UIViewController <GridCellViewDelegate>
 
 //@property (nonatomic) NSArray *missions;
-
+- (void)playLevel:(int)level;
 - (void)startNewGame;
 
 @end

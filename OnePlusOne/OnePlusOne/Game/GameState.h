@@ -26,5 +26,7 @@
 - (void)resetGameState;
 - (int)highestCellValue;
 - (int)generateNewNumber;
+- (void)undo;
+- (void)storeCurrentCellValues;
 
 @end

@@ -27,8 +27,10 @@
 - (void)startCellWithNumber:(int)number;
 - (void)mergeToCell:(GridCellView *)gridCellView;
 - (void)mergeWithNeighbours:(NSArray *)neighbours;
+- (void)storeCurrentValue;
+- (void)undo;
 
-- (void)previewNumber:(int)number;
-- (void)stopPreviewNumber;
+//- (void)previewNumber:(int)number;
+//- (void)stopPreviewNumber;
 
 @end

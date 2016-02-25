@@ -15,7 +15,6 @@
 		9A2191C11AEAF30D00D1FBF4 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A2191C01AEAF30D00D1FBF4 /* GameViewController.m */; };
 		9A2191C41AEAF37F00D1FBF4 /* GridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A2191C31AEAF37F00D1FBF4 /* GridView.m */; };
 		9A2191C71AEB7CF400D1FBF4 /* GridCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A2191C61AEB7CF400D1FBF4 /* GridCellView.m */; };
-		9A3F7CF41AF3BAC600E03414 /* StorageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A3F7CF31AF3BAC600E03414 /* StorageManager.m */; };
 		9A4737D31AFA1AF7000B1862 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4737D21AFA1AF7000B1862 /* MenuViewController.m */; };
 		9A4737D61AFA1B15000B1862 /* MissionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4737D51AFA1B15000B1862 /* MissionView.m */; };
 		9A4737D91AFA1D02000B1862 /* SKGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4737D81AFA1D02000B1862 /* SKGeometry.m */; };
@@ -32,9 +31,13 @@
 		9AEFD3561AFBEBBD00613FE7 /* PathButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEFD3551AFBEBBD00613FE7 /* PathButton.m */; };
 		9AEFD3591AFBF89400613FE7 /* NextLevelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEFD3581AFBF89400613FE7 /* NextLevelView.m */; };
 		9AF0BBA01B1DF36000E546C8 /* GameState.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF0BB9F1B1DF36000E546C8 /* GameState.m */; };
-		9AF0BBA31B1F490700E546C8 /* ControlsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF0BBA21B1F490700E546C8 /* ControlsView.m */; };
-		9AF0BBAA1B219B3300E546C8 /* OptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF0BBA91B219B3300E546C8 /* OptionsViewController.m */; };
 		9AF505EE1B3EDDC800BDA256 /* PreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF505ED1B3EDDC800BDA256 /* PreviewView.m */; };
+		FA15A0441C5790B300BBAC5E /* ConfirmationView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA15A0431C5790B300BBAC5E /* ConfirmationView.m */; };
+		FA7E5A4C1C79EA2300355194 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7E5A4B1C79EA2300355194 /* StoreKit.framework */; };
+		FAA930061C6FEDCC00F19E97 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAA930051C6FEDCC00F19E97 /* CloudKit.framework */; };
+		FAA9300C1C70DF8C00F19E97 /* StoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA9300B1C70DF8C00F19E97 /* StoreViewController.m */; };
+		FABAA96B1C79EAE800D7AB8F /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FABAA96A1C79EAE800D7AB8F /* GameKit.framework */; };
+		FAE1122E1C6F7DA80019CE32 /* InAppManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FAE1122D1C6F7DA80019CE32 /* InAppManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,8 +67,6 @@
 		9A2191C31AEAF37F00D1FBF4 /* GridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GridView.m; path = Game/GridView.m; sourceTree = "<group>"; };
 		9A2191C51AEB7CF400D1FBF4 /* GridCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GridCellView.h; path = Game/GridCellView.h; sourceTree = "<group>"; };
 		9A2191C61AEB7CF400D1FBF4 /* GridCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GridCellView.m; path = Game/GridCellView.m; sourceTree = "<group>"; };
-		9A3F7CF21AF3BAC600E03414 /* StorageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StorageManager.h; sourceTree = "<group>"; };
-		9A3F7CF31AF3BAC600E03414 /* StorageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StorageManager.m; sourceTree = "<group>"; };
 		9A4737D11AFA1AF7000B1862 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuViewController.h; path = Menu/MenuViewController.h; sourceTree = "<group>"; };
 		9A4737D21AFA1AF7000B1862 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuViewController.m; path = Menu/MenuViewController.m; sourceTree = "<group>"; };
 		9A4737D41AFA1B15000B1862 /* MissionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MissionView.h; path = Menu/MissionView.h; sourceTree = "<group>"; };
@@ -99,12 +100,18 @@
 		9AEFD3581AFBF89400613FE7 /* NextLevelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NextLevelView.m; path = Menu/NextLevelView.m; sourceTree = "<group>"; };
 		9AF0BB9E1B1DF36000E546C8 /* GameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameState.h; path = Game/GameState.h; sourceTree = "<group>"; };
 		9AF0BB9F1B1DF36000E546C8 /* GameState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameState.m; path = Game/GameState.m; sourceTree = "<group>"; };
-		9AF0BBA11B1F490700E546C8 /* ControlsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ControlsView.h; path = Game/ControlsView.h; sourceTree = "<group>"; };
-		9AF0BBA21B1F490700E546C8 /* ControlsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ControlsView.m; path = Game/ControlsView.m; sourceTree = "<group>"; };
-		9AF0BBA81B219B3300E546C8 /* OptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OptionsViewController.h; path = OptionsMenu/OptionsViewController.h; sourceTree = "<group>"; };
-		9AF0BBA91B219B3300E546C8 /* OptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OptionsViewController.m; path = OptionsMenu/OptionsViewController.m; sourceTree = "<group>"; };
 		9AF505EC1B3EDDC800BDA256 /* PreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreviewView.h; path = Game/PreviewView.h; sourceTree = "<group>"; };
 		9AF505ED1B3EDDC800BDA256 /* PreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreviewView.m; path = Game/PreviewView.m; sourceTree = "<group>"; };
+		FA15A0421C5790B300BBAC5E /* ConfirmationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConfirmationView.h; path = Commons/Views/ConfirmationView.h; sourceTree = "<group>"; };
+		FA15A0431C5790B300BBAC5E /* ConfirmationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConfirmationView.m; path = Commons/Views/ConfirmationView.m; sourceTree = "<group>"; };
+		FA7E5A4B1C79EA2300355194 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		FAA930041C6FEDAC00F19E97 /* OnePlusOne.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = OnePlusOne.entitlements; sourceTree = "<group>"; };
+		FAA930051C6FEDCC00F19E97 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		FAA9300A1C70DF8C00F19E97 /* StoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StoreViewController.h; path = Menu/StoreViewController.h; sourceTree = "<group>"; };
+		FAA9300B1C70DF8C00F19E97 /* StoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StoreViewController.m; path = Menu/StoreViewController.m; sourceTree = "<group>"; };
+		FABAA96A1C79EAE800D7AB8F /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		FAE1122C1C6F7DA80019CE32 /* InAppManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InAppManager.h; path = Commons/InAppManager.h; sourceTree = "<group>"; };
+		FAE1122D1C6F7DA80019CE32 /* InAppManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InAppManager.m; path = Commons/InAppManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +119,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FABAA96B1C79EAE800D7AB8F /* GameKit.framework in Frameworks */,
+				FAA930061C6FEDCC00F19E97 /* CloudKit.framework in Frameworks */,
+				FA7E5A4C1C79EA2300355194 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,6 +138,9 @@
 		9A2191841AEAAA4100D1FBF4 = {
 			isa = PBXGroup;
 			children = (
+				FABAA96A1C79EAE800D7AB8F /* GameKit.framework */,
+				FA7E5A4B1C79EA2300355194 /* StoreKit.framework */,
+				FAA930051C6FEDCC00F19E97 /* CloudKit.framework */,
 				9A21918F1AEAAA4100D1FBF4 /* OnePlusOne */,
 				9A2191A91AEAAA4100D1FBF4 /* OnePlusOneTests */,
 				9A21918E1AEAAA4100D1FBF4 /* Products */,
@@ -146,7 +159,7 @@
 		9A21918F1AEAAA4100D1FBF4 /* OnePlusOne */ = {
 			isa = PBXGroup;
 			children = (
-				9AF0BBA71B219B0D00E546C8 /* OptionsMenu */,
+				FAA930041C6FEDAC00F19E97 /* OnePlusOne.entitlements */,
 				9A4737D01AFA1ACC000B1862 /* Menu */,
 				9A4737CC1AFA1A9E000B1862 /* Commons */,
 				9A2191BE1AEAF30500D1FBF4 /* Game */,
@@ -156,8 +169,6 @@
 				9A21919D1AEAAA4100D1FBF4 /* Images.xcassets */,
 				9A21919F1AEAAA4100D1FBF4 /* LaunchScreen.xib */,
 				9A2191901AEAAA4100D1FBF4 /* Supporting Files */,
-				9A3F7CF21AF3BAC600E03414 /* StorageManager.h */,
-				9A3F7CF31AF3BAC600E03414 /* StorageManager.m */,
 			);
 			path = OnePlusOne;
 			sourceTree = "<group>";
@@ -193,8 +204,6 @@
 			children = (
 				9A2191BF1AEAF30D00D1FBF4 /* GameViewController.h */,
 				9A2191C01AEAF30D00D1FBF4 /* GameViewController.m */,
-				9AF0BBA11B1F490700E546C8 /* ControlsView.h */,
-				9AF0BBA21B1F490700E546C8 /* ControlsView.m */,
 				9AF505EC1B3EDDC800BDA256 /* PreviewView.h */,
 				9AF505ED1B3EDDC800BDA256 /* PreviewView.m */,
 				9AF0BB9E1B1DF36000E546C8 /* GameState.h */,
@@ -212,6 +221,8 @@
 		9A4737C51AFA1A1C000B1862 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FA15A0421C5790B300BBAC5E /* ConfirmationView.h */,
+				FA15A0431C5790B300BBAC5E /* ConfirmationView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -228,6 +239,8 @@
 				9A4737DC1AFA47FA000B1862 /* UIColors+Application.m */,
 				9A97B1EB1B076A0800807EEA /* GameData.h */,
 				9A97B1EC1B076A0800807EEA /* GameData.m */,
+				FAE1122C1C6F7DA80019CE32 /* InAppManager.h */,
+				FAE1122D1C6F7DA80019CE32 /* InAppManager.m */,
 			);
 			name = Commons;
 			sourceTree = "<group>";
@@ -243,6 +256,8 @@
 				9AEFD3411AFB953200613FE7 /* MissionsView.m */,
 				9A4737D41AFA1B15000B1862 /* MissionView.h */,
 				9A4737D51AFA1B15000B1862 /* MissionView.m */,
+				FAA9300A1C70DF8C00F19E97 /* StoreViewController.h */,
+				FAA9300B1C70DF8C00F19E97 /* StoreViewController.m */,
 			);
 			name = Menu;
 			sourceTree = "<group>";
@@ -273,15 +288,6 @@
 				9AEFD3551AFBEBBD00613FE7 /* PathButton.m */,
 			);
 			name = Paths;
-			sourceTree = "<group>";
-		};
-		9AF0BBA71B219B0D00E546C8 /* OptionsMenu */ = {
-			isa = PBXGroup;
-			children = (
-				9AF0BBA81B219B3300E546C8 /* OptionsViewController.h */,
-				9AF0BBA91B219B3300E546C8 /* OptionsViewController.m */,
-			);
-			name = OptionsMenu;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -334,6 +340,17 @@
 					9A21918C1AEAAA4100D1FBF4 = {
 						CreatedOnToolsVersion = 6.3.1;
 						DevelopmentTeam = R2KGYFAT8N;
+						SystemCapabilities = {
+							com.apple.GameCenter = {
+								enabled = 1;
+							};
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 					9A2191A51AEAAA4100D1FBF4 = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -391,19 +408,19 @@
 				9A2191961AEAAA4100D1FBF4 /* AppDelegate.m in Sources */,
 				9A4737D61AFA1B15000B1862 /* MissionView.m in Sources */,
 				9AEFD34F1AFBC57200613FE7 /* UIBezierPath+Helpers.m in Sources */,
-				9AF0BBA31B1F490700E546C8 /* ControlsView.m in Sources */,
 				9A4737D31AFA1AF7000B1862 /* MenuViewController.m in Sources */,
 				9AEFD3461AFB965700613FE7 /* Mission.m in Sources */,
 				9AEFD3591AFBF89400613FE7 /* NextLevelView.m in Sources */,
+				FAA9300C1C70DF8C00F19E97 /* StoreViewController.m in Sources */,
 				9AEFD3561AFBEBBD00613FE7 /* PathButton.m in Sources */,
 				9A5426271B5920760093BBBD /* MissionsHandler.m in Sources */,
 				9A2191C41AEAF37F00D1FBF4 /* GridView.m in Sources */,
 				9AF505EE1B3EDDC800BDA256 /* PreviewView.m in Sources */,
+				FA15A0441C5790B300BBAC5E /* ConfirmationView.m in Sources */,
+				FAE1122E1C6F7DA80019CE32 /* InAppManager.m in Sources */,
 				9A2191C71AEB7CF400D1FBF4 /* GridCellView.m in Sources */,
 				9AEFD3531AFBD51400613FE7 /* PathView.m in Sources */,
-				9AF0BBAA1B219B3300E546C8 /* OptionsViewController.m in Sources */,
 				9AEFD3491AFB967300613FE7 /* MissionsFactory.m in Sources */,
-				9A3F7CF41AF3BAC600E03414 /* StorageManager.m in Sources */,
 				9A2191931AEAAA4100D1FBF4 /* main.m in Sources */,
 				9A97B1ED1B076A0800807EEA /* GameData.m in Sources */,
 				9A4737DD1AFA47FA000B1862 /* UIColors+Application.m in Sources */,
@@ -530,14 +547,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CODE_SIGN_IDENTITY = "iPhone Developer: David Jangdal (33G7D4WUED)";
+				CODE_SIGN_ENTITLEMENTS = OnePlusOne/OnePlusOne.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = OnePlusOne/prefix.pch;
 				INFOPLIST_FILE = OnePlusOne/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = se.vimada.oneplusone;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "20646464-e079-4425-b0cc-a042f7d57c24";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -546,14 +567,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Vimada AB (R2KGYFAT8N)";
+				CODE_SIGN_ENTITLEMENTS = OnePlusOne/OnePlusOne.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = OnePlusOne/prefix.pch;
 				INFOPLIST_FILE = OnePlusOne/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = se.vimada.oneplusone;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "2525280a-8411-4218-bac3-5a14c37970fe";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

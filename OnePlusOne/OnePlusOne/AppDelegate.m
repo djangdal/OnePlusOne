@@ -8,7 +8,8 @@
 
 #import "AppDelegate.h"
 #import "MenuViewController.h"
-#import "GameViewController.h"
+#import "InAppManager.h"
+
 
 @interface AppDelegate ()
 
@@ -18,9 +19,11 @@
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    
+    [InAppManager sharedManager];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
@@ -52,6 +55,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    [[InAppManager sharedManager] removeTransactionObserver];
 }
 
 @end

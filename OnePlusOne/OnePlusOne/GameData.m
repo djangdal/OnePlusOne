@@ -12,7 +12,13 @@
 
 @property (nonatomic) int highScore;
 @property (nonatomic) int highestNumber;
+@property (nonatomic) BOOL fullGameUnlocked;
+@property (nonatomic) BOOL level2Unlocked;
+@property (nonatomic) BOOL level3Unlocked;
 @property (nonatomic) NSMutableArray *completedMissionsIndexes;
+
+@property (nonatomic) int level2ScoreRequired;
+@property (nonatomic) int level3ScoreRequired;
 
 @end
 
@@ -21,6 +27,9 @@
 static NSString * const GameDataCompletedMissionsKey = @"CompletedMissionsKey";
 static NSString * const GameDataHighScoreKey = @"HighScoreKey";
 static NSString * const GameDataHighestNumbereKey = @"HighestNumberKey";
+static NSString * const GameDataFullGameUnlockedKey = @"FullGameUnlockedKey";
+static NSString * const GameDataLevel2UnlockedKey = @"GameDataLevel2UnlockedKey";
+static NSString * const GameDataLevel3UnlockedKey = @"GameDataLevel3UnlockedKey";
 
 + (instancetype)sharedGameData {
     static id sharedInstance = nil;
@@ -55,6 +64,9 @@ static NSString * const GameDataHighestNumbereKey = @"HighestNumberKey";
     [encoder encodeObject:self.completedMissionsIndexes forKey:GameDataCompletedMissionsKey];
     [encoder encodeInt:self.highScore forKey:GameDataHighScoreKey];
     [encoder encodeInt:self.highestNumber forKey:GameDataHighestNumbereKey];
+    [encoder encodeBool:self.fullGameUnlocked forKey:GameDataFullGameUnlockedKey];
+    [encoder encodeBool:self.level2Unlocked forKey:GameDataLevel2UnlockedKey];
+    [encoder encodeBool:self.level3Unlocked forKey:GameDataLevel3UnlockedKey];
 }
 
 - (instancetype)initWithCoder:(NSCoder *)decoder {
@@ -63,8 +75,30 @@ static NSString * const GameDataHighestNumbereKey = @"HighestNumberKey";
         self.completedMissionsIndexes = [decoder decodeObjectForKey:GameDataCompletedMissionsKey] ? : [NSMutableArray new];
         self.highScore = [decoder decodeIntForKey:GameDataHighScoreKey];
         self.highestNumber = [decoder decodeIntForKey:GameDataHighestNumbereKey];
+        self.fullGameUnlocked = [decoder decodeBoolForKey:GameDataFullGameUnlockedKey];
+        self.level2Unlocked = [decoder decodeBoolForKey:GameDataLevel2UnlockedKey];
+        self.level3Unlocked = [decoder decodeBoolForKey:GameDataLevel3UnlockedKey];
+        [self commonInit];
     }
     return self;
+}
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        [self commonInit];
+    }
+    return self;
+}
+
+- (void)commonInit {
+    self.level2ScoreRequired = 60;
+    self.level3ScoreRequired = 430;
+}
+
+- (void)unlockedFullGame {
+    self.fullGameUnlocked = true;
+    [self save];
 }
 
 - (void)completedMissionAtIndex:(NSUInteger)index {
@@ -86,9 +120,22 @@ static NSString * const GameDataHighestNumbereKey = @"HighestNumberKey";
     }
 }
 
+- (void)unlockedLevel2 {
+    self.level2Unlocked = true;
+    [self save];
+}
+
+- (void)unlockedLevel3 {
+    self.level3Unlocked = true;
+    [self save];
+}
+
 - (void)reset {
     self.highScore = 0;
     self.highestNumber = 0;
+    self.level2Unlocked = false;
+    self.level3Unlocked = false;
+    self.fullGameUnlocked = false;
     self.completedMissionsIndexes = [NSMutableArray new];
     [self save];
 }
