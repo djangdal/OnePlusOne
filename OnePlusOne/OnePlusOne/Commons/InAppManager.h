@@ -13,6 +13,8 @@
 
 - (void)finishedTransaction:(SKPaymentTransaction *)transaction;
 - (void)loadedProducts:(NSArray *)products;
+- (void)failedRestoringPurchases;
+- (void)completedRestoringPurchases;
 @end
 
 @interface InAppManager : NSObject
@@ -24,5 +26,6 @@
 
 - (void)removeTransactionObserver;
 - (void)purchaseProduct:(SKProduct *)product;
+- (void)restorePurchases;
 
 @end

@@ -45,6 +45,11 @@
     [[SKPaymentQueue defaultQueue] removeTransactionObserver:self];
 }
 
+- (void)restorePurchases {
+    NSLog(@"restore purchses");
+    [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
+}
+
 - (void)loadProducts {
     NSLog(@"loading products");
     SKProductsRequest *request = [[SKProductsRequest alloc] initWithProductIdentifiers:self.productIdentifiers];
@@ -109,10 +114,13 @@
 
 -(void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue {
     NSLog(@"completed transtionc finished");
+    
+    [self.delegate completedRestoringPurchases];
 }
 
 -(void)paymentQueue:(SKPaymentQueue *)queue restoreCompletedTransactionsFailedWithError:(NSError *)error{
     NSLog(@"restorecompleted transactionfailed: %@", error);
+    [self.delegate failedRestoringPurchases];
 }
 
 @end

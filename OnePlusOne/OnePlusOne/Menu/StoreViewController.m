@@ -14,9 +14,11 @@
 @property (nonatomic) UILabel *titleLabel;
 @property (nonatomic) UILabel *messageLabel;
 @property (nonatomic) UIButton *closeButton;
+@property (nonatomic) UIButton *restoreButton;
 @property (nonatomic) UIButton *purchaseButton;
 @property (nonatomic) NSArray *perksLabels;
-@property (nonatomic) UIActivityIndicatorView *activityView;
+@property (nonatomic) UIActivityIndicatorView *purchaseActivityView;
+@property (nonatomic) UIActivityIndicatorView *restoreActivityView;
 @property (nonatomic) SKProduct *fullGameProduct;
 
 @end
@@ -55,15 +57,25 @@
         }
         self.perksLabels = [NSArray arrayWithArray:array];
         
-        self.activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-        self.activityView.hidesWhenStopped = true;
-        [self.activityView stopAnimating];
+        self.purchaseActivityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        self.purchaseActivityView.hidesWhenStopped = true;
+        [self.purchaseActivityView stopAnimating];
+        
+        self.restoreActivityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        self.restoreActivityView.hidesWhenStopped = true;
+        [self.restoreActivityView stopAnimating];
         
         self.closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
         self.closeButton.backgroundColor = [UIColor defaultDarkColor];
         [self.closeButton setTitleColor:[UIColor defaultWhiteColor] forState:UIControlStateNormal];
         [self.closeButton setTitle:@"Close" forState:UIControlStateNormal];
         [self.closeButton addTarget:self action:@selector(closePressed) forControlEvents:UIControlEventTouchUpInside];
+        
+        self.restoreButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        self.restoreButton.backgroundColor = [UIColor defaultDarkColor];
+        [self.restoreButton setTitle:@"Restore purchases" forState:UIControlStateNormal];
+        [self.restoreButton setTitleColor:[UIColor defaultWhiteColor] forState:UIControlStateNormal];
+        [self.restoreButton addTarget:self action:@selector(restorePressed) forControlEvents:UIControlEventTouchUpInside];
         
         self.purchaseButton = [UIButton buttonWithType:UIButtonTypeCustom];
         self.purchaseButton.backgroundColor = [UIColor defaultDarkColor];
@@ -81,8 +93,10 @@
     [self.view addSubview:self.titleLabel];
     [self.view addSubview:self.messageLabel];
     [self.view addSubview:self.closeButton];
+    [self.view addSubview:self.restoreButton];
     [self.view addSubview:self.purchaseButton];
-    [self.purchaseButton addSubview:self.activityView];
+    [self.purchaseButton addSubview:self.purchaseActivityView];
+    [self.restoreButton addSubview:self.restoreActivityView];
     
     for (UILabel *label in self.perksLabels) {
         [self.view addSubview:label];
@@ -92,7 +106,7 @@
         self.fullGameProduct = [InAppManager sharedManager].products.firstObject;
         [self setPriceLabel];
     } else {
-        [self.activityView startAnimating];
+        [self.purchaseActivityView startAnimating];
     }
 }
 
@@ -122,8 +136,8 @@
         labelY += size.height*0.05;
     }
     
-    static CGFloat buttonBottom = 0.08;
-    static CGFloat buttonHeight = 0.15;
+    static CGFloat buttonBottom = 0.06;
+    static CGFloat buttonHeight = 0.13;
     static CGFloat buttonWidth = 0.75;
     
     self.closeButton.frame = SKRectSetHeight(self.closeButton.frame, size.width*buttonHeight);
@@ -131,16 +145,22 @@
     self.closeButton.frame = SKRectCenterHorizontallyInRect(self.closeButton.frame, self.view.frame);
     self.closeButton.frame = SKRectSetBottom(self.closeButton.frame, size.height - size.height*buttonBottom, NO);
     
+    self.restoreButton.frame = SKRectSetHeight(self.restoreButton.frame, size.width*buttonHeight);
+    self.restoreButton.frame = SKRectSetWidth(self.restoreButton.frame, size.width*buttonWidth);
+    self.restoreButton.frame = SKRectCenterHorizontallyInRect(self.restoreButton.frame, self.view.frame);
+    self.restoreButton.frame = SKRectSetBottom(self.restoreButton.frame, CGRectGetMinY(self.closeButton.frame) - size.height*buttonBottom, NO);
+    
     self.purchaseButton.frame = SKRectSetHeight(self.purchaseButton.frame, size.width*buttonHeight);
     self.purchaseButton.frame = SKRectSetWidth(self.purchaseButton.frame, size.width*buttonWidth);
     self.purchaseButton.frame = SKRectCenterHorizontallyInRect(self.purchaseButton.frame, self.view.frame);
-    self.purchaseButton.frame = SKRectSetBottom(self.purchaseButton.frame, CGRectGetMinY(self.closeButton.frame) - size.height*buttonBottom, NO);
+    self.purchaseButton.frame = SKRectSetBottom(self.purchaseButton.frame, CGRectGetMinY(self.restoreButton.frame) - size.height*buttonBottom, NO);
     
-    self.activityView.frame = SKRectCenterInRect(self.activityView.frame, self.purchaseButton.frame);
+    self.purchaseActivityView.frame = SKRectCenterInRect(self.purchaseActivityView.frame, self.purchaseButton.frame);
+    self.restoreActivityView.frame = SKRectCenterInRect(self.restoreActivityView.frame, self.restoreButton.frame);
 }
 
 - (void)setPriceLabel {
-    [self.activityView stopAnimating];
+    [self.purchaseActivityView stopAnimating];
     NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
     [numberFormatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
     [numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
@@ -154,9 +174,16 @@
 }
 
 - (void)purchasePressed {
-    [self.activityView startAnimating];
+    [self.purchaseActivityView startAnimating];
     [self.purchaseButton setTitle:@"" forState:UIControlStateNormal];
     [[InAppManager sharedManager] purchaseProduct:self.fullGameProduct];
+}
+
+- (void)restorePressed {
+    NSLog(@"restore");
+    [self.restoreActivityView startAnimating];
+    [self.restoreButton setTitle:@"" forState:UIControlStateNormal];
+    [[InAppManager sharedManager] restorePurchases];
 }
 
 - (void)loadedProducts:(NSArray *)products {
@@ -173,6 +200,17 @@
     } else {
         [self setPriceLabel];
     }
+}
+
+- (void)completedRestoringPurchases {
+    NSLog(@"completed restore");
+    [self.restoreActivityView stopAnimating];
+    [self.restoreButton setTitle:@"Restore purchases" forState:UIControlStateNormal];
+}
+
+- (void)failedRestoringPurchases {
+    [self.restoreActivityView stopAnimating];
+    [self.restoreButton setTitle:@"Restore purchases" forState:UIControlStateNormal];
 }
 
 @end
