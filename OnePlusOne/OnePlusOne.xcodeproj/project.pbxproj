@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E5A567BF690B312EF836213 /* BuddyBuildSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C54A910AA33386FDDC1E1004 /* BuddyBuildSDK.framework */; };
+		5C74FF1DB29DD8BC3980BD77 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60B1DF82E7A774BB0FB0F12D /* AssetsLibrary.framework */; };
+		6410FA917F072A0FE59F565C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E439BD44D80416B66043A80 /* QuartzCore.framework */; };
+		7A7BCC929AA7E7AF97A04AAD /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0290B6B5146E4AED8295FBE3 /* CoreTelephony.framework */; };
 		9A2191931AEAAA4100D1FBF4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A2191921AEAAA4100D1FBF4 /* main.m */; };
 		9A2191961AEAAA4100D1FBF4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A2191951AEAAA4100D1FBF4 /* AppDelegate.m */; };
 		9A21919E1AEAAA4100D1FBF4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A21919D1AEAAA4100D1FBF4 /* Images.xcassets */; };
@@ -32,6 +36,8 @@
 		9AEFD3591AFBF89400613FE7 /* NextLevelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEFD3581AFBF89400613FE7 /* NextLevelView.m */; };
 		9AF0BBA01B1DF36000E546C8 /* GameState.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF0BB9F1B1DF36000E546C8 /* GameState.m */; };
 		9AF505EE1B3EDDC800BDA256 /* PreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF505ED1B3EDDC800BDA256 /* PreviewView.m */; };
+		C09B38E458C66F734BCDA5FB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 604A334F30D0E24C6F2AC3F6 /* SystemConfiguration.framework */; };
+		D311D92EBF166592B2CC93F4 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C7589A1FD3790421E586CB /* CoreText.framework */; };
 		FA15A0441C5790B300BBAC5E /* ConfirmationView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA15A0431C5790B300BBAC5E /* ConfirmationView.m */; };
 		FA7E5A4C1C79EA2300355194 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7E5A4B1C79EA2300355194 /* StoreKit.framework */; };
 		FAA930061C6FEDCC00F19E97 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAA930051C6FEDCC00F19E97 /* CloudKit.framework */; };
@@ -51,6 +57,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0290B6B5146E4AED8295FBE3 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		604A334F30D0E24C6F2AC3F6 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		60B1DF82E7A774BB0FB0F12D /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		9A21918D1AEAAA4100D1FBF4 /* OnePlusOne.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnePlusOne.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A2191911AEAAA4100D1FBF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9A2191921AEAAA4100D1FBF4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -102,6 +111,9 @@
 		9AF0BB9F1B1DF36000E546C8 /* GameState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameState.m; path = Game/GameState.m; sourceTree = "<group>"; };
 		9AF505EC1B3EDDC800BDA256 /* PreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreviewView.h; path = Game/PreviewView.h; sourceTree = "<group>"; };
 		9AF505ED1B3EDDC800BDA256 /* PreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreviewView.m; path = Game/PreviewView.m; sourceTree = "<group>"; };
+		9E439BD44D80416B66043A80 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		A4C7589A1FD3790421E586CB /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		C54A910AA33386FDDC1E1004 /* BuddyBuildSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BuddyBuildSDK.framework; sourceTree = "<group>"; };
 		FA15A0421C5790B300BBAC5E /* ConfirmationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConfirmationView.h; path = Commons/Views/ConfirmationView.h; sourceTree = "<group>"; };
 		FA15A0431C5790B300BBAC5E /* ConfirmationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConfirmationView.m; path = Commons/Views/ConfirmationView.m; sourceTree = "<group>"; };
 		FA7E5A4B1C79EA2300355194 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -122,6 +134,12 @@
 				FABAA96B1C79EAE800D7AB8F /* GameKit.framework in Frameworks */,
 				FAA930061C6FEDCC00F19E97 /* CloudKit.framework in Frameworks */,
 				FA7E5A4C1C79EA2300355194 /* StoreKit.framework in Frameworks */,
+				2E5A567BF690B312EF836213 /* BuddyBuildSDK.framework in Frameworks */,
+				5C74FF1DB29DD8BC3980BD77 /* AssetsLibrary.framework in Frameworks */,
+				D311D92EBF166592B2CC93F4 /* CoreText.framework in Frameworks */,
+				7A7BCC929AA7E7AF97A04AAD /* CoreTelephony.framework in Frameworks */,
+				C09B38E458C66F734BCDA5FB /* SystemConfiguration.framework in Frameworks */,
+				6410FA917F072A0FE59F565C /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,6 +162,7 @@
 				9A21918F1AEAAA4100D1FBF4 /* OnePlusOne */,
 				9A2191A91AEAAA4100D1FBF4 /* OnePlusOneTests */,
 				9A21918E1AEAAA4100D1FBF4 /* Products */,
+				F23C44D2CC8F09F8A4F6DC3C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -288,6 +307,19 @@
 				9AEFD3551AFBEBBD00613FE7 /* PathButton.m */,
 			);
 			name = Paths;
+			sourceTree = "<group>";
+		};
+		F23C44D2CC8F09F8A4F6DC3C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C54A910AA33386FDDC1E1004 /* BuddyBuildSDK.framework */,
+				60B1DF82E7A774BB0FB0F12D /* AssetsLibrary.framework */,
+				A4C7589A1FD3790421E586CB /* CoreText.framework */,
+				0290B6B5146E4AED8295FBE3 /* CoreTelephony.framework */,
+				604A334F30D0E24C6F2AC3F6 /* SystemConfiguration.framework */,
+				9E439BD44D80416B66043A80 /* QuartzCore.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -550,6 +582,10 @@
 				CODE_SIGN_ENTITLEMENTS = OnePlusOne/OnePlusOne.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = OnePlusOne/prefix.pch;
 				INFOPLIST_FILE = OnePlusOne/Info.plist;
@@ -570,6 +606,10 @@
 				CODE_SIGN_ENTITLEMENTS = OnePlusOne/OnePlusOne.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = OnePlusOne/prefix.pch;
 				INFOPLIST_FILE = OnePlusOne/Info.plist;

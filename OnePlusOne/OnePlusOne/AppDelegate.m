@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "MenuViewController.h"
 #import "InAppManager.h"
+#import <BuddyBuildSDK/BuddyBuildSDK.h>
 
 
 @interface AppDelegate ()
@@ -20,6 +21,8 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [BuddyBuildSDK setup];
+    
     // Override point for customization after application launch.
     
     
